@@ -6,12 +6,12 @@ M.keys = {
 		silent = true,
 	},
 	['vim'] = {
-		{ '<C-h>',   '<C-w>h',      desc = 'Select window to the left' },
-		{ '<C-j>',   '<C-w>j',      desc = 'Select window below' },
-		{ '<C-k>',   '<C-w>k',      desc = 'Select window above' },
-		{ '<C-l>',   '<C-w>l',      desc = 'Select window to the right' },
-		{ '<Tab>',   '<Cmd>bn<CR>', desc = 'Select next tab' },
-		{ '<S-Tab>', '<Cmd>bp<CR>', desc = 'Select previous tab' },
+		{ '<C-h>',   '<Cmd>wincmd h<CR>', desc = 'Select window to the left',  mode = { 'n', 't' } },
+		{ '<C-j>',   '<Cmd>wincmd j<CR>', desc = 'Select window below',        mode = { 'n', 't' } },
+		{ '<C-k>',   '<Cmd>wincmd k<CR>', desc = 'Select window above',        mode = { 'n', 't' } },
+		{ '<C-l>',   '<Cmd>wincmd l<CR>', desc = 'Select window to the right', mode = { 'n', 't' } },
+		{ '<Tab>',   '<Cmd>bn<CR>',       desc = 'Select next tab' },
+		{ '<S-Tab>', '<Cmd>bp<CR>',       desc = 'Select previous tab' },
 		{
 			'<ESC><ESC>',
 			'<C-\\><C-N>',
