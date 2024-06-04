@@ -50,41 +50,16 @@ end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+neoconf.setup()
+neodev.setup()
 mason.setup()
 mason_lspconfig.setup()
-neoconf.setup {
-	plugins = {
-		jsonls = {
-			configured_servers_only = false,
-		},
-	},
-}
-neodev.setup()
 
 mason_lspconfig.setup_handlers {
 	function(server)
 		lspconfig[server].setup {
 			on_attach = on_attach,
 			capabilities = capabilities,
-		}
-	end,
-	['lua_ls'] = function()
-		lspconfig['lua_ls'].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					runtime = {
-						version = 'LuaJIT',
-					},
-					workspace = {
-						checkThirdParty = false,
-					},
-					diagnostics = {
-						globals = { 'vim' },
-					},
-				},
-			},
 		}
 	end,
 	['rust_analyzer'] = function()
@@ -109,15 +84,6 @@ mason_lspconfig.setup_handlers {
 			capabilities = capabilities,
 			cmd = (vim.fn.has 'macunix' and { '/usr/local/opt/llvm/bin/clangd' } or nil),
 			filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-		}
-	end,
-	['golangci_lint_ls'] = function()
-		lspconfig['golangci_lint_ls'].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			init_options = {
-				command = { 'golangci-lint', 'run', '--out-format', 'json', '--fix' },
-			},
 		}
 	end,
 }
