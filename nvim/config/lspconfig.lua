@@ -61,6 +61,14 @@ neoconf.setup {
 }
 neodev.setup()
 
+local function mac_clang()
+	lspconfig['clangd'].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		cmd = { '/usr/local/opt/llvm/bin/clangd' },
+	}
+end
+
 mason_lspconfig.setup_handlers {
 	function(server)
 		lspconfig[server].setup {
@@ -103,4 +111,5 @@ mason_lspconfig.setup_handlers {
 			},
 		}
 	end,
+	['clangd'] = (vim.fn.has 'macunix' and mac_clang or nil),
 }
