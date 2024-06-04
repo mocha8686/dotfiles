@@ -77,7 +77,7 @@ alias gc="git commit"
 alias gcm="git commit -m"
 alias gac="gaa && gcm"
 alias gcp="git commit --amend"
-alias gcpp="gaa && gcp"
+alias gcpm="git commit --amend -m"
 alias gcpn="git commit --amend --no-edit"
 alias gcpnn="gaa && gcpn"
 
