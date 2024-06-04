@@ -1,4 +1,4 @@
-@import url("/home/huece/.cache/wal/colors-waybar.css");
+@import url("/home/mocha/.cache/wal/colors-waybar.css");
 
 #outer-box, #input {
 	color: @foreground;
