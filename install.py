@@ -56,10 +56,13 @@ if system_name == 'arch' and not shutil.which('yay'):
 
 
 # Install packages
-print('Installing packages...')
+confirm_install = True if input('Install packages? [Y/n] ')[0].lower() != 'n' else False
 
-install_packages(system['install_command'], system['packages'])
-print('Done.')
+if confirm_install:
+    print('Installing packages...')
+
+    install_packages(system['install_command'], system['packages'])
+    print('Done.')
 
 
 # Remove old system profile
@@ -77,14 +80,15 @@ with open('.zshrc', 'r') as cfg, open('.zshrctmp', 'w') as tmp:
 
 
 # Update profile
-contents = ['# SYS PROFILE START'] + system['profile'] + ['# SYS PROFILE END']
-for i, line in [ (i, line) for i, line in enumerate(contents) ]:
-    contents[i] = line + "\n"
-contents = ''.join(contents)
+if 'profile' in system:
+    contents = ['# SYS PROFILE START'] + system['profile'] + ['# SYS PROFILE END']
+    for i, line in [ (i, line) for i, line in enumerate(contents) ]:
+        contents[i] = line + "\n"
+    contents = ''.join(contents)
 
-with open('.zshrctmp', 'a') as f:
-    f.write(contents)
-install_config(os.path.join(os.path.expanduser('~'), '.zshrc'), '.zshrctmp', True)
+    with open('.zshrctmp', 'a') as f:
+        f.write(contents)
+    install_config(os.path.join(os.path.expanduser('~'), '.zshrc'), '.zshrctmp', True)
 
 # Install other config files
 if 'install' in system.keys():
