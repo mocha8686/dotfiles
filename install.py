@@ -91,3 +91,7 @@ if 'install' in system.keys():
     for file in system['install']:
         install_config(system['install'][file], file)
 
+
+# Additional steps
+# vim-plug
+os.system('sh -c \'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\'')
