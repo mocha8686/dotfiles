@@ -1,0 +1,8 @@
+[Unit]
+Description=Rclone mount for Obsidian vault
+
+[Mount]
+Type=Rclone
+What=dropbox:Obsidian
+Where=/home/mocha/Documents/Obsidian/
+Options=rw,_netdev,allow_other,args2env,vfs-cache-mode=writes,config=/home/mocha/.config/rclone/rclone.conf,cache-dir=/var/rclone
