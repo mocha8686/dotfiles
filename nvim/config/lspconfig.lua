@@ -73,4 +73,23 @@ mason_lspconfig.setup_handlers {
 			filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
 		}
 	end,
+	['denols'] = function()
+		lspconfig['denols'].setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				deno = {
+					enable = true,
+					unstable = true,
+					suggest = {
+						imports = {
+							hosts = {
+								['https://deno.land'] = true,
+							},
+						},
+					},
+				},
+			},
+		}
+	end,
 }
