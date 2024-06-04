@@ -1,2 +1,3 @@
 ~/.cache/wal/99-colors-dunst.conf:~/.config/dunst/dunstrc.d/99-colors-dunst.conf
+~/.cache/wal/hyprpaper.conf:~/.config/hypr
 ~/.cache/wal/mako_config:~/.config/mako/config
