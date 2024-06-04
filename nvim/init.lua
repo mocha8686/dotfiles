@@ -1,5 +1,8 @@
 local function no_numbers()
-	return vim.b['term_title'] or vim.bo.filetype == 'man' or vim.bo.filetype == 'help'
+	return vim.b['term_title']
+		or vim.bo.filetype == 'man'
+		or vim.bo.filetype == 'help'
+		or string.find(vim.bo.filetype, 'dap')
 end
 
 -- Vim options
@@ -67,7 +70,7 @@ local function set_vim_options()
 			if not no_numbers() then
 				opt.relativenumber = true
 			end
-		end
+		end,
 	})
 	autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
 		group = number_augroup,
@@ -76,14 +79,14 @@ local function set_vim_options()
 			if not no_numbers() then
 				opt.relativenumber = false
 			end
-		end
+		end,
 	})
 
 	autocmd('FileType', {
 		pattern = { 'text', 'markdown', 'tex', 'plaintex' },
 		callback = function()
 			opt.wrap = true
-		end
+		end,
 	})
 
 	autocmd('TermOpen', {
@@ -91,7 +94,7 @@ local function set_vim_options()
 		callback = function()
 			vim.opt_local.number = false
 			vim.opt_local.relativenumber = false
-		end
+		end,
 	})
 end
 
@@ -109,22 +112,22 @@ end
 
 -- Lazy
 local function ensure_lazy()
-	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 	if not vim.loop.fs_stat(lazypath) then
-		vim.fn.system({
-			"git",
-			"clone",
-			"--filter=blob:none",
-			"https://github.com/folke/lazy.nvim.git",
-			"--branch=stable", -- latest stable release
+		vim.fn.system {
+			'git',
+			'clone',
+			'--filter=blob:none',
+			'https://github.com/folke/lazy.nvim.git',
+			'--branch=stable', -- latest stable release
 			lazypath,
-		})
+		}
 	end
 	vim.opt.rtp:prepend(lazypath)
 end
 
 set_vim_options()
-require('keys').map_plugin_keys('vim')
+require('keys').map_plugin_keys 'vim'
 ensure_lazy()
 
 local plugins = require 'plugins'
