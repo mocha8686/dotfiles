@@ -1,4 +1,3 @@
-./dunst/dunstrc:~/.config/dunst
 ./git/.gitconfig:~
 ./hyprland/hyprland.conf:~/.config/hypr
 ./hyprland/hyprpaper.conf:~/.config/hypr
@@ -33,8 +32,8 @@
 ./rofi/config.rasi:~/.config/rofi
 ./rofi/powermenu.sh:~/.local/bin
 ./swayidle/config:~/.config/swayidle
-./wal/99-colors-dunst.conf:~/.config/wal/templates
 ./wal/colors-hyprland.conf:~/.config/wal/templates
+./wal/mako_config:~/.config/wal/templates
 ./wal/hyprpaper.conf:~/.config/wal/templates
 ./wal/swaylock.conf:~/.config/wal/templates
 ./waybar/config:~/.config/waybar
