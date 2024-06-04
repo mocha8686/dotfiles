@@ -3,7 +3,6 @@
 		"global": {
 			"packages": [
 				"neovim",
-				"fzf",
 				"ctags"
 			],
 			"install": {
@@ -18,7 +17,7 @@
 			]
 		},
 
-		"dietpi": {
+		"debian": {
 			"profile": [
 				"export PATH=\"/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin\"",
 				"alias apt=\"sudo apt\"",
