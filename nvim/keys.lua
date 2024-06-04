@@ -301,49 +301,6 @@ M.keys = {
 			desc = 'Toggle DAP UI',
 		},
 	},
-	['rustaceanvim'] = {
-		{
-			'<leader>lA',
-			function()
-				vim.cmd.RustLsp 'codeAction'
-			end,
-			desc = 'Show code actions',
-			mode = {
-				'n',
-				'v',
-			},
-		},
-		{
-			'<leader>lx',
-			function()
-				vim.cmd.RustLsp 'renderDiagnostic'
-			end,
-			desc = 'Render diagnostic',
-		},
-		{
-			'J',
-			function()
-				vim.cmd.RustLsp 'joinLines'
-			end,
-			desc = 'Join lines',
-		},
-		{
-			'<C-k>',
-			function()
-				vim.cmd.RustLsp { 'moveItem', 'up' }
-			end,
-			desc = 'Move item up',
-			mode = { 'n', 'v' },
-		},
-		{
-			'<C-j>',
-			function()
-				vim.cmd.RustLsp { 'moveItem', 'down' }
-			end,
-			desc = 'Move item down',
-			mode = { 'n', 'v' },
-		},
-	},
 	['ccc.nvim'] = {
 		{ '<leader>ch', '<Cmd>CccHighlighterToggle<CR>', desc = 'Highlight colors' },
 		{ '<leader>cp', '<Cmd>CccPick<CR>',              desc = 'Open color picker' },

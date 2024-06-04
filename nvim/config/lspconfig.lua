@@ -58,15 +58,6 @@ mason.setup()
 mason_lspconfig.setup()
 lsp_inlayhints.setup()
 
-vim.g.rustaceanvim = {
-	server = {
-		on_attach = function(client, buf)
-			on_attach(client, buf)
-			keys.map_plugin_keys_buffer('rustaceanvim', buf)
-		end,
-	},
-}
-
 mason_lspconfig.setup_handlers {
 	function(server)
 		lspconfig[server].setup {
@@ -74,7 +65,6 @@ mason_lspconfig.setup_handlers {
 			capabilities = capabilities,
 		}
 	end,
-	['rust_analyzer'] = function() end,
 	['clangd'] = function()
 		lspconfig['clangd'].setup {
 			on_attach = on_attach,

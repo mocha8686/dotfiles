@@ -140,16 +140,6 @@ local plugins = {
 		},
 	},
 
-	-- Language-Specific
-	{
-		{
-			'mrcjkb/rustaceanvim',
-			version = '^3',
-			dependencies = 'neovim/nvim-lspconfig',
-			ft = 'rust',
-		},
-	},
-
 	-- Navigation
 	{
 		{
