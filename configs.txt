@@ -6,6 +6,7 @@
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/config/ccc.lua:~/.config/nvim/lua/config
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
+./nvim/config/git_conflict.lua:~/.config/nvim/lua/config
 ./nvim/config/lspconfig.lua:~/.config/nvim/lua/config
 ./nvim/config/null_ls.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
@@ -19,13 +20,13 @@
 ./nvim/opts/flit.lua:~/.config/nvim/lua/opts
 ./nvim/opts/gitsigns.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lightbulb.lua:~/.config/nvim/lua/opts
-./nvim/opts/tailwind-tools.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lsp_signature.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lualine.lua:~/.config/nvim/lua/opts
 ./nvim/opts/mason_null_ls.lua:~/.config/nvim/lua/opts
 ./nvim/opts/mason_nvim_dap.lua:~/.config/nvim/lua/opts
 ./nvim/opts/null_ls.lua:~/.config/nvim/lua/opts
 ./nvim/opts/nvim_web_devicons.lua:~/.config/nvim/lua/opts
+./nvim/opts/tailwind-tools.lua:~/.config/nvim/lua/opts
 ./nvim/opts/telescope.lua:~/.config/nvim/lua/opts
 ./nvim/opts/toggleterm.lua:~/.config/nvim/lua/opts
 ./nvim/opts/treesitter.lua:~/.config/nvim/lua/opts

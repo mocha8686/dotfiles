@@ -45,7 +45,9 @@ local plugins = {
 		'akinsho/git-conflict.nvim',
 		version = '*',
 		init = util.git_lazy_load 'git-conflict.nvim',
-		config = true,
+		config = function()
+			require 'config.git_conflict'
+		end,
 	},
 
 	-- LSP
