@@ -1,5 +1,3 @@
-
-
 # The following lines were added by compinstall
 
 zstyle ':completion:*' auto-description '[%d]'
@@ -38,13 +36,17 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+# Startup commands
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors.sh
+picom-trans -co 80
 
 # Environment variables
-export DISPLAY=":0"
 export EDITOR="nvim"
 export LANG="en_US.UTF8"
 export PAGER="less"
-export PS1="%F{1}┌─[%F{11}%n@%M%F{1}]──[%F{11}%~%F{1}]"$'\n'"└─[%F{11}%*%F{1}]─> %F{11}%#%F{white} "
+export PS1="%F{1}┌─[%F{2}%n@%M%F{1}]──[%F{2}%~%F{1}]"$'\n'"└─[%F{2}%*%F{1}]─> %F{2}%#%F{white} "
+#export PS1="%F{BG}┌─[%F{FG}%n@%M%F{BG}]──[%F{FG}%~%F{BG}]"$'\n'"└─[%F{FG}%*%F{BG}]─> %F{FG}%#%F{0} "
 export RPROMPT="%(?..%?)"
 
 # Aliases
@@ -52,9 +54,9 @@ alias x="exa --icons --git"
 alias ls="x"
 alias lt="ls -T"
 alias ll="ls -l"
-alias llt="ls -lT"
+alias llt="x -lT"
 alias la="ls -la"
-alias lat="ls -laT"
+alias lat="x -laT"
 
 alias cl="cd -"
 alias mkdir="mkdir -pv"
