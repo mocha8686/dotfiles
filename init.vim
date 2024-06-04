@@ -3,22 +3,27 @@ call plug#begin()
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'adelarsq/vim-matchit'
-Plug 'airblade/vim-gitgutter'
 Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dylanaraps/wal.vim'
 Plug 'fladson/vim-kitty'
 Plug 'gcmt/taboo.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'mhinz/vim-signify'
 Plug 'preservim/nerdtree'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
 Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
+
+" Wal
+colorscheme wal
 
 " Tagbar
 nnoremap <C-y> :TagbarToggle<CR>
@@ -32,15 +37,33 @@ let g:lightline = {
 	\ 'active': {
 	\ 	'left': [
 	\ 		[ 'mode', 'paste' ],
-	\ 		[ 'readonly', 'filename', 'modified' ]
+	\ 		[ 'readonly', 'gitbranch', 'filename', 'modified' ],
 	\ 	],
 	\ 	'right': [
 	\ 		[ 'lineinfo' ],
 	\ 		[ 'percent' ],
-	\ 		[ 'fileformat', 'fileencoding', 'filetype' ]
+	\ 		[ 'fileformat', 'fileencoding', 'filetype' ],
 	\ 	]
 	\ },
+	\ 'component': {
+	\	'lineinfo': '%-3l %-2c',
+	\ },
+	\ 'component_function': {
+	\	'readonly': 'LightlineReadonly',
+	\ 	'gitbranch': 'LightlineGitBranch',
+	\ },
+	\ 'colorscheme': 'wal',
+	\ 'separator': { 'left': '', 'right': '' },
 \ }
+
+function! LightlineReadonly()
+	return &readonly ? '' : ''
+endfunction
+
+function! LightlineGitBranch()
+	let l:branch = FugitiveHead()
+	return len(l:branch) == 0 ? '' : ' ' . l:branch
+endfunction
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
