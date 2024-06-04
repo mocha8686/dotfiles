@@ -120,6 +120,7 @@ fi
 typeset -U path
 export PATH
 
-if [[ -f ~/.session.sh ]] then
+if [[ ! -z ${SESSION+x} ]] && [[ -f ~/.session.sh ]] then
 	source ~/.session.sh
+	unset SESSION
 fi
