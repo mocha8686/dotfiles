@@ -2,6 +2,7 @@
 call plug#begin()
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'adelarsq/vim-matchit'
 Plug 'airblade/vim-gitgutter'
 Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -11,10 +12,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'preservim/nerdtree'
 Plug 'preservim/tagbar'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'adelarsq/vim-matchit'
 
 Plug 'ryanoasis/vim-devicons'
 
