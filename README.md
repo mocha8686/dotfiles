@@ -5,4 +5,5 @@ Installation:
 1. run `install.sh`
 
 ## TODO
-- [ ] null_ls
+- [ ] [NVChad](https://nvchad.com/)
+- [ ] [NixOS](https://nixos.org/)
