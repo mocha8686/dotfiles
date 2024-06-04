@@ -210,6 +210,9 @@ local plugins = {
 		cmd = { 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
 		init = util.lazy_load 'nvim-treesitter',
 		opts = require 'opts.treesitter',
+		config = function(_, opts)
+			require 'nvim-treesitter.configs'.setup(opts)
+		end
 	},
 
 	-- Aesthetics
