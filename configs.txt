@@ -33,7 +33,8 @@
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
 ./rofi/config.rasi:~/.config/rofi
-./rofi/powermenu.sh:~/.local/bin
+./rofi/power_menu.sh:~/.local/bin
+./rofi/screenshot_menu.sh:~/.local/bin
 ./swayidle/config:~/.config/swayidle
 ./wal/colors-hyprland.conf:~/.config/wal/templates
 ./wal/hyprpaper.conf:~/.config/wal/templates
@@ -41,6 +42,4 @@
 ./wal/swaylock.conf:~/.config/wal/templates
 ./waybar/config:~/.config/waybar
 ./waybar/style.css:~/.config/waybar
-./wofi/powermenu.sh:~/.config/wofi
-./wofi/wofi.css:~/.config/wofi
 ./zsh/.zshrc:~
