@@ -1,0 +1,10 @@
+@import "colors-rofi-dark"
+
+configuration {
+	modes: "drun";
+	font: "Iosevka Nerd Font 10";
+	show-icons: true;
+	terminal: "kitty";
+	matching: "fuzzy";
+}
+
