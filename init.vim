@@ -77,7 +77,9 @@ set updatetime=100
 nnoremap / /\v
 nnoremap <C-s> :%s/\v
 nnoremap <C-l> :tabnext<CR>
+nnoremap <S-l> :tabm +1<CR>
 nnoremap <C-h> :tabprevious<CR>
+nnoremap <S-h> :tabm -1<CR>
 nnoremap <C-o> :tabnew<CR>
 nnoremap <C-k> :tabclose<CR>
 
