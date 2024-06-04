@@ -83,6 +83,7 @@ nnoremap <C-h> :tabprevious<CR>
 nnoremap <S-h> :tabm -1<CR>
 nnoremap <C-o> :tabnew<CR>
 nnoremap <C-k> :tabclose<CR>
+tnoremap <ESC> <C-\><C-n>
 
 
 " Information
