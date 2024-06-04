@@ -62,10 +62,6 @@ alias nv="nvim"
 alias nvup="nvim +PlugInstall"
 alias nvcl="nvim +PlugClean"
 # SYS PROFILE START
-export PATH="$PATH:/usr/local/go/bin"
-alias ls="ls -Gh"
-# SYS PROFILE END
-# SYS PROFILE START
-export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:/usr/local/go/bin:$HOME/bin"
 alias ls="ls -Gh"
 # SYS PROFILE END

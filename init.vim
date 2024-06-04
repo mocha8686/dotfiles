@@ -14,6 +14,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vimsence/vimsence'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -32,7 +33,7 @@ let g:lightline = {
 	\ 		[ 'fileformat', 'fileencoding', 'filetype' ]
 	\ 	]
 	\ },
-	\ }
+\ }
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -45,8 +46,15 @@ nnoremap <C-y> :TagbarToggle<CR>
 
 " CtrlP
 nnoremap <C-p> :CtrlPMixed<CR>
+let g:ctrlp_custom_ignore = {
+	\ 'dir': '\(\.git\|node_modules\)$'
+\ }
 
-" Functionalities
+" Vimsence
+let g:vimsence_small_text = 'NeoVim'
+let g:vimsence_small_image = 'neovim'
+
+" Functionality
 set backspace=indent,eol,start
 set history=25
 set autoindent
@@ -58,6 +66,7 @@ set whichwrap=b,s,<,>,[,]
 set tabstop=4
 set shiftwidth=4
 set updatetime=100
+nnoremap / /\v
 
 " Information
 set noshowmode
