@@ -95,7 +95,7 @@ local plugins = {
 			config = function(_, opts)
 				require('nvim-lightbulb').setup(opts)
 				vim.fn.sign_define('LightBulbSign', { text = '󰌵' })
-			end
+			end,
 		},
 	},
 
