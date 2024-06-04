@@ -5,7 +5,7 @@
 @define-color critical #bf616a;
 
 * {
-	font-family: Iosevka, 'Jetbrains Mono', monospace;
+	font-family: 'Iosevka Nerd Font', 'Jetbrains Mono', monospace;
 }
 
 window#waybar {

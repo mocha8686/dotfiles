@@ -3,7 +3,7 @@
 #outer-box, #input {
 	color: @foreground;
 	background-color: @background;
-	font-family: 'Iosevka', 'Jetbrains Mono', monospace;
+	font-family: 'Iosevka Nerd Font', 'JetbrainsMono Nerd Font', monospace;
 	font-size: 10pt;
 	border: none;
 	border-radius: 0;

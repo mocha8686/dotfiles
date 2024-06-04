@@ -4,5 +4,9 @@ Installation:
 
 1. run `install.sh`
 
+Inline [link](https://google.com).
+
 ## TODO
-- [ ] null_ls
+
+- [ ] [NixOS](https://nixos.org/)
+
