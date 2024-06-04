@@ -2,6 +2,8 @@
 ./hyprland/hypridle.conf:~/.config/hypr
 ./hyprland/hyprland.conf:~/.config/hypr
 ./hyprland/hyprpaper.conf:~/.config/hypr
+./hyprland/hyprlock.conf:~/.config/hypr
+./hyprland/hypridle.conf:~/.config/hypr
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/config/ccc.lua:~/.config/nvim/lua/config
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
@@ -34,8 +36,6 @@
 ./rofi/power_menu.sh:~/.local/bin
 ./rofi/screenshot_menu.sh:~/.local/bin
 ./wal/colors-hyprland.conf:~/.config/wal/templates
-./wal/hyprlock.conf:~/.config/wal/templates
-./wal/hyprpaper.conf:~/.config/wal/templates
 ./wal/mako_config:~/.config/wal/templates
 ./waybar/config:~/.config/waybar
 ./waybar/style.css:~/.config/waybar
