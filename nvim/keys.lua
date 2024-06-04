@@ -52,7 +52,7 @@ M.keys = {
 	},
 	['vim-sayonara'] = {
 		{ '<leader>w', '<Cmd>Sayonara!<CR>', desc = 'Delete the current buffer and close the window' },
-		{ '<leader>x', '<Cmd>Sayonara<CR>',  desc = 'Delete the current buffer' },
+		{ '<leader>q', '<Cmd>Sayonara<CR>',  desc = 'Delete the current buffer' },
 	},
 	['leap.nvim'] = {
 		{ 'z', '<Plug>(leap-forward-x)',  mode = { 'n', 'x', 'o' } },
