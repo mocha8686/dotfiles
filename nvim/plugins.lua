@@ -123,7 +123,12 @@ local plugins = {
 			'ggandor/flit.nvim',
 			keys = keys.get_plugin_keys 'flit.nvim',
 			dependencies = 'ggandor/leap.nvim',
-			opts = require 'opts.flit'
+			opts = require 'opts.flit',
+		},
+		{
+			'simeji/winresizer',
+			keys = '<C-e>',
+			cmd = 'WinResizerStartResize',
 		},
 	},
 
