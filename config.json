@@ -34,7 +34,8 @@
 
 		"mac": {
 			"profile": [
-				"alias ls=\"ls -Gh\""
+				"alias ls=\"ls -Gh\"",
+				"export HOMEBREW_GITHUB_API_TOKEN=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"
 			],
 			"install_command": "brew install",
 			"packages": [],
