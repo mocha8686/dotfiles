@@ -55,16 +55,23 @@ local function set_vim_options()
 
 	g.mapleader = ' '
 
+	local number_augroup = vim.api.nvim_create_augroup('SetNumberRelativeNumber', { clear = true })
 	autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+		group = number_augroup,
 		pattern = '*',
 		callback = function()
-			opt.relativenumber = true
+			if not vim.b['term_title'] then
+				opt.relativenumber = true
+			end
 		end
 	})
 	autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+		group = number_augroup,
 		pattern = '*',
 		callback = function()
-			opt.relativenumber = false
+			if not vim.b['term_title'] then
+				opt.relativenumber = false
+			end
 		end
 	})
 

@@ -6,14 +6,20 @@ M.keys = {
 		silent = true,
 	},
 	['vim'] = {
-		{ '<C-h>',      '<C-w>h' },
-		{ '<C-j>',      '<C-w>j' },
-		{ '<C-k>',      '<C-w>k' },
-		{ '<C-l>',      '<C-w>l' },
-		{ '<Tab>',      '<Cmd>bn<CR>' },
-		{ '<S-Tab>',    '<Cmd>bp<CR>' },
-		{ '<leader>tt', '<Cmd>10split<CR><Cmd>term<CR><Cmd>set nonumber norelativenumber<CR>i' },
-		{ '<ESC><ESC>', '<C-\\><C-N>',                                                         mode = { 't' } },
+		{ '<C-h>',   '<C-w>h' },
+		{ '<C-j>',   '<C-w>j' },
+		{ '<C-k>',   '<C-w>k' },
+		{ '<C-l>',   '<C-w>l' },
+		{ '<Tab>',   '<Cmd>bn<CR>' },
+		{ '<S-Tab>', '<Cmd>bp<CR>' },
+		{ '<leader>tt', function()
+			vim.cmd [[ 10split ]]
+			vim.cmd [[ term ]]
+
+			vim.opt.number = false
+			vim.opt.relativenumber = false
+		end },
+		{ '<ESC><ESC>', '<C-\\><C-N>', mode = { 't' } },
 	},
 	['Comment.nvim'] = {
 		{ 'gc', mode = { 'n', 'v' } },
