@@ -1,81 +1,174 @@
 {
 	"layer": "top",
-	"position": "top",
-	"height": 30,
+	"position": "left",
+	"margin": 8,
+	"spacing": 8,
+	"reload_style_on_change": true,
 	"modules-left": [
-		"disk",
-		"cpu",
-		"memory",
-		"network"
+		"hyprland/workspaces",
 	],
 	"modules-center": [
-		"hyprland/window"
+		"hyprland/window",
 	],
 	"modules-right": [
+		"group/sys",
+		"group/time",
+		"pulseaudio/slider",
+		"wireplumber",
 		"tray",
-		"pulseaudio",
-		"clock#date",
-		"clock#time"
+		"group/power",
 	],
 	"clock#date": {
-		"interval": 60,
-		"format": "  {:%a, %d %b %Y}"
+		"format": "󰃭   {:%m/%d}",
+		"tooltip-format": "{:%A, %Y %B %d}",
+		"rotate": 270,
 	},
 	"clock#time": {
 		"interval": 1,
-		"format": "  {:%H:%M:%OS}"
+		"format": "󰥔   {:%H:%M}",
+		"tooltip-format": "{:%H:%M:%S}",
+		"rotate": 270,
 	},
 	"cpu": {
-		"interval": 2,
-		"format": "  {usage}%",
+		"format": "󰍛",
+		"interval": 5,
 		"states": {
-			"warning": 85,
-			"critical": 95
-		}
+			"warning": 75,
+			"critical": 90,
+		},
+	},
+	"custom/lock": {
+		"interval": "once",
+		"format": "󰌾",
+		"on-double-click": "loginctl lock-session",
+		"tooltip-format": "Lock",
+	},
+	"custom/poweroff": {
+		"interval": "once",
+		"format": "󰐥",
+		"on-double-click": "systemctl poweroff",
+		"tooltip-format": "Poweroff",
+	},
+	"custom/reboot": {
+		"interval": "once",
+		"format": "󰜉",
+		"on-double-click": "systemctl reboot",
+		"tooltip-format": "Reboot",
 	},
 	"disk": {
-		"interval": 30,
-		"format": "󰋊 {percentage_used}%",
+		"format": "󰋊",
+		"unit": "GB",
+		"tooltip-format": "{specific_used:0.1f}/{specific_total:0.1f} GB [{percentage_used}%] disk used",
 		"states": {
-			"warning": 85,
-			"critical": 95
+			"warning": 75,
+			"critical": 90,
 		},
-		"tooltip-format": "{used} out of {total} used.\n{free} remaining."
+	},
+	"group/power": {
+		"orientation": "inherit",
+		"modules": [
+			"user",
+			"idle_inhibitor",
+			"custom/lock",
+			"custom/reboot",
+			"custom/poweroff",
+		],
+		"drawer": {
+			"transition-duration": 250,
+		},
+	},
+	"group/sys": {
+		"orientation": "inherit",
+		"modules": [
+			"cpu",
+			"memory",
+			"disk",
+		],
+		"drawer": {
+			"transition-duration": 250,
+		},
+	},
+	"group/time": {
+		"orientation": "inherit",
+		"modules": [
+			"clock#time",
+			"clock#date",
+		],
+		"drawer": {
+			"transition-duration": 250,
+		},
 	},
 	"hyprland/window": {
-		"separate-outputs": true
+		"rewrite": {
+			"(.*) - YouTube — Mozilla Firefox": "󰗃   $1",
+			"(.*) — Mozilla Firefox": "󰈹   $1",
+			"(.*) — Mozilla Firefox Private Browsing": "󰗹   $1",
+			"Mozilla Firefox": "󰈹   ",
+			"Mozilla Firefox Private Browsing": "󰗹   ",
+			"(.*) \\((.*)\\) - NVIM": "󱇧  $1",
+			"\\((\\d)\\) Discord \\| (.*) \\| (.*)": "󰙯   | $2 | $3"
+		},
+		"rotate": 270,
+	},
+	"hyprland/workspaces": {
+		"format": "{icon}\n{windows}",
+		"format-window-separator": "\n",
+		"format-icons": {
+			"special": "S",
+		},
+		"show-special": true,
+		"window-rewrite-default": "",
+		"window-rewrite": {
+			"class<cider>": "󰝚",
+			"class<firefox> title<.*github.*>": "󰊤",
+			"class<firefox> title<.*youtube.*>": "󰗃",
+			"class<firefox>": "󰈹",
+			"class<firefox>": "󰈹",
+			"class<kitty>": "",
+			"class<vesktop>": "󰙯",
+			"title<.*nvim>": "",
+		},
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "󰛨",
+			"deactivated": "󰹏",
+		},
+		"tooltip-format-activated": "Idle inhibitor active",
+		"tooltip-format-deactivated": "Idle inhibitor inactive",
 	},
 	"memory": {
-		"interval": 2,
-		"format": "󰍛 {percentage}%",
-		"states": {
-			"warning": 85,
-			"critical": 95
-		},
-		"tooltip-format": "{used}GiB out of {total}GiB RAM used. {avail}GiB remaining.\n{swapUsed}GiB out of {swapTotal}GiB SWAP used ({swapPercentage}%). {swapAvail}GiB remaining."
-	},
-	"network": {
+		"format": "󰘚",
 		"interval": 10,
-		"format-wifi": "󰖩  {essid} {signalStrength}%",
-		"format-ethernet": "󰈁 {essid} {signalStrength}%",
-		"format-disconnected": "󰖪 ",
-		"tooltip-format-wifi": "{bandwidthDownBytes} download, {bandwidthUpBytes} upload.\nConnected as {ipaddr}/{cidr} via {ifname}.",
-		"tooltip-format-ethernet": "{bandwidthDownBytes} download, {bandwidthUpBytes} upload.\nConnected as {ipaddr}/{cidr} via {ifname}."
+		"tooltip-format": "{used:0.1f} GiB [{percentage}%] RAM used",
+		"states": {
+			"warning": 75,
+			"critical": 90,
+		},
 	},
-	"pulseaudio": {
-		"format": "{icon} {volume}%",
-		"format-icons": [
-			"󰕿",
-			"󰖀",
-			"󰕾"
-		],
-		"format-muted": "󰝟 {volume}%"
+	"pulseaudio/slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "vertical"
 	},
 	"tray": {
 		"icon-size": 16,
-		"spacing": 6
-	}
+		"spacing": 6,
+	},
+	"user": {
+		"format": "",
+		"icon": true,
+		"width": 30,
+		"height": 30,
+	},
+	"wireplumber": {
+		"format": "{icon}",
+		"format-muted": "",
+		"on-click": "pamixer -t",
+		"format-icons": ["󰕿", "󰖀", "󰕾"],
+		"tooltip-format": "{volume}%",
+	},
 }
 // vim:ft=json5
-// TODO: add cava, idle inhibitor, mpd, power, user?
-// TODO: update hyprland, pulseaudio -> wireplumber
+// TODO: add cava, mpd

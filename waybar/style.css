@@ -4,58 +4,128 @@
 @define-color warn #ebcb8b;
 @define-color critical #bf616a;
 
+/**********/
+/* Global */
+/**********/
+
 * {
-	font-family: 'Iosevka Nerd Font', 'Jetbrains Mono', monospace;
+	font-family: 'TiltNe Nerd Font', sans-serif;
+	transition-property: color, border;
+	transition-duration: 150ms;
+	transition-timing-function: ease-in-out;
 }
 
 window#waybar {
-	background: transparent;
-}
-
-#clock,
-#cpu,
-#disk,
-#window,
-#memory,
-#network,
-#pulseaudio,
-#tray {
-	padding: 0 10px 2px;
-	margin: 0;
 	color: @foreground;
 	background-color: @background;
-	opacity: 0.7;
-	border-top: 2px solid transparent;
-	transition-property: color, border-top-color, opacity;
-	transition-duration: 0.25s;
-	transition-timing-function: ease-out;
+	border-radius: 12px;
 }
 
 tooltip {
-	border: none;
-	border-radius: 0;
 	background-color: @background;
+	border: 1px solid @color1;
+	border-radius: 8px;
 	opacity: 0.85;
 }
 
-#cpu.warning,
-#disk.warning,
-#memory.warning {
+.module:hover {
+	color: @color1;
+}
+
+.modules-left {
+	padding-top: 8px;
+}
+
+.modules-right {
+	padding-bottom: 8px;
+}
+
+/************/
+/* Semantic */
+/************/
+
+.warning,
+.critical {
+	border-left-width: 3px;
+	border-style: solid;
+}
+
+.warning {
+	border-color: @warn;
 	color: @warn;
-	border-top-color: @warn;
-	opacity: 0.9;
 }
 
-#cpu.critical,
-#disk.critical,
-#memory.warning,
-#network.disconnected,
-#tray > .needs-attention {
+.critical {
+	border-color: @critical;
 	color: @critical;
-	border-top-color: @critical;
-	opacity: 0.9;
 }
 
-#pulseaudio {
-	padding-top: 3px;
+/***********/
+/* Modules */
+/***********/
+
+#clock {
+	padding: 6px;
+}
+
+
+#disk {
+	font-size: 20px;
+}
+
+
+#pulseaudio-slider {
+	padding-bottom: 0;
+}
+
+#pulseaudio-slider slider {
+	opacity: 0;
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+	min-height: 80px;
+	min-width: 10px;
+	border-radius: 10px;
+	background-color: black;
+}
+
+#pulseaudio-slider highlight {
+	border-radius: 10px;
+	background-color: @color1;
+}
+
+
+#user {
+	padding: 8px;
+}
+
+
+#window {
+	padding-left: 12px;
+}
+
+
+#wireplumber {
+	padding-top: 0;
+}
+
+#wireplumber.muted {
+	color: @critical;
+}
+
+
+#workspaces * {
+	transition: none;
+}
+
+#workspaces button.active {
+	color: @color1;
+}
+
+#workspaces button.empty {
+	color: inherit;
+	opacity: 0.3;
 }
