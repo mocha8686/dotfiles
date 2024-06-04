@@ -1,5 +1,14 @@
 # pulseaudio-ctl mute/up/down
 
+XF86AudioRaiseVolume
+	pamixer -i 5
+
+XF86AudioLowerVolume
+	pamixer -d 5
+
+XF86AudioMute
+	pamixer -t
+
 ##########################
 # wm independent hotkeys #
 ##########################
