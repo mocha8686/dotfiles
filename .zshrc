@@ -62,7 +62,3 @@ alias fgrep="fgrep --color=auto"
 alias nv="nvim"
 alias nvup="nvim +PlugInstall"
 alias nvcl="nvim +PlugClean"
-
-# fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
