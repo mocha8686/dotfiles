@@ -1,9 +1,10 @@
 on-button-middle=exec makoctl menu -n "$id" rofi -no-show-icons -dmenu -p "notify action"
 
-font=Iosevka Nerd Font 10
+font=Iosevka Nerd Font 9
 text-alignment=right
-# default-timeout=7500
+default-timeout=7500
 layer=overlay
+width=400
 
 background-color={background}
 text-color={foreground}
