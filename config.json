@@ -1,0 +1,72 @@
+{
+	"systems": {
+		"global": {
+			"packages": [
+				"wget",
+				"zsh",
+				"cmake",
+				"nodejs",
+				"git",
+				"neovim"
+			],
+			"install": {
+				".gitconfig": "~/.gitconfig",
+				"init.vim": "~/.config/nvim/init.vim"
+			}
+		},
+		"arch": {
+			"profile": [
+				"xrdb ~/.Xresources",
+				"alias pacman=\"sudo pacman\"",
+				"alias update=\"pacman -Syu\"",
+				"alias updatef=\"pacman -Syyu\"",
+				"alias ccache=\"pacman -Sc\"",
+				"(cat ~/.cache/wal/sequences &)",
+				"source ~/.cache/wal/colors-tty.sh"
+			],
+			"install_command": "yay -S",
+			"packages": [
+				"build-essential",
+				"base-devel",
+				"networkmanager",
+				"openssh",
+				"python3",
+				"lxdm",
+				"bspwm",
+				"sxhkd",
+				"picom",
+				"pywal",
+				"betterlockscreen",
+				"kitty",
+				"rofi",
+				"thunar",
+				"imagemagick",
+				"ffmpeg",
+				"pulseaudio",
+				"pulseaudio-ctl"
+			],
+			"install": {
+				"bspwmrc": "~/.config/bspwm/bspwmrc",
+				"kitty.conf": "~/.config/kitty/kitty.conf",
+				"picom.conf": "~/.config/picom/picom.conf",
+				"sxhkdrc": "~/.config/sxhkd/sxhkdrc"
+			}
+		},
+		"raspi": {
+			"profile": [
+				"alias apt=\"sudo apt\"",
+				"alias update=\"apt update && apt upgrade\""
+			],
+			"install_command":"sudo apt install",
+			"packages": [
+				"xrdp"
+			]
+		},
+		"mac": {
+			"install_command": "brew install",
+			"packages": [
+				"git"
+			]
+		}
+	}
+}

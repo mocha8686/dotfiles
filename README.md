@@ -2,4 +2,4 @@
 
 Installation:
 
-1. symlink everything have fun
+1. run install.py

@@ -28,11 +28,8 @@ export RPROMPT="%(?..%?)"
 export PS1="%F{1}┌─[%F{11}%n@%M%F{1}]──[%F{11}%~%F{1}]"$'\n'"└─[%F{11}%*%F{1}]─> %F{11}%#%F{white} "
 export EDITOR="nvim"
 export PAGER="less"
-export TERMINAL="alacritty"
-export BROWSER="firefox"
 export LANG="en_US.utf8"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/bin"
-xrdb ~/.Xresources
 
 # Aliases
 
@@ -56,12 +53,6 @@ alias cp="cp -v"
 alias mv="mv -v"
 alias rm="rm -iv"
 
-# pacman
-alias pacman="sudo pacman"
-alias update="pacman -Syu"
-alias updatef="pacman -Syyu"
-alias ccache="pacman -Sc"
-
 # grep
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
@@ -72,21 +63,6 @@ alias nv="nvim"
 alias nvup="nvim +PlugInstall"
 alias nvcl="nvim +PlugClean"
 
-# ssh
-alias ssh="TERM=xterm-256color ssh" # fix for weird stuff in Debian
-
-# System
-alias bat="cat /sys/class/power_supply/BAT1/capacity"
-alias batst="cat /sys/class/power_supply/BAT1/status"
-
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-
-# powerline
-#powerline-daemon -q
-#. /usr/share/powerline/bindings/zsh/powerline.zsh
-
-# pywal
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
