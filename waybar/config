@@ -72,7 +72,8 @@
 		"format-muted": "󰝟 {volume}%"
 	},
 	"tray": {
-		"icon-size": 16
+		"icon-size": 16,
+		"spacing": 6
 	}
 }
 // vim:ft=json

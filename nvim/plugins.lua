@@ -111,10 +111,6 @@ local plugins = {
 			keys = keys.get_plugin_keys 'targets.vim',
 		},
 		{
-			'mhinz/vim-sayonara',
-			keys = keys.get_plugin_keys 'vim-sayonara',
-		},
-		{
 			'ggandor/leap.nvim',
 			dependencies = 'tpope/vim-repeat',
 			keys = keys.get_plugin_keys 'leap.nvim',
@@ -124,6 +120,14 @@ local plugins = {
 			keys = keys.get_plugin_keys 'flit.nvim',
 			dependencies = 'ggandor/leap.nvim',
 			opts = require 'opts.flit',
+		},
+	},
+
+	-- Buffer, window, and tab management
+	{
+		{
+			'mhinz/vim-sayonara',
+			keys = keys.get_plugin_keys 'vim-sayonara',
 		},
 		{
 			'simeji/winresizer',
