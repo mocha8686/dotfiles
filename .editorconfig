@@ -4,6 +4,5 @@ root = true
 indent_style = tab
 indent_size = 4
 insert_final_newline = true
+quote_type = single
 
-[hyprland.conf]
-indent_style = space
