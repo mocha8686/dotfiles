@@ -126,6 +126,7 @@
 			"class<firefox>": "󰈹",
 			"class<firefox>": "󰈹",
 			"class<kitty>": "",
+			"class<steam>": "󰓓",
 			"class<vesktop>": "󰙯",
 			"title<.*nvim>": "",
 		},
