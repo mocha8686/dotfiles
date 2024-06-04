@@ -200,7 +200,6 @@ return require('packer').startup(function(use)
 				local trouble = require 'trouble'
 
 				local map = vim.keymap.set
-				local cmd = vim.cmd
 				local sign_define = vim.fn.sign_define
 
 				local severity = {
@@ -249,14 +248,14 @@ return require('packer').startup(function(use)
 					map('n', '[t', function() todo_comments.jump_prev() end, opts)
 
 					if client.server_capabilities.documentFormattingProvider then
-						map('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
+						vim.cmd [[ autocmd BufWritePre <buffer> lua vim.lsp.buf.format() ]]
 					end
 
 					if client.server_capabilities.documentHighlightProvider then
-						cmd 'augroup lsp_aucmds'
-						cmd 'autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()'
-						cmd 'autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
-						cmd 'augroup END'
+						vim.cmd [[ augroup lsp_aucmds ]]
+						vim.cmd [[ autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight() ]]
+						vim.cmd [[ autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references() ]]
+						vim.cmd [[ augroup END ]]
 					end
 				end
 
