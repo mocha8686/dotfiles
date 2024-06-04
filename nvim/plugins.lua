@@ -99,6 +99,34 @@ local plugins = {
 		},
 	},
 
+	-- DAP
+	{
+		{
+			'mfussenegger/nvim-dap',
+			keys = keys.get_plugin_keys 'nvim-dap',
+			config = function()
+				require 'config.nvim_dap'
+			end
+		},
+		{
+			'jay-babu/mason-nvim-dap.nvim',
+			dependencies = {
+				'williamboman/mason.nvim',
+				'mfussenegger/nvim-dap',
+			},
+			cmd = { 'DapInstall', 'DapUninstall' },
+			opts = require 'opts.mason_nvim_dap',
+		},
+		{
+			'rcarriga/nvim-dap-ui',
+			dependencies = 'mfussenegger/nvim-dap',
+			keys = keys.get_plugin_keys 'nvim-dap-ui',
+			config = function()
+				require 'config.nvim_dap_ui'
+			end,
+		},
+	},
+
 	-- Navigation
 	{
 		{

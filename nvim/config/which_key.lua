@@ -5,4 +5,5 @@ wk.register({
 	t = 'Terminal',
 	x = 'Trouble',
 	f = 'Flash',
+	d = 'DAP',
 }, { prefix = '<leader>' })

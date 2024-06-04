@@ -6,6 +6,8 @@
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
 ./nvim/config/lspconfig.lua:~/.config/nvim/lua/config
 ./nvim/config/null_ls.lua:~/.config/nvim/lua/config
+./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
+./nvim/config/nvim_dap_ui.lua:~/.config/nvim/lua/config
 ./nvim/config/telescope.lua:~/.config/nvim/lua/config
 ./nvim/config/which_key.lua:~/.config/nvim/lua/config
 ./nvim/init.lua:~/.config/nvim
@@ -18,6 +20,7 @@
 ./nvim/opts/lsp_signature.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lualine.lua:~/.config/nvim/lua/opts
 ./nvim/opts/mason_null_ls.lua:~/.config/nvim/lua/opts
+./nvim/opts/mason_nvim_dap.lua:~/.config/nvim/lua/opts
 ./nvim/opts/null_ls.lua:~/.config/nvim/lua/opts
 ./nvim/opts/nvim_web_devicons.lua:~/.config/nvim/lua/opts
 ./nvim/opts/telescope.lua:~/.config/nvim/lua/opts

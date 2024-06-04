@@ -55,7 +55,7 @@ M.keys = {
 		{ 'A', mode = { 'x', 'o' } },
 	},
 	['vim-sayonara'] = {
-		{ '<leader>d', '<Cmd>Sayonara!<CR>', desc = 'Delete the current buffer and close the window' },
+		{ '<leader>w', '<Cmd>Sayonara!<CR>', desc = 'Delete the current buffer and close the window' },
 		{ '<leader>c', '<Cmd>Sayonara<CR>',  desc = 'Delete the current buffer' },
 	},
 	['leap.nvim'] = {
@@ -215,6 +215,69 @@ M.keys = {
 		{ '<leader>tt', function() end, desc = 'Toggle terminal' },
 		{ '<leader>tr', rpgbot,         desc = 'Start RPGBot dev servers' },
 	},
+	['nvim-dap'] = function()
+		local dap = require('dap')
+
+		local function set_conditional_breakpoint()
+			dap.set_breakpoint(vim.fn.input('Breakpoint condition: ', ''))
+		end
+
+		return {
+			{
+				'<leader>db',
+				dap.toggle_breakpoint,
+				desc =
+				'Toggle breakpoint'
+			},
+			{
+				'<leader>dB',
+				set_conditional_breakpoint,
+				desc =
+				'Set conditional breakpoint'
+			},
+			{
+				'<leader>dc',
+				dap.continue,
+				desc =
+				'Continue'
+			},
+			{
+				'<leader>dn',
+				dap.step_over,
+				desc =
+				'Step over'
+			},
+			{
+				'<leader>ds',
+				dap.step_into,
+				desc =
+				'Step into'
+			},
+			{
+				'<leader>do',
+				dap.step_out,
+				desc =
+				'Step out'
+			},
+		}
+	end,
+	['nvim-dap-ui'] = function()
+		local dapui = require 'dapui';
+
+		return {
+			{
+				'<leader>dc',
+				require('dap').continue,
+				desc =
+				'Continue'
+			},
+			{
+				'<leader>dd',
+				function() dapui.toggle() end,
+				desc = 'Toggle DAP UI',
+			},
+		}
+	end
 }
 
 ---Get keys for a plugin.
