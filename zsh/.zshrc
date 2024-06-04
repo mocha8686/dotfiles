@@ -72,6 +72,8 @@ fi
 alias mkdir='mkdir -pv'
 function mkz() { mkdir -- "$1" && z "$1" }
 
+function aw() { sleep ${1:-1} && hyprctl activewindow }
+
 alias cx='chmod +x'
 alias cp='cp -v'
 alias mv='mv -v'
