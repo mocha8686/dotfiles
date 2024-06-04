@@ -8,10 +8,10 @@ local neoconf = require 'neoconf'
 local neodev = require 'neodev'
 
 local sign_define = vim.fn.sign_define
-sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 local function on_attach(client, buf)
 	lsp_signature.on_attach(require 'opts.lsp_signature', buf)
