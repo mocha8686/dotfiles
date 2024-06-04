@@ -1,0 +1,3 @@
+.gitconfig:~
+.zshrc:~
+init.vim:~/.config/nvim
