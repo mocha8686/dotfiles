@@ -101,3 +101,5 @@ alias gp='git push'
 alias gpu='git push -u origin'
 alias gpl='git pull'
 alias gf='git fetch'
+
+alias nc='ncat'
