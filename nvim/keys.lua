@@ -87,28 +87,25 @@ M.keys = {
 		{ '<C-s>', function() require('flash').toggle() end, mode = { 'c' }, desc = 'Toggle' },
 	},
 	['telescope.nvim'] = function()
-		local telescope = require 'telescope'
-		local telescope_builtin = require 'telescope.builtin'
-
 		local theme = 'dropdown'
 		local picker_opts = { theme = theme, workspace = 'CWD' }
 
 		local keys = {
 			{
 				'<C-t>',
-				function() telescope.extensions.file_browser.file_browser(picker_opts) end,
+				function() require('telescope').extensions.file_browser.file_browser(picker_opts) end,
 				desc =
 				'Open file browser'
 			},
 			{
 				'<C-p>',
-				function() telescope_builtin.find_files(picker_opts) end,
+				function() require('telescope.builtin').find_files(picker_opts) end,
 				desc =
 				'Open file finder'
 			},
 			{
 				'<leader>p',
-				function() telescope_builtin.live_grep(picker_opts) end,
+				function() require('telescope.builtin').live_grep(picker_opts) end,
 				desc =
 				'Open live grep'
 			},
@@ -117,9 +114,6 @@ M.keys = {
 		return keys
 	end,
 	['nvim-lspconfig'] = function()
-		local telescope_builtin = require 'telescope.builtin'
-		local todo_comments = require 'todo-comments'
-
 		return {
 			{
 				'K',
@@ -135,13 +129,13 @@ M.keys = {
 			},
 			{
 				'<leader>ld',
-				telescope_builtin.lsp_definitions,
+				require('telescope.builtin').lsp_definitions,
 				desc =
 				'Jump to definition',
 			},
 			{
 				'<leader>li',
-				telescope_builtin.lsp_implementations,
+				require('telescope.builtin').lsp_implementations,
 				desc =
 				'Show implementations',
 			},
@@ -153,7 +147,7 @@ M.keys = {
 			},
 			{
 				'<leader>lr',
-				telescope_builtin.lsp_references,
+				require('telescope.builtin').lsp_references,
 				desc =
 				'Show references',
 			},
@@ -192,13 +186,13 @@ M.keys = {
 			},
 			{
 				']t',
-				function() todo_comments.jump_next() end,
+				function() require('todo-comments').jump_next() end,
 				desc =
 				'Next TODO',
 			},
 			{
 				'[t',
-				function() todo_comments.jump_prev() end,
+				function() require('todo-comments').jump_prev() end,
 				desc =
 				'Previous TODO',
 			},
@@ -218,64 +212,60 @@ M.keys = {
 		{ '<leader>tr', rpgbot,         desc = 'Start RPGBot dev servers' },
 	},
 	['nvim-dap'] = function()
-		local dap = require('dap')
-
 		local function set_conditional_breakpoint()
-			dap.set_breakpoint(vim.fn.input('Breakpoint condition: ', ''))
+			require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ', ''))
 		end
 
 		return {
 			{
 				'<leader>db',
-				dap.toggle_breakpoint,
+				function() require('dap').toggle_breakpoint() end,
 				desc =
 				'Toggle breakpoint'
 			},
 			{
 				'<leader>dB',
-				set_conditional_breakpoint,
+				function() set_conditional_breakpoint() end,
 				desc =
 				'Set conditional breakpoint'
 			},
 			{
 				'<leader>dc',
-				dap.continue,
+				function() require('dap').continue() end,
 				desc =
 				'Continue'
 			},
 			{
 				'<leader>dn',
-				dap.step_over,
+				function() require('dap').step_over() end,
 				desc =
 				'Step over'
 			},
 			{
 				'<leader>ds',
-				dap.step_into,
+				function() require('dap').step_into() end,
 				desc =
 				'Step into'
 			},
 			{
 				'<leader>do',
-				dap.step_out,
+				function() require('dap').step_out() end,
 				desc =
 				'Step out'
 			},
 		}
 	end,
 	['nvim-dap-ui'] = function()
-		local dapui = require 'dapui';
-
 		return {
 			{
 				'<leader>dc',
-				require('dap').continue,
+				function() require('dap').continue() end,
 				desc =
 				'Continue'
 			},
 			{
 				'<leader>dd',
-				function() dapui.toggle() end,
+				function() require('dapui').toggle() end,
 				desc = 'Toggle DAP UI',
 			},
 		}
