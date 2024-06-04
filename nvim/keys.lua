@@ -20,6 +20,8 @@ M.keys = {
 			desc = 'Exit terminal mode',
 			mode = { 't' },
 		},
+		{ ']q', '<Cmd>cn<CR>', desc = 'Next quickfix' },
+		{ '[q', '<Cmd>cp<CR>', desc = 'Previous quickfix' },
 	},
 	['Comment.nvim'] = {
 		{ 'gc', mode = { 'n', 'v' } },
