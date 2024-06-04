@@ -33,12 +33,13 @@
 ./nvim/plugins.lua:~/.config/nvim/lua
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
-./rofi/config.rasi:~/.config/rofi
-./rofi/power_menu.sh:~/.local/bin
-./rofi/screenshot_menu.sh:~/.local/bin
+./tofi/config:~/.config/tofi
+./tofi/power_menu.sh:~/.local/bin
+./tofi/screenshot_menu.sh:~/.local/bin
 ./wal/colors-hyprland.conf:~/.config/wal/templates
 ./wal/hyprpaper.conf:~/.config/wal/templates
 ./wal/mako_config:~/.config/wal/templates
+./wal/tofi-colors:~/.config/wal/templates
 ./waybar/config:~/.config/waybar
 ./waybar/style.css:~/.config/waybar
 ./zsh/.zshrc:~
