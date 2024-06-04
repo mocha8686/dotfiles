@@ -66,7 +66,6 @@ local plugins = {
 				'jose-elias-alvarez/null-ls.nvim',
 				'nvim-telescope/telescope.nvim',
 				'ray-x/lsp_signature.nvim',
-				'rcarriga/nvim-notify',
 				'williamboman/mason-lspconfig.nvim',
 				'williamboman/mason.nvim',
 			},

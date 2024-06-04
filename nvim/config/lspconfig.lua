@@ -6,24 +6,12 @@ local mason = require 'mason'
 local mason_lspconfig = require 'mason-lspconfig'
 local neoconf = require 'neoconf'
 local neodev = require 'neodev'
-local notify = require 'notify'.notify
 
 local sign_define = vim.fn.sign_define
 sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
 sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
 sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
-
-vim.lsp.handlers['window/showMessage'] = function(_, method, params, _)
-	local severity = {
-		'error',
-		'warn',
-		'info',
-		'hint',
-	}
-
-	notify(method.message, severity[params.type])
-end
 
 local function on_attach(client, buf)
 	lsp_signature.on_attach(require 'opts.lsp_signature', buf)
