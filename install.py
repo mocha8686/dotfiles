@@ -15,6 +15,10 @@ def install_packages(command, packages):
     return success
 
 def install_config(path, config, move=False):
+    # Expand paths
+    path = os.path.expanduser(path)
+    config = os.path.expanduser(config)
+
     # Create directories
     if not os.path.exists(path):
         os.makedirs(path)
