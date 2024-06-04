@@ -32,6 +32,7 @@ export PS1="%F{1}┌─[%F{11}%n@%M%F{1}]──[%F{11}%~%F{1}]"$'\n'"└─[%F{1
 export EDITOR="nvim"
 export PAGER="less"
 export LANG="en_US.UTF8"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Aliases
 
@@ -68,6 +69,7 @@ alias nvcl="nvim +PlugClean"
 # git
 alias ga="git add"
 alias gaa="git add ."
+
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gac="gaa && gcm"
@@ -75,8 +77,9 @@ alias gac="gaa && gcm"
 alias gs="git status"
 alias gb="git branch"
 alias gk="git checkout"
-alias gnb="git checkout -b"
 alias gl="git log --oneline --graph --decorate"
 
-alias gpu="git push"
-alias gpl="git pull"
+alias gp="git push"
+alias gpu="git push -u origin"
+alias gl="git pull"
+alias gf="git fetch"
