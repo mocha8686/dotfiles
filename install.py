@@ -28,10 +28,13 @@ def install_config(path, config, move=False):
         os.remove(os.path.join(path, config))
 
     # Move or copy
-    if move:
-        shutil.move(config, path)
-    else:
-        shutil.copyfile(config, path)
+    try:
+        if move:
+            shutil.move(config, path)
+        else:
+            shutil.copyfile(config, path)
+    except Exception:
+        return
 
 
 # Get system config
