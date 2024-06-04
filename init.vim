@@ -29,9 +29,6 @@ colorscheme wal
 nnoremap <C-y> :TagbarToggle<CR>
 nnoremap <C-f> :TagbarOpenAutoClose<CR>
 
-" Polyglot
-let g:vim_svelte_plugin_use_sass = 1
-
 " Lightline
 let g:lightline = {
 	\ 'active': {
