@@ -52,7 +52,7 @@ M.keys = {
 	},
 	['vim-sayonara'] = {
 		{ '<leader>w', '<Cmd>Sayonara!<CR>', desc = 'Delete the current buffer and close the window' },
-		{ '<leader>c', '<Cmd>Sayonara<CR>',  desc = 'Delete the current buffer' },
+		{ '<leader>x', '<Cmd>Sayonara<CR>',  desc = 'Delete the current buffer' },
 	},
 	['leap.nvim'] = {
 		{ 'z', '<Plug>(leap-forward-x)',  mode = { 'n', 'x', 'o' } },
@@ -326,7 +326,9 @@ M.keys = {
 		},
 	},
 	['ccc.nvim'] = {
-		{ '<leader>hc', '<Cmd>CccHighlighterToggle<CR>', desc = 'Highlight colors' },
+		{ '<leader>ch', '<Cmd>CccHighlighterToggle<CR>', desc = 'Highlight colors' },
+		{ '<leader>cp', '<Cmd>CccPick<CR>',              desc = 'Open color picker' },
+		{ '<leader>cc', '<Cmd>CccConvert<CR>',           desc = 'Convert color to other formats' },
 	},
 }
 
