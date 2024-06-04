@@ -15,7 +15,7 @@ local plugins = {
 		},
 		{
 			'numToStr/Comment.nvim',
-			keys = keys.get_plugin_keys 'Comment.nvim',
+			key = keys.get_plugin_keys 'Comment.nvim',
 			config = true,
 		},
 		{
@@ -110,15 +110,10 @@ local plugins = {
 			keys = keys.get_plugin_keys 'targets.vim',
 		},
 		{
-			'ggandor/leap.nvim',
-			dependencies = 'tpope/vim-repeat',
-			keys = keys.get_plugin_keys 'leap.nvim',
-		},
-		{
-			'ggandor/flit.nvim',
-			keys = keys.get_plugin_keys 'flit.nvim',
-			dependencies = 'ggandor/leap.nvim',
-			opts = require 'opts.flit',
+			'folke/flash.nvim',
+			event = 'VeryLazy',
+			config = true,
+			keys = keys.get_plugin_keys 'flash.nvim',
 		},
 	},
 
