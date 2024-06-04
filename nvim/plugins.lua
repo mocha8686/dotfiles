@@ -106,7 +106,7 @@ local plugins = {
 			keys = keys.get_plugin_keys 'nvim-dap',
 			config = function()
 				require 'config.nvim_dap'
-			end
+			end,
 		},
 		{
 			'jay-babu/mason-nvim-dap.nvim',
@@ -123,6 +123,23 @@ local plugins = {
 			keys = keys.get_plugin_keys 'nvim-dap-ui',
 			config = function()
 				require 'config.nvim_dap_ui'
+			end,
+		},
+	},
+
+	-- Language-Specific
+	{
+		{
+			'simrat39/rust-tools.nvim',
+			dependencies = {
+				'neovim/nvim-lspconfig',
+				'nvim-lua/plenary.nvim',
+				'mfussenegger/nvim-dap',
+			},
+			keys = keys.get_plugin_keys 'rust-tools',
+			ft = 'rust',
+			config = function()
+				require 'config.rust_tools'
 			end,
 		},
 	},
@@ -258,8 +275,8 @@ local plugins = {
 		init = util.lazy_load 'nvim-treesitter',
 		opts = require 'opts.treesitter',
 		config = function(_, opts)
-			require 'nvim-treesitter.configs'.setup(opts)
-		end
+			require('nvim-treesitter.configs').setup(opts)
+		end,
 	},
 
 	-- Aesthetics

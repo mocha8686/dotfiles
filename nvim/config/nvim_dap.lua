@@ -17,13 +17,13 @@ sign_define('DapBreakpointRejected', { text = '', texthl = 'DapError' })
 
 local codelldb_port = '65472'
 dap.adapters.codelldb = {
+	name = 'codelldb',
 	type = 'server',
 	port = codelldb_port,
 	executable = {
 		command = 'codelldb',
 		args = { '--port', codelldb_port },
 	},
-	name = 'codelldb',
 }
 
 dap.configurations.rust = {

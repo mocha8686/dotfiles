@@ -8,6 +8,7 @@
 ./nvim/config/null_ls.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap_ui.lua:~/.config/nvim/lua/config
+./nvim/config/rust_tools.lua:~/.config/nvim/lua/config
 ./nvim/config/telescope.lua:~/.config/nvim/lua/config
 ./nvim/config/which_key.lua:~/.config/nvim/lua/config
 ./nvim/init.lua:~/.config/nvim

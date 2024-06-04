@@ -22,9 +22,8 @@ M.keys = {
 		{
 			'<ESC><ESC>',
 			'<C-\\><C-N>',
-			desc =
-			'Exit terminal mode',
-			mode = { 't' }
+			desc = 'Exit terminal mode',
+			mode = { 't' },
 		},
 	},
 	['Comment.nvim'] = {
@@ -65,26 +64,52 @@ M.keys = {
 		{ 'Z', '<Plug>(leap-backward-x)', mode = { 'n', 'x', 'o' } },
 	},
 	['flit.nvim'] = {
-		'f', 'F', 't', 'T'
+		'f',
+		'F',
+		't',
+		'T',
 	},
 	['flash.nvim'] = {
-		{ '<leader>fs', function() require('flash').jump() end,   mode = { 'n', 'x', 'o' }, desc = 'Flash' },
+		{
+			'<leader>fs',
+			function()
+				require('flash').jump()
+			end,
+			mode = { 'n', 'x', 'o' },
+			desc = 'Flash',
+		},
 		{
 			'<leader>fS',
-			function() require('flash').treesitter() end,
+			function()
+				require('flash').treesitter()
+			end,
 			mode = { 'n', 'x', 'o' },
-			desc =
-			'Treesitter'
+			desc = 'Treesitter',
 		},
-		{ 'r',          function() require('flash').remote() end, mode = 'o',               desc = 'Remote' },
+		{
+			'r',
+			function()
+				require('flash').remote()
+			end,
+			mode = 'o',
+			desc = 'Remote',
+		},
 		{
 			'R',
-			function() require('flash').treesitter_search() end,
+			function()
+				require('flash').treesitter_search()
+			end,
 			mode = { 'x', 'o' },
-			desc =
-			'Treesitter search'
+			desc = 'Treesitter search',
 		},
-		{ '<C-s>', function() require('flash').toggle() end, mode = { 'c' }, desc = 'Toggle' },
+		{
+			'<C-s>',
+			function()
+				require('flash').toggle()
+			end,
+			mode = { 'c' },
+			desc = 'Toggle',
+		},
 	},
 	['telescope.nvim'] = function()
 		local theme = 'dropdown'
@@ -93,21 +118,24 @@ M.keys = {
 		local keys = {
 			{
 				'<C-t>',
-				function() require('telescope').extensions.file_browser.file_browser(picker_opts) end,
-				desc =
-				'Open file browser'
+				function()
+					require('telescope').extensions.file_browser.file_browser(picker_opts)
+				end,
+				desc = 'Open file browser',
 			},
 			{
 				'<C-p>',
-				function() require('telescope.builtin').find_files(picker_opts) end,
-				desc =
-				'Open file finder'
+				function()
+					require('telescope.builtin').find_files(picker_opts)
+				end,
+				desc = 'Open file finder',
 			},
 			{
 				'<leader>p',
-				function() require('telescope.builtin').live_grep(picker_opts) end,
-				desc =
-				'Open live grep'
+				function()
+					require('telescope.builtin').live_grep(picker_opts)
+				end,
+				desc = 'Open live grep',
 			},
 		}
 
@@ -118,52 +146,46 @@ M.keys = {
 			{
 				'K',
 				vim.lsp.buf.hover,
-				desc =
-				'Display hover info',
+				desc = 'Display hover info',
 			},
 			{
 				'<leader>lD',
 				vim.lsp.buf.declaration,
-				desc =
-				'Jump to declaration',
+				desc = 'Jump to declaration',
 			},
 			{
 				'<leader>ld',
 				require('telescope.builtin').lsp_definitions,
-				desc =
-				'Jump to definition',
+				desc = 'Jump to definition',
 			},
 			{
 				'<leader>li',
 				require('telescope.builtin').lsp_implementations,
-				desc =
-				'Show implementations',
+				desc = 'Show implementations',
 			},
 			{
 				'<leader>lS',
 				vim.lsp.buf.signature_help,
-				desc =
-				'Show signature info',
+				desc = 'Show signature info',
 			},
 			{
 				'<leader>lr',
 				require('telescope.builtin').lsp_references,
-				desc =
-				'Show references',
+				desc = 'Show references',
 			},
 			{
 				'<leader>lR',
 				vim.lsp.buf.rename,
-				desc =
-				'Rename symbol',
+				desc = 'Rename symbol',
 			},
 			{
 				'<leader>lA',
 				vim.lsp.buf.code_action,
-				desc =
-				'Show code actions',
+				desc = 'Show code actions',
 				mode = {
-					'n', 'v' },
+					'n',
+					'v',
+				},
 			},
 			{
 				'<leader>lf',
@@ -174,27 +196,31 @@ M.keys = {
 			},
 			{
 				']e',
-				function() vim.diagnostic.goto_next { float = { scope = 'line' } } end,
-				desc =
-				'Next diagnostic',
+				function()
+					vim.diagnostic.goto_next { float = { scope = 'line' } }
+				end,
+				desc = 'Next diagnostic',
 			},
 			{
 				'[e',
-				function() vim.diagnostic.goto_prev { float = { scope = 'line' } } end,
-				desc =
-				'Previous diagnostic',
+				function()
+					vim.diagnostic.goto_prev { float = { scope = 'line' } }
+				end,
+				desc = 'Previous diagnostic',
 			},
 			{
 				']t',
-				function() require('todo-comments').jump_next() end,
-				desc =
-				'Next TODO',
+				function()
+					require('todo-comments').jump_next()
+				end,
+				desc = 'Next TODO',
 			},
 			{
 				'[t',
-				function() require('todo-comments').jump_prev() end,
-				desc =
-				'Previous TODO',
+				function()
+					require('todo-comments').jump_prev()
+				end,
+				desc = 'Previous TODO',
 			},
 		}
 	end,
@@ -219,57 +245,92 @@ M.keys = {
 		return {
 			{
 				'<leader>db',
-				function() require('dap').toggle_breakpoint() end,
-				desc =
-				'Toggle breakpoint'
+				function()
+					require('dap').toggle_breakpoint()
+				end,
+				desc = 'Toggle breakpoint',
 			},
 			{
 				'<leader>dB',
-				function() set_conditional_breakpoint() end,
-				desc =
-				'Set conditional breakpoint'
+				function()
+					set_conditional_breakpoint()
+				end,
+				desc = 'Set conditional breakpoint',
 			},
 			{
 				'<leader>dc',
-				function() require('dap').continue() end,
-				desc =
-				'Continue'
+				function()
+					require('dap').continue()
+				end,
+				desc = 'Continue',
 			},
 			{
 				'<leader>dn',
-				function() require('dap').step_over() end,
-				desc =
-				'Step over'
+				function()
+					require('dap').step_over()
+				end,
+				desc = 'Step over',
 			},
 			{
 				'<leader>ds',
-				function() require('dap').step_into() end,
-				desc =
-				'Step into'
+				function()
+					require('dap').step_into()
+				end,
+				desc = 'Step into',
 			},
 			{
 				'<leader>do',
-				function() require('dap').step_out() end,
-				desc =
-				'Step out'
+				function()
+					require('dap').step_out()
+				end,
+				desc = 'Step out',
+			},
+			{
+				'<leader>dr',
+				function()
+					require('dap').run_last()
+				end,
+				desc = 'Run last',
 			},
 		}
 	end,
-	['nvim-dap-ui'] = function()
-		return {
-			{
-				'<leader>dc',
-				function() require('dap').continue() end,
-				desc =
-				'Continue'
+	['nvim-dap-ui'] = {
+		{
+			'<leader>dc',
+			function()
+				require('dap').continue()
+			end,
+			desc = 'Continue',
+		},
+		{
+			'<leader>dd',
+			function()
+				require('dapui').toggle()
+			end,
+			desc = 'Toggle DAP UI',
+		},
+	},
+	['rust-tools'] = {
+		{
+			'K',
+			function()
+				require 'dapui'
+				require('rust-tools').hover_actions.hover_actions()
+			end,
+			desc = 'Display hover info',
+		},
+		{
+			'<leader>lA',
+			function()
+				require('rust-tools').code_action_group.code_action_group()
+			end,
+			desc = 'Show code actions',
+			mode = {
+				'n',
+				'v',
 			},
-			{
-				'<leader>dd',
-				function() require('dapui').toggle() end,
-				desc = 'Toggle DAP UI',
-			},
-		}
-	end
+		},
+	},
 }
 
 ---Get keys for a plugin.
@@ -298,7 +359,7 @@ M.get_plugin_keys = function(plugin)
 	elseif type(plugin_keys) == 'string' then
 		return plugin_keys
 	else
-		error('Keys must be of type `string|function|table`.')
+		error 'Keys must be of type `string|function|table`.'
 	end
 end
 
