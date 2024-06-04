@@ -1,10 +1,10 @@
 {
     "workspace.library": [
-        "/home/huece/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/home/mocha/.local/share/nvim/lazy/neodev.nvim/types/stable",
         "/usr/share/nvim/runtime/lua",
-        "/home/huece/.local/share/nvim/lazy/nvim-lspconfig/lua",
-        "/home/huece/.local/share/nvim/lazy/neoconf.nvim/types",
-        "/home/huece/.local/share/nvim/lazy/neoconf.nvim/types/lua",
+        "/home/mocha/.local/share/nvim/lazy/nvim-lspconfig/lua",
+        "/home/mocha/.local/share/nvim/lazy/neoconf.nvim/types",
+        "/home/mocha/.local/share/nvim/lazy/neoconf.nvim/types/lua",
         "${3rd}/luv/library"
     ]
 }
