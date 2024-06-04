@@ -2,4 +2,4 @@
 
 Installation:
 
-1. run install.py
+1. run `install.sh`
