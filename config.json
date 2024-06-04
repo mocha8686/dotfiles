@@ -4,7 +4,7 @@
 			"packages": [
 				"neovim",
 				"ctags",
-				"tmux"
+				"python3"
 			],
 			"install": {
 				".gitconfig": "~/",
@@ -16,9 +16,9 @@
 			},
 			"additional_commands": [
 				"sh -c 'curl -fLo \"${XDG_DATA_HOME:-$HOME/.local/share}\"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'",
-				"git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm",
 				"curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
-				"curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash"
+				"curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash",
+				"curl -sSL https://install.python-poetry.org | python3 -"
 			]
 		},
 
@@ -36,6 +36,7 @@
 		"mac": {
 			"profile": [
 				"alias ls=\"ls -Gh\"",
+				"export PATH=$PATH:/Users/$USER/Library/Python/3.9/bin",
 				"export HOMEBREW_GITHUB_API_TOKEN=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"
 			],
 			"install_command": "brew install",
