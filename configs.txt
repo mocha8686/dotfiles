@@ -32,8 +32,8 @@
 ./rofi/powermenu.sh:~/.local/bin
 ./swayidle/config:~/.config/swayidle
 ./wal/colors-hyprland.conf:~/.config/wal/templates
-./wal/mako_config:~/.config/wal/templates
 ./wal/hyprpaper.conf:~/.config/wal/templates
+./wal/mako_config:~/.config/wal/templates
 ./wal/swaylock.conf:~/.config/wal/templates
 ./waybar/config:~/.config/waybar
 ./waybar/style.css:~/.config/waybar
