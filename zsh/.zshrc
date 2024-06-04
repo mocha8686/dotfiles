@@ -77,6 +77,8 @@ alias rm='rm -Iv'
 alias nv='nvim'
 alias nvup='nvim -c "PlugInstall | PlugClean"'
 
+alias lg='lazygit'
+
 alias ga='git add'
 alias gaa='git add .'
 
