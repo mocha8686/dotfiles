@@ -15,7 +15,7 @@ local plugins = {
 		},
 		{
 			'numToStr/Comment.nvim',
-			key = keys.get_plugin_keys 'Comment.nvim',
+			keys = keys.get_plugin_keys 'Comment.nvim',
 			config = true,
 		},
 		{
