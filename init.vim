@@ -13,6 +13,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gcmt/taboo.vim'
+Plug 'arithran/vim-delete-hidden-buffers'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -51,6 +52,9 @@ nnoremap <C-u> :TabooReset<CR>
 let g:taboo_tab_format = '%I %r%m %u'
 let g:taboo_renamed_tab_format = '%I %l%m %u'
 let g:taboo_modified_tab_flag = ' | +'
+
+" Delete Hidden Buffers
+nnoremap <C-q> :DeleteHiddenBuffers<CR>
 
 " Functionality
 set backspace=indent,eol,start
