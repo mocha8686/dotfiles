@@ -49,7 +49,8 @@ tooltip {
 #cpu.critical,
 #disk.critical,
 #memory.warning,
-#network.disconnected {
+#network.disconnected,
+#tray > .needs-attention {
 	color: @critical;
 	border-top-color: @critical;
 	opacity: 0.9;

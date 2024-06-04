@@ -1,10 +1,22 @@
 {
-    "layer": "top",
-    "position": "top",
+	"layer": "top",
+	"position": "top",
 	"height": 30,
-	"modules-left": ["disk", "cpu", "memory", "network"],
-	"modules-center": ["hyprland/window"],
-	"modules-right": ["pulseaudio", "clock#date", "clock#time"],
+	"modules-left": [
+		"disk",
+		"cpu",
+		"memory",
+		"network"
+	],
+	"modules-center": [
+		"hyprland/window"
+	],
+	"modules-right": [
+		"tray",
+		"pulseaudio",
+		"clock#date",
+		"clock#time"
+	],
 	"clock#date": {
 		"interval": 60,
 		"format": "<big></big> {:%a, %d %b %Y}"
@@ -18,7 +30,7 @@
 		"format": "<big></big> {usage}%",
 		"states": {
 			"warning": 85,
-			"critical": 95 
+			"critical": 95
 		}
 	},
 	"disk": {
@@ -52,9 +64,15 @@
 	},
 	"pulseaudio": {
 		"format": "{icon} {volume}%",
-		"format-icons": ["奄", "奔", "墳"],
+		"format-icons": [
+			"奄",
+			"奔",
+			"墳"
+		],
 		"format-muted": "婢 {volume}%"
+	},
+	"tray": {
+		"icon-size": 16
 	}
 }
-
 // vim:ft=json
