@@ -22,8 +22,17 @@ local function set_vim_options()
 	vim.opt.scrolloff = 7
 	vim.opt.sidescroll = 10
 	vim.opt.list = true
-	vim.opt.listchars = 'trail:*,extends:>,precedes:<,tab:>.'
-	vim.opt.laststatus = 3
+	vim.opt.listchars = {
+		trail = '*',
+		extends = '>',
+		precedes = '<',
+		tab = '>.',
+	}
+	vim.opt.fillchars = {
+		stl = ' ',
+		stlnc = ' ',
+		wbr = ' ',
+	}
 
 	local map = vim.keymap.set
 	local opts = { silent = true, noremap = true }
@@ -192,6 +201,7 @@ return require('packer').startup(function(use)
 
 				local map = vim.keymap.set
 				local cmd = vim.cmd
+				local sign_define = vim.fn.sign_define
 
 				local severity = {
 					'error',
@@ -203,6 +213,11 @@ return require('packer').startup(function(use)
 				vim.lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
 					notify(method.message, severity[params.type])
 				end
+
+				sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+				sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+				sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+				sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 				local lsp_signature_opts = { bind = true, handler_opts = { border = 'single' } }
 
@@ -433,12 +448,6 @@ return require('packer').startup(function(use)
 			after = 'pywal',
 			config = function()
 				require('bufferline').setup()
-			end,
-		},
-		{
-			'b0o/incline.nvim', -- TODO: configure
-			config = function()
-				require('incline').setup()
 			end,
 		},
 		{
