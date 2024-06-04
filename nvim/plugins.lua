@@ -32,6 +32,12 @@ local plugins = {
 			cmd = 'Sort',
 			config = true,
 		},
+		{
+			'nvim-pack/nvim-spectre',
+			dependencies = 'nvim-lua/plenary.nvim',
+			config = true,
+			keys = keys.get_plugin_keys 'nvim-spectre',
+		},
 	},
 
 	-- Git

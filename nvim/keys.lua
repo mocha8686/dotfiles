@@ -330,6 +330,12 @@ M.keys = {
 		{ '<leader>cp', '<Cmd>CccPick<CR>',              desc = 'Open color picker' },
 		{ '<leader>cc', '<Cmd>CccConvert<CR>',           desc = 'Convert color to other formats' },
 	},
+	['nvim-spectre'] = {
+		{ '<leader>ss', function() require('spectre').toggle() end, desc = 'Togggle Spectre'},
+		{ '<leader>sw', function() require('spectre').open_visual{select_word = true} end, desc = 'Search word/selection'},
+		{ '<leader>sw', function() require('spectre').open_visual() end, desc = 'Search word/selection', mode = { 'v' }},
+		{ '<leader>sp', function() require('spectre').open_file_search{select_word = true} end, desc = 'Search current file'},
+	},
 }
 
 ---Get keys for a plugin.

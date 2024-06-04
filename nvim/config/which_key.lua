@@ -7,4 +7,5 @@ wk.register({
 	f = 'Flash',
 	d = 'DAP',
 	c = 'Colors',
+	s = 'Spectre',
 }, { prefix = '<leader>' })
