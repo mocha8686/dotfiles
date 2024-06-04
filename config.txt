@@ -6,3 +6,4 @@ picom.conf:~/.config/picom
 config.ini:~/.config/polybar
 config.rasi:~/.config/rofi
 sxhkdrc:~/.config/sxhkd
+bspwmrc:~/.config/bspwm
