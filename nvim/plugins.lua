@@ -300,7 +300,9 @@ local plugins = {
 		{
 			'uga-rosa/ccc.nvim',
 			keys = keys.get_plugin_keys 'ccc.nvim',
-			opts = require 'opts.ccc',
+			config = function()
+				require 'config.ccc'
+			end,
 		},
 		{
 			'folke/todo-comments.nvim',

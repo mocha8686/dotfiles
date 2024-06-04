@@ -1,6 +1,6 @@
 local ccc = require 'ccc'
 
-local opts = {
+ccc.setup {
 	inputs = {
 		ccc.input.hsl,
 		ccc.input.rgb,
@@ -12,6 +12,7 @@ local opts = {
 		ccc.output.hex,
 		ccc.output.css_rgb,
 	},
+	highlighter = {
+		['auto-enable'] = true,
+	},
 }
-
-return opts
