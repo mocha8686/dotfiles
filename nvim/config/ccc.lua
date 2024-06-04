@@ -13,7 +13,7 @@ ccc.setup {
 		ccc.output.css_rgb,
 	},
 	highlighter = {
-		['auto-enable'] = true,
+		auto_enable = true,
 		filetypes = {
 			'html',
 			'css',
