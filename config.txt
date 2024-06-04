@@ -6,5 +6,6 @@ hyprland.conf:~/.config/hypr
 hyprpaper.conf:~/.config/hypr
 wofi.css:~/.config/wofi
 waybar/config:~/.config/waybar
+waybar/style.css:~/.config/waybar
 wal/colors-hyprland.conf:~/.config/wal/templates
 wal/hyprpaper.conf:~/.config/wal/templates

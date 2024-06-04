@@ -1,0 +1,60 @@
+@import url("/home/huece/.cache/wal/colors-waybar.css");
+
+@define-color alert @color1;
+@define-color warn #ebcb8b;
+@define-color critical #bf616a;
+
+* {
+	font-family: Iosevka, 'Jetbrains Mono', monospace;
+}
+
+window#waybar {
+	background: transparent;
+}
+
+#clock,
+#cpu,
+#disk,
+#window,
+#memory,
+#network,
+#pulseaudio,
+#tray {
+	padding: 0 10px 2px;
+	margin: 0 5px;
+	color: @foreground;
+	background-color: @background;
+	opacity: 0.7;
+	border-top: 2px solid transparent;
+	transition-property: color, border-top-color, opacity;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-out;
+}
+
+tooltip {
+	border: none;
+	border-radius: 0;
+	background-color: @background;
+	opacity: 0.85;
+}
+
+#cpu.warning,
+#disk.warning,
+#memory.warning {
+	color: @warn;
+	border-top-color: @warn;
+	opacity: 0.9;
+}
+
+#cpu.critical,
+#disk.critical,
+#memory.warning,
+#network.disconnected {
+	color: @critical;
+	border-top-color: @critical;
+	opacity: 0.9;
+}
+
+#pulseaudio {
+	padding-top: 3px;
+}

@@ -1,0 +1,60 @@
+{
+    "layer": "top",
+    "position": "top",
+	"height": 30,
+	"modules-left": ["disk", "cpu", "memory", "network"],
+	"modules-center": ["hyprland/window"],
+	"modules-right": ["pulseaudio", "clock#date", "clock#time"],
+	"clock#date": {
+		"interval": 60,
+		"format": "<big></big> {:%a, %d %b %Y}"
+	},
+	"clock#time": {
+		"interval": 1,
+		"format": "<big></big> {:%T}"
+	},
+	"cpu": {
+		"interval": 2,
+		"format": "<big></big> {usage}%",
+		"states": {
+			"warning": 85,
+			"critical": 95 
+		}
+	},
+	"disk": {
+		"interval": 30,
+		"format": "<big></big> {percentage_used}%",
+		"states": {
+			"warning": 85,
+			"critical": 95
+		},
+		"tooltip-format": "{used} out of {total} used.\n{free} remaining."
+	},
+	"hyprland/window": {
+		"separate-outputs": true
+	},
+	"memory": {
+		"interval": 2,
+		"format": "<big></big> {percentage}%",
+		"states": {
+			"warning": 85,
+			"critical": 95
+		},
+		"tooltip-format": "{used}GiB out of {total}GiB RAM used. {avail}GiB remaining.\n{swapUsed}GiB out of {swapTotal}GiB SWAP used ({swapPercentage}%). {swapAvail}GiB remaining."
+	},
+	"network": {
+		"interval": 10,
+		"format-wifi": "<big>直</big> {essid} {signalStrength}%",
+		"format-ethernet": " {essid} {signalStrength}%",
+		"format-disconnected": "<big>睊</big>",
+		"tooltip-format-wifi": "{bandwidthDownBytes} download, {bandwidthUpBytes} upload.\nConnected as {ipaddr}/{cidr} via {ifname}.",
+		"tooltip-format-ethernet": "{bandwidthDownBytes} download, {bandwidthUpBytes} upload.\nConnected as {ipaddr}/{cidr} via {ifname}."
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-icons": ["奄", "奔", "墳"],
+		"format-muted": "婢 {volume}%"
+	}
+}
+
+// vim:ft=json
