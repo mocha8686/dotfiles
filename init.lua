@@ -270,7 +270,9 @@ return require('packer').startup(function(use)
 					'html',
 					'jsonls',
 					'pyright',
+					'remark_ls',
 					'rust_analyzer',
+					'svelte',
 					'tsserver',
 				}
 
@@ -466,6 +468,7 @@ return require('packer').startup(function(use)
 			'RRethy/nvim-treesitter-endwise',
 			'nvim-treesitter/nvim-treesitter-refactor',
 			'nvim-treesitter/nvim-treesitter-textobjects',
+			'windwp/nvim-ts-autotag',
 		},
 		config = function()
 			require('nvim-treesitter.configs').setup {
@@ -473,6 +476,7 @@ return require('packer').startup(function(use)
 				highlight = { enable = true },
 				indent = { enable = false },
 				endwise = { enable = true },
+				autotag = { enable = true },
 				refactor = {
 					smart_rename = {
 						enable = true,
