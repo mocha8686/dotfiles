@@ -1,3 +1,5 @@
+local project_config_module_name = 'nvimconfig'
+
 local function no_numbers()
 	return vim.b['term_title']
 		or vim.bo.filetype == 'man'
@@ -110,6 +112,12 @@ local function override_colortheme()
 	cmd [[ highlight Whitespace guifg=#444444 ]]
 end
 
+local function load_project_config()
+	if vim.fn.filereadable(project_config_module_name .. '.lua') ~= 0 then
+		require(project_config_module_name)
+	end
+end
+
 -- Lazy
 local function ensure_lazy()
 	local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -138,3 +146,4 @@ require('lazy').setup(plugins, {
 })
 
 override_colortheme()
+load_project_config()
