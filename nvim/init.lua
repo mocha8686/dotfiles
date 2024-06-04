@@ -28,6 +28,7 @@ local function set_vim_options()
 	opt.number = true
 	opt.relativenumber = true
 	opt.scrolloff = 7
+	opt.showbreak = '↪ '
 	opt.showcmd = true
 	opt.showmode = false
 	opt.sidescroll = 10
@@ -37,10 +38,11 @@ local function set_vim_options()
 	opt.updatetime = 150
 	opt.wrap = false
 	opt.listchars = {
-		trail = '*',
-		extends = '>',
-		precedes = '<',
-		tab = '>.',
+		trail = '⋅',
+		extends = '⟩',
+		precedes = '⟨',
+		tab = '»⋅',
+		nbsp = '␣',
 	}
 	opt.fillchars = {
 		stl = ' ',
@@ -120,6 +122,10 @@ set_vim_maps()
 ensure_lazy()
 
 local plugins = require 'plugins'
-require('lazy').setup(plugins, {lazy = true})
+require('lazy').setup(plugins, {
+	defaults = {
+		lazy = true,
+	},
+})
 
 override_colortheme()
