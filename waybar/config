@@ -126,6 +126,8 @@
 			"class<firefox>": "󰈹",
 			"class<firefox>": "󰈹",
 			"class<kitty>": "",
+			"class<minecraft.*>": "󰍳",
+			"class<org.prismlauncher.PrismLauncher>": "",
 			"class<steam>": "󰓓",
 			"class<vesktop>": "󰙯",
 			"title<.*nvim>": "",
