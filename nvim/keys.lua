@@ -56,7 +56,7 @@ M.keys = {
 	},
 	['flash.nvim'] = {
 		{
-			'<leader>fs',
+			'z',
 			function()
 				require('flash').jump()
 			end,
@@ -64,7 +64,7 @@ M.keys = {
 			desc = 'Flash',
 		},
 		{
-			'<leader>fS',
+			'Z',
 			function()
 				require('flash').treesitter()
 			end,
