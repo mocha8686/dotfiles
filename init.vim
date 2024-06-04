@@ -2,11 +2,17 @@
 call plug#begin()
 
 Plug 'junegunn/fzf.vim'
-Plug 'chemzqm/vim-jsx-improve'
 Plug 'jiangmiao/auto-pairs'
 Plug 'adelarsq/vim-matchit'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-commentary'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -25,6 +31,12 @@ let g:lightline = {
 	\ },
 	\ }
 
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 " Functionalities
 set backspace=indent,eol,start
 set history=25
@@ -41,7 +53,6 @@ set updatetime=100
 " Information
 set noshowmode
 set showcmd
-set ruler
 set number relativenumber
 augroup numbertoggle
 	autocmd!
