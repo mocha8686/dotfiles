@@ -23,7 +23,7 @@
 	},
 	"clock#time": {
 		"interval": 1,
-		"format": "  {:%T}"
+		"format": "  {:%H:%M:%OS}"
 	},
 	"cpu": {
 		"interval": 2,
