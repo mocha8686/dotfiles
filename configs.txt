@@ -4,6 +4,7 @@ hyprland/hyprland.conf:~/.config/hypr
 hyprland/hyprpaper.conf:~/.config/hypr
 kitty/kitty.conf:~/.config/kitty
 nvim/init.lua:~/.config/nvim
+pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
 swayidle/config:~/.config/swayidle
 wal/99-colors-dunst.conf:~/.config/wal/templates
 wal/colors-hyprland.conf:~/.config/wal/templates
