@@ -325,6 +325,9 @@ M.keys = {
 			},
 		},
 	},
+	['ccc.nvim'] = {
+		{ '<leader>hc', '<Cmd>CccHighlighterToggle<CR>', desc = 'Highlight colors' },
+	},
 }
 
 ---Get keys for a plugin.

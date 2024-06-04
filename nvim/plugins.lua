@@ -299,16 +299,7 @@ local plugins = {
 		},
 		{
 			'uga-rosa/ccc.nvim',
-			ft = {
-				'javascript',
-				'typescript',
-				'javascriptreact',
-				'typescriptreact',
-				'css',
-				'scss',
-				'sass',
-				'html',
-			},
+			keys = keys.get_plugin_keys 'ccc.nvim',
 			config = true,
 		},
 		{
