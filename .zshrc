@@ -67,10 +67,10 @@ alias nvcl="nvim +PlugClean"
 
 # git
 alias ga="git add"
-alias ga="git add ."
+alias gaa="git add ."
 alias gc="git commit"
 alias gcm="git commit -m"
-alias gac="ga && gc"
+alias gac="gaa && gcm"
 
 alias gs="git status"
 alias gb="git branch"
