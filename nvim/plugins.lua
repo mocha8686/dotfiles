@@ -142,17 +142,10 @@ local plugins = {
 	-- Language-Specific
 	{
 		{
-			'simrat39/rust-tools.nvim',
-			dependencies = {
-				'neovim/nvim-lspconfig',
-				'nvim-lua/plenary.nvim',
-				'mfussenegger/nvim-dap',
-			},
-			keys = keys.get_plugin_keys 'rust-tools',
+			'mrcjkb/rustaceanvim',
+			version = '^3',
+			dependencies = 'neovim/nvim-lspconfig',
 			ft = 'rust',
-			config = function()
-				require 'config.rust_tools'
-			end,
 		},
 	},
 

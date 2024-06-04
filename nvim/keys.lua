@@ -294,25 +294,47 @@ M.keys = {
 			desc = 'Toggle DAP UI',
 		},
 	},
-	['rust-tools'] = {
-		{
-			'K',
-			function()
-				require 'dapui'
-				require('rust-tools').hover_actions.hover_actions()
-			end,
-			desc = 'Display hover info',
-		},
+	['rustaceanvim'] = {
 		{
 			'<leader>lA',
 			function()
-				require('rust-tools').code_action_group.code_action_group()
+				vim.cmd.RustLsp 'codeAction'
 			end,
 			desc = 'Show code actions',
 			mode = {
 				'n',
 				'v',
 			},
+		},
+		{
+			'<leader>lx',
+			function()
+				vim.cmd.RustLsp 'renderDiagnostic'
+			end,
+			desc = 'Render diagnostic',
+		},
+		{
+			'J',
+			function()
+				vim.cmd.RustLsp 'joinLines'
+			end,
+			desc = 'Join lines',
+		},
+		{
+			'<C-k>',
+			function()
+				vim.cmd.RustLsp { 'moveItem', 'up' }
+			end,
+			desc = 'Move item up',
+			mode = { 'n', 'v' },
+		},
+		{
+			'<C-j>',
+			function()
+				vim.cmd.RustLsp { 'moveItem', 'down' }
+			end,
+			desc = 'Move item down',
+			mode = { 'n', 'v' },
 		},
 	},
 	['ccc.nvim'] = {
