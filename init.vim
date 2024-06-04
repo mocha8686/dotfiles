@@ -19,6 +19,9 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
+" Tagbar
+nnoremap <C-y> :TagbarToggle<CR>
+
 " Polyglot
 let g:vim_svelte_plugin_use_sass = 1
 
