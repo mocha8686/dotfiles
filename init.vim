@@ -66,8 +66,8 @@ set shiftwidth=4
 set updatetime=100
 nnoremap / /\v
 nnoremap <C-s> :%s/\v
-nnoremap <C-h> :tabnext<CR>
-nnoremap <C-l> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-o> :tabnew<CR>
 
 
