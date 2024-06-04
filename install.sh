@@ -22,20 +22,14 @@ while read -r entry; do
 		continue
 	fi
 
-	read -rp "Install $srcname to $destdir? [Y/n] " yn
-	case $yn in
-		[Nn]*) continue;;
-		*)
-			if [[ -L "$src" ]] && [[ -e "$src" ]]; then
-				read -rp "Replace $destdir? [y/N] " yn
-				case $yn in
-					[Yy]*) ;;
-					*) continue;;
-				esac
-			fi
-			ln -snf "$src" "$dest"
-			;;
-	esac
+	if [[ -L "$src" ]] && [[ -e "$src" ]]; then
+		read -rp "Replace $destdir? [y/N] " yn
+		case $yn in
+			[Yy]*) ;;
+			*) continue;;
+		esac
+	fi
+	ln -snf "$src" "$dest"
 done < configs.txt
 
 #########
