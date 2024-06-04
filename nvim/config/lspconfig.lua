@@ -111,4 +111,13 @@ mason_lspconfig.setup_handlers {
 			filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
 		}
 	end,
+	['golangci_lint_ls'] = function()
+		lspconfig['golangci_lint_ls'].setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			init_options = {
+				command = { 'golangci-lint', 'run', '--out-format', 'json', '--fix' },
+			},
+		}
+	end,
 }
