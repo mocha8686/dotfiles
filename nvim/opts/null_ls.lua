@@ -8,6 +8,9 @@ local opts = {
 		null_ls.builtins.formatting.stylelint.with {
 			extra_filetypes = { 'svelte' },
 		},
+		null_ls.builtins.formatting.prettierd.with {
+			filetypes = { 'css', 'scss', 'less' },
+		},
 	},
 }
 
