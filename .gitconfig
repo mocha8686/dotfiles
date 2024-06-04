@@ -1,4 +1,5 @@
-[core]
-	editor = nvim
+[user]
+	email = jericho.paulino@yahoo.com.ph
+	name = huecester
 [init]
 	defaultBranch = main
