@@ -40,6 +40,7 @@ bindkey -v
 
 
 # Environment variables
+export DISPLAY=":0"
 export EDITOR="nvim"
 export LANG="en_US.UTF8"
 export PAGER="less"
