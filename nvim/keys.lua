@@ -1,3 +1,5 @@
+local set = vim.keymap.set
+
 local M = {}
 
 local function rpgbot()
@@ -263,7 +265,7 @@ M.map_plugin_keys = function(plugin)
 			error('`key[2]` must be defined to map a key for plugin ' .. plugin .. '.')
 		end
 
-		vim.keymap.set(key.mode or 'n', key[1], key[2], {
+		set(key.mode or 'n', key[1], key[2], {
 			nowait = key.nowait,
 			silent = key.silent,
 			script = key.script,
@@ -294,7 +296,7 @@ M.map_plugin_keys_buffer = function(plugin, buf)
 			error('`key[2]` must be defined to map a key for plugin ' .. plugin .. '.')
 		end
 
-		vim.keymap.set(key.mode or 'n', key[1], key[2], {
+		set(key.mode or 'n', key[1], key[2], {
 			nowait = key.nowait,
 			silent = key.silent,
 			script = key.script,
