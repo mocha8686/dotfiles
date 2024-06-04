@@ -48,7 +48,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " CtrlP
 nnoremap <C-p> :CtrlPMixed<CR>
 let g:ctrlp_custom_ignore = {
-	\ 'dir': '\(\.git\|node_modules\|dist\|target\)$'
+	\ 'dir': '\(\.git\|node_modules\|dist\|target\|build\)$'
 \ }
 
 " Taboo
