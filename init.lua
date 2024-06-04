@@ -265,6 +265,7 @@ return require('packer').startup(function(use)
 					'cmake',
 					'cssls',
 					'dockerls',
+					'emmet_ls',
 					'eslint',
 					'html',
 					'jsonls',
@@ -364,6 +365,7 @@ return require('packer').startup(function(use)
 				local opts = { silent = true, noremap = true }
 				local picker_opts = { theme = theme, workspace = 'CWD' }
 
+				map('n', '<C-t>', function() telescope.extensions.file_browser.file_browser(picker_opts) end, opts)
 				map('n', '<C-p>', function() telescope_builtin.find_files(picker_opts) end, opts)
 				map('n', '<leader>p', function() telescope_builtin.live_grep(picker_opts) end, opts)
 
