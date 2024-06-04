@@ -7,6 +7,7 @@ nvim/config/cmp.lua:~/.config/nvim/lua/config
 nvim/config/lspconfig.lua:~/.config/nvim/lua/config
 nvim/config/null_ls.lua:~/.config/nvim/lua/config
 nvim/config/telescope.lua:~/.config/nvim/lua/config
+nvim/config/which_key.lua:~/.config/nvim/lua/config
 nvim/init.lua:~/.config/nvim
 nvim/keys.lua:~/.config/nvim/lua
 nvim/opts/bufferline.lua:~/.config/nvim/lua/opts

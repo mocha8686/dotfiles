@@ -199,6 +199,17 @@ local plugins = {
 			keys = keys.get_plugin_keys 'trouble.nvim',
 			config = true,
 		},
+		{
+			'folke/which-key.nvim',
+			event = 'VeryLazy',
+			init = function()
+				vim.o.timeout = true
+				vim.o.timeoutlen = 300
+			end,
+			config = function()
+				require 'config.which_key'
+			end,
+		},
 	},
 
 	-- Treesitter

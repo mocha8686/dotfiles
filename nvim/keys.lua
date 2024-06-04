@@ -25,16 +25,22 @@ M.keys = {
 		silent = true,
 	},
 	['vim'] = {
-		{ '<C-h>',      '<C-w>h' },
-		{ '<C-j>',      '<C-w>j' },
-		{ '<C-k>',      '<C-w>k' },
-		{ '<C-l>',      '<C-w>l' },
-		{ '<Tab>',      '<Cmd>bn<CR>' },
-		{ '<S-Tab>',    '<Cmd>bp<CR>' },
-		{ '<leader>tt', create_terminal_callback(true) },
-		{ '<leader>th', create_terminal_callback(true, true) },
-		{ '<leader>to', create_terminal_callback() },
-		{ '<ESC><ESC>', '<C-\\><C-N>',                       mode = { 't' } },
+		{ '<C-h>',      '<C-w>h',                             desc = 'Select window to the left' },
+		{ '<C-j>',      '<C-w>j',                             desc = 'Select window below' },
+		{ '<C-k>',      '<C-w>k',                             desc = 'Select window above' },
+		{ '<C-l>',      '<C-w>l',                             desc = 'Select window to the right' },
+		{ '<Tab>',      '<Cmd>bn<CR>',                        desc = 'Select next tab' },
+		{ '<S-Tab>',    '<Cmd>bp<CR>',                        desc = 'Select previous tab' },
+		{ '<leader>tt', create_terminal_callback(true),       desc = 'Create terminal below' },
+		{ '<leader>th', create_terminal_callback(true, true), desc = 'Create terminal to the right' },
+		{ '<leader>to', create_terminal_callback(),           desc = 'Open terminal in current window' },
+		{
+			'<ESC><ESC>',
+			'<C-\\><C-N>',
+			desc =
+			'Exit terminal mode',
+			mode = { 't' }
+		},
 	},
 	['Comment.nvim'] = {
 		{ 'gc', mode = { 'n', 'v' } },
@@ -66,8 +72,8 @@ M.keys = {
 		{ 'A', mode = { 'x', 'o' } },
 	},
 	['vim-sayonara'] = {
-		{ '<leader>d', '<Cmd>Sayonara!<CR>' },
-		{ '<leader>c', '<Cmd>Sayonara<CR>' },
+		{ '<leader>d', '<Cmd>Sayonara!<CR>', desc = 'Delete the current buffer and close the window' },
+		{ '<leader>c', '<Cmd>Sayonara<CR>',  desc = 'Delete the current buffer' },
 	},
 	['leap.nvim'] = {
 		{ 'z', '<Plug>(leap-forward-x)',  mode = { 'n', 'x', 'o' } },
@@ -84,9 +90,24 @@ M.keys = {
 		local picker_opts = { theme = theme, workspace = 'CWD' }
 
 		local keys = {
-			{ '<C-t>',     function() telescope.extensions.file_browser.file_browser(picker_opts) end },
-			{ '<C-p>',     function() telescope_builtin.find_files(picker_opts) end },
-			{ '<leader>p', function() telescope_builtin.live_grep(picker_opts) end },
+			{
+				'<C-t>',
+				function() telescope.extensions.file_browser.file_browser(picker_opts) end,
+				desc =
+				'Open file browser'
+			},
+			{
+				'<C-p>',
+				function() telescope_builtin.find_files(picker_opts) end,
+				desc =
+				'Open file finder'
+			},
+			{
+				'<leader>p',
+				function() telescope_builtin.live_grep(picker_opts) end,
+				desc =
+				'Open live grep'
+			},
 		}
 
 		return keys
@@ -96,28 +117,97 @@ M.keys = {
 		local todo_comments = require 'todo-comments'
 
 		return {
-			{ 'K',          vim.lsp.buf.hover },
-			{ '<leader>lD', vim.lsp.buf.declaration },
-			{ '<leader>ld', telescope_builtin.lsp_definitions },
-			{ '<leader>li', telescope_builtin.lsp_implementations },
-			{ '<leader>lS', vim.lsp.buf.signature_help },
-			{ '<leader>lr', telescope_builtin.lsp_references },
-			{ '<leader>lR', vim.lsp.buf.rename },
-			{ '<leader>lA', vim.lsp.buf.code_action,                                               mode = { 'n', 'v' } },
-			{ ']e',         function() vim.diagnostic.goto_next { float = { scope = 'line' } } end },
-			{ '[e',         function() vim.diagnostic.goto_prev { float = { scope = 'line' } } end },
-			{ ']t',         function() todo_comments.jump_next() end },
-			{ '[t',         function() todo_comments.jump_prev() end },
+			{
+				'K',
+				vim.lsp.buf.hover,
+				desc =
+				'Display hover info',
+			},
+			{
+				'<leader>lD',
+				vim.lsp.buf.declaration,
+				desc =
+				'Jump to declaration',
+			},
+			{
+				'<leader>ld',
+				telescope_builtin.lsp_definitions,
+				desc =
+				'Jump to definition',
+			},
+			{
+				'<leader>li',
+				telescope_builtin.lsp_implementations,
+				desc =
+				'Show implementations',
+			},
+			{
+				'<leader>lS',
+				vim.lsp.buf.signature_help,
+				desc =
+				'Show signature info',
+			},
+			{
+				'<leader>lr',
+				telescope_builtin.lsp_references,
+				desc =
+				'Show references',
+			},
+			{
+				'<leader>lR',
+				vim.lsp.buf.rename,
+				desc =
+				'Rename symbol',
+			},
+			{
+				'<leader>lA',
+				vim.lsp.buf.code_action,
+				desc =
+				'Show code actions',
+				mode = {
+					'n', 'v' },
+			},
+			{
+				'<leader>lf',
+				function()
+					vim.lsp.buf.format { async = true }
+				end,
+				desc = 'Format',
+			},
+			{
+				']e',
+				function() vim.diagnostic.goto_next { float = { scope = 'line' } } end,
+				desc =
+				'Next diagnostic',
+			},
+			{
+				'[e',
+				function() vim.diagnostic.goto_prev { float = { scope = 'line' } } end,
+				desc =
+				'Previous diagnostic',
+			},
+			{
+				']t',
+				function() todo_comments.jump_next() end,
+				desc =
+				'Next TODO',
+			},
+			{
+				'[t',
+				function() todo_comments.jump_prev() end,
+				desc =
+				'Previous TODO',
+			},
 		}
 	end,
 	['trouble.nvim'] = {
-		{ '<leader>xx', '<Cmd>TroubleToggle<CR>' },
-		{ '<leader>xw', '<Cmd>TroubleToggle workspace_diagnostics<CR>' },
-		{ '<leader>xd', '<Cmd>TroubleToggle document_diagnostics<CR>' },
-		{ '<leader>xl', '<Cmd>TroubleToggle loclist<CR>' },
-		{ '<leader>xq', '<Cmd>TroubleToggle quickfix<CR>' },
-		{ '<leader>xt', '<Cmd>TodoTrouble<CR>' },
-		{ '<leader>xr', '<Cmd>TroubleToggle lsp_references<CR>' },
+		{ '<leader>xx', '<Cmd>TroubleToggle<CR>',                       desc = 'Toggle Trouble' },
+		{ '<leader>xw', '<Cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Workspace diagnostics' },
+		{ '<leader>xd', '<Cmd>TroubleToggle document_diagnostics<CR>',  desc = 'Document diagnostics' },
+		{ '<leader>xl', '<Cmd>TroubleToggle loclist<CR>',               desc = 'Location list' },
+		{ '<leader>xq', '<Cmd>TroubleToggle quickfix<CR>',              desc = 'Quickfix' },
+		{ '<leader>xt', '<Cmd>TodoTrouble<CR>',                         desc = 'TODOs' },
+		{ '<leader>xr', '<Cmd>TroubleToggle lsp_references<CR>',        desc = 'References' },
 	},
 }
 
