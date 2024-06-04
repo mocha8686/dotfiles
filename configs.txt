@@ -1,6 +1,3 @@
-./doom/config.el:~/.config/doom
-./doom/init.el:~/.config/doom
-./doom/packages.el:~/.config/doom
 ./git/.gitconfig:~
 ./hyprland/hyprland.conf:~/.config/hypr
 ./hyprland/hyprpaper.conf:~/.config/hypr
