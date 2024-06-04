@@ -1,27 +1,36 @@
 local M = {}
 
+local function create_terminal_callback(vsplit)
+	return function()
+		if vsplit then
+			vim.cmd [[ vsplit ]]
+		else
+			vim.cmd [[ 10split ]]
+		end
+		vim.cmd [[ term ]]
+
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+
+		vim.cmd [[ startinsert ]]
+	end
+end
+
 M.keys = {
 	defaults = {
 		noremap = true,
 		silent = true,
 	},
 	['vim'] = {
-		{ '<C-h>',   '<C-w>h' },
-		{ '<C-j>',   '<C-w>j' },
-		{ '<C-k>',   '<C-w>k' },
-		{ '<C-l>',   '<C-w>l' },
-		{ '<Tab>',   '<Cmd>bn<CR>' },
-		{ '<S-Tab>', '<Cmd>bp<CR>' },
-		{ '<leader>tt', function()
-			vim.cmd [[ 10split ]]
-			vim.cmd [[ term ]]
-
-			vim.opt.number = false
-			vim.opt.relativenumber = false
-
-			vim.cmd [[ startinsert ]]
-		end },
-		{ '<ESC><ESC>', '<C-\\><C-N>', mode = { 't' } },
+		{ '<C-h>',      '<C-w>h' },
+		{ '<C-j>',      '<C-w>j' },
+		{ '<C-k>',      '<C-w>k' },
+		{ '<C-l>',      '<C-w>l' },
+		{ '<Tab>',      '<Cmd>bn<CR>' },
+		{ '<S-Tab>',    '<Cmd>bp<CR>' },
+		{ '<leader>tt', create_terminal_callback() },
+		{ '<leader>th', create_terminal_callback(true) },
+		{ '<ESC><ESC>', '<C-\\><C-N>',                 mode = { 't' } },
 	},
 	['Comment.nvim'] = {
 		{ 'gc', mode = { 'n', 'v' } },
