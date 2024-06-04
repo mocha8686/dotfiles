@@ -63,7 +63,7 @@ local plugins = {
 				'folke/neoconf.nvim',
 				'folke/neodev.nvim',
 				'hrsh7th/nvim-cmp',
-				'jose-elias-alvarez/null-ls.nvim',
+				'nvimtools/none-ls.nvim',
 				'nvim-telescope/telescope.nvim',
 				'ray-x/lsp_signature.nvim',
 				'williamboman/mason-lspconfig.nvim',
@@ -76,7 +76,7 @@ local plugins = {
 			end,
 		},
 		{
-			'jose-elias-alvarez/null-ls.nvim',
+			'nvimtools/none-ls.nvim',
 			dependencies = {
 				'jay-babu/mason-null-ls.nvim',
 				'neovim/nvim-lspconfig',
