@@ -55,9 +55,9 @@ export RPROMPT='%(?..%F{1}%K%F{white}%K{1} %? %K)'
 path+=("$HOME/.local/bin" "$HOME/.cargo/bin")
 
 # Aliases
-alias exa='exa --icons --git --group-directories-first'
-if command -v exa > /dev/null; then
-	alias ls='exa'
+if command -v eza > /dev/null; then
+	alias eza='eza --icons --git --group-directories-first'
+	alias ls='eza'
 fi
 alias ll='ls -l'
 alias la='ll -a'
