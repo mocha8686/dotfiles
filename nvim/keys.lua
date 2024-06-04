@@ -1,12 +1,15 @@
 local M = {}
 
-local function create_terminal_callback(vsplit)
+local function create_terminal_callback(split, vertical)
 	return function()
-		if vsplit then
-			vim.cmd [[ vsplit ]]
-		else
-			vim.cmd [[ 15split ]]
+		if split then
+			if vertical then
+				vim.cmd [[ vsplit ]]
+			else
+				vim.cmd [[ 15split ]]
+			end
 		end
+
 		vim.cmd [[ term ]]
 
 		vim.opt.number = false
@@ -28,9 +31,10 @@ M.keys = {
 		{ '<C-l>',      '<C-w>l' },
 		{ '<Tab>',      '<Cmd>bn<CR>' },
 		{ '<S-Tab>',    '<Cmd>bp<CR>' },
-		{ '<leader>tt', create_terminal_callback() },
-		{ '<leader>th', create_terminal_callback(true) },
-		{ '<ESC><ESC>', '<C-\\><C-N>',                 mode = { 't' } },
+		{ '<leader>tt', create_terminal_callback(true) },
+		{ '<leader>th', create_terminal_callback(true, true) },
+		{ '<leader>to', create_terminal_callback() },
+		{ '<ESC><ESC>', '<C-\\><C-N>',                       mode = { 't' } },
 	},
 	['Comment.nvim'] = {
 		{ 'gc', mode = { 'n', 'v' } },
