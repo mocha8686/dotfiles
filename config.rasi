@@ -1,0 +1,27 @@
+@import "~/.cache/wal/colors-rofi-dark"
+
+configuration {
+	modi: "window,drun,ssh";
+	show-icons: true;
+	timeout {
+		action: "kb-cancel";
+		delay: 0;
+	}
+	filebrowser {
+		directories-first: true;
+		sorting-method: "name";
+	}
+}
+
+* {
+	font: "JetBrainsMono Nerd Font Mono 9";
+}
+
+listview {
+	border: none;
+}
+
+scrollbar {
+	width: 0;
+	handle-width: 0;
+}

@@ -1,3 +1,8 @@
 .gitconfig:~
 .zshrc:~
 init.vim:~/.config/nvim
+kitty.conf:~/.config/kitty
+picom.conf:~/.config/picom
+config.ini:~/.config/polybar
+config.rasi:~/.config/rofi
+sxhkdrc:~/.config/sxhkd
