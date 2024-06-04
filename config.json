@@ -8,8 +8,7 @@
 			],
 			"install": {
 				".gitconfig": "~/",
-				"init.vim": "~/.config/nvim/",
-				".tmux.conf": "~/"
+				"init.vim": "~/.config/nvim/"
 			},
 			"copy": {
 				".zshrc": "~/"
