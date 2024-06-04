@@ -92,4 +92,13 @@ mason_lspconfig.setup_handlers {
 			},
 		}
 	end,
+	['tsserver'] = function()
+		lspconfig['tsserver'].setup {
+			on_attach = function(client, buf)
+				client['server_capabilities']['documentFormattingProvider'] = false
+				on_attach(client, buf)
+			end,
+			capabilities = capabilities,
+		}
+	end,
 }
