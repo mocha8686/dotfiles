@@ -27,6 +27,8 @@
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
 ./swayidle/config:~/.config/swayidle
+./systemd/rclone-obsidian.automount:~/.config/systemd/user
+./systemd/rclone-obsidian.mount:~/.config/systemd/user
 ./wal/99-colors-dunst.conf:~/.config/wal/templates
 ./wal/colors-hyprland.conf:~/.config/wal/templates
 ./wal/hyprpaper.conf:~/.config/wal/templates
