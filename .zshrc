@@ -103,3 +103,8 @@ alias gpl='git pull'
 alias gf='git fetch'
 
 alias nc='ncat'
+
+# pnpm
+export PNPM_HOME="/home/huece/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
