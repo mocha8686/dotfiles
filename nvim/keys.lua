@@ -180,6 +180,13 @@ M.keys = {
 				desc = 'Format',
 			},
 			{
+				'<leader>lh',
+				function()
+					require('lsp-inlayhints').toggle()
+				end,
+				desc = 'Toggle inlay hints',
+			},
+			{
 				']e',
 				function()
 					vim.diagnostic.goto_next { float = { scope = 'line' } }

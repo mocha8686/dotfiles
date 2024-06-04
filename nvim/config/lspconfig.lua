@@ -1,5 +1,6 @@
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local keys = require 'keys'
+local lsp_inlayhints = require 'lsp-inlayhints'
 local lsp_signature = require 'lsp_signature'
 local lspconfig = require 'lspconfig'
 local mason = require 'mason'
@@ -15,6 +16,7 @@ sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' 
 
 local function on_attach(client, buf)
 	lsp_signature.on_attach(require 'opts.lsp_signature', buf)
+	lsp_inlayhints.on_attach(client, buf)
 
 	vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 	keys.map_plugin_keys_buffer('nvim-lspconfig', buf)
@@ -54,14 +56,15 @@ neoconf.setup()
 neodev.setup()
 mason.setup()
 mason_lspconfig.setup()
+lsp_inlayhints.setup()
 
 vim.g.rustaceanvim = {
 	server = {
 		on_attach = function(client, buf)
 			on_attach(client, buf)
 			keys.map_plugin_keys_buffer('rustaceanvim', buf)
-		end
-	}
+		end,
+	},
 }
 
 mason_lspconfig.setup_handlers {
