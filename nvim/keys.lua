@@ -212,8 +212,8 @@ M.keys = {
 		{ '<leader>xr', '<Cmd>TroubleToggle lsp_references<CR>',        desc = 'References' },
 	},
 	['toggleterm.nvim'] = {
-		{'<leader>tt', desc='Toggle terminal'},
-		{'<leader>tr', rpgbot, desc='Start RPGBot dev servers'},
+		{ '<leader>tt', function() end, desc = 'Toggle terminal' },
+		{ '<leader>tr', rpgbot,         desc = 'Start RPGBot dev servers' },
 	},
 }
 
