@@ -58,12 +58,16 @@ path+=("$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.config/emacs/bin" "$HOME/.l
 if command -v eza > /dev/null; then
 	alias eza='eza --icons --git --group-directories-first'
 	alias ls='eza'
-	alias lt='eza -T --git-ignore'
-	alias llt='lt -l'
-	alias lat='llt -a'
+
+	alias ll='eza -l --git-ignore'
+	alias lt='ll -T'
+
+	alias la='eza -la'
+	alias lat='la -T'
+else
+	alias ll='ls -l'
+	alias la='ll -a'
 fi
-alias ll='ls -l'
-alias la='ll -a'
 
 alias cl='cd -'
 alias mkdir='mkdir -pv'
