@@ -109,8 +109,9 @@ alias gf='git fetch'
 alias nc='ncat'
 alias ssh='TERM=xterm ssh'
 
-# Mac path
-path+=("$HOME/Library/Python/3.10/bin")
+if [[ -f ~/.os.sh ]] then
+	source ~/.os.sh
+fi
 
 typeset -U path
 export PATH
