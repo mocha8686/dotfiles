@@ -50,6 +50,11 @@ local function on_attach(client, buf)
 	end
 end
 
+local function on_attach_disable_formatting(client, buf)
+	client['server_capabilities']['documentFormattingProvider'] = false
+	on_attach(client, buf)
+end
+
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 neoconf.setup()
@@ -94,10 +99,13 @@ mason_lspconfig.setup_handlers {
 	end,
 	['tsserver'] = function()
 		lspconfig['tsserver'].setup {
-			on_attach = function(client, buf)
-				client['server_capabilities']['documentFormattingProvider'] = false
-				on_attach(client, buf)
-			end,
+			on_attach = on_attach_disable_formatting,
+			capabilities = capabilities,
+		}
+	end,
+	['jsonls'] = function()
+		lspconfig['jsonls'].setup {
+			on_attach = on_attach_disable_formatting,
 			capabilities = capabilities,
 		}
 	end,
