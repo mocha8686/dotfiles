@@ -66,6 +66,7 @@ set encoding=utf-8
 set incsearch ignorecase smartcase hlsearch
 set nowrap
 set whichwrap=b,s,<,>,[,]
+set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set updatetime=100
