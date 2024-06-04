@@ -7,3 +7,4 @@ config.ini:~/.config/polybar
 config.rasi:~/.config/rofi
 sxhkdrc:~/.config/sxhkd
 bspwmrc:~/.config/bspwm
+launch.sh:~/.config/polybar
