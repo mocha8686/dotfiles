@@ -31,7 +31,7 @@ dap.adapters.codelldb = {
 	},
 }
 
-dap.configurations.rust = {
+local lldb_config = {
 	{
 		name = 'Launch',
 		type = 'codelldb',
@@ -42,7 +42,14 @@ dap.configurations.rust = {
 				pickers
 					.new(opts, {
 						prompt_title = 'Path to executable',
-						finder = finders.new_oneshot_job({ 'fd', '--hidden', '--no-ignore', '--type', 'x' }, {}),
+						finder = finders.new_oneshot_job({
+							'fd',
+							'--unrestricted',
+							'--type',
+							'x',
+							'--full-path',
+							'(builddir|target/(debug|release))/[^/]+$',
+						}, {}),
 						sorter = conf.generic_sorter(opts),
 						attach_mappings = function(buffer_number)
 							actions.select_default:replace(function()
@@ -60,3 +67,6 @@ dap.configurations.rust = {
 		stopOnEntry = false,
 	},
 }
+
+dap.configurations.rust = lldb_config
+dap.configurations.cpp = lldb_config
