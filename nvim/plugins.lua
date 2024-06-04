@@ -134,6 +134,12 @@ local plugins = {
 			keys = '<C-e>',
 			cmd = 'WinResizerStartResize',
 		},
+		{
+			'akinsho/toggleterm.nvim',
+			version = '*',
+			keys = keys.get_plugin_keys 'toggleterm.nvim',
+			opts = require 'opts.toggleterm',
+		},
 	},
 
 	-- Telescope

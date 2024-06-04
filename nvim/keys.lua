@@ -1,39 +1,17 @@
 local M = {}
 
-local function create_terminal_callback(split, vertical)
-	return function()
-		if split then
-			if vertical then
-				vim.cmd [[ vsplit ]]
-			else
-				vim.cmd [[ 15split ]]
-			end
-		end
-
-		vim.cmd [[ term ]]
-
-		vim.opt.number = false
-		vim.opt.relativenumber = false
-
-		vim.cmd [[ startinsert ]]
-	end
-end
-
 M.keys = {
 	defaults = {
 		noremap = true,
 		silent = true,
 	},
 	['vim'] = {
-		{ '<C-h>',      '<C-w>h',                             desc = 'Select window to the left' },
-		{ '<C-j>',      '<C-w>j',                             desc = 'Select window below' },
-		{ '<C-k>',      '<C-w>k',                             desc = 'Select window above' },
-		{ '<C-l>',      '<C-w>l',                             desc = 'Select window to the right' },
-		{ '<Tab>',      '<Cmd>bn<CR>',                        desc = 'Select next tab' },
-		{ '<S-Tab>',    '<Cmd>bp<CR>',                        desc = 'Select previous tab' },
-		{ '<leader>tt', create_terminal_callback(true),       desc = 'Create terminal below' },
-		{ '<leader>th', create_terminal_callback(true, true), desc = 'Create terminal to the right' },
-		{ '<leader>to', create_terminal_callback(),           desc = 'Open terminal in current window' },
+		{ '<C-h>',   '<C-w>h',      desc = 'Select window to the left' },
+		{ '<C-j>',   '<C-w>j',      desc = 'Select window below' },
+		{ '<C-k>',   '<C-w>k',      desc = 'Select window above' },
+		{ '<C-l>',   '<C-w>l',      desc = 'Select window to the right' },
+		{ '<Tab>',   '<Cmd>bn<CR>', desc = 'Select next tab' },
+		{ '<S-Tab>', '<Cmd>bp<CR>', desc = 'Select previous tab' },
 		{
 			'<ESC><ESC>',
 			'<C-\\><C-N>',
@@ -209,6 +187,7 @@ M.keys = {
 		{ '<leader>xt', '<Cmd>TodoTrouble<CR>',                         desc = 'TODOs' },
 		{ '<leader>xr', '<Cmd>TroubleToggle lsp_references<CR>',        desc = 'References' },
 	},
+	['toggleterm.nvim'] = '<leader>t',
 }
 
 ---Get keys for a plugin.

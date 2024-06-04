@@ -81,6 +81,14 @@ local function set_vim_options()
 			opt.wrap = true
 		end
 	})
+
+	autocmd('TermOpen', {
+		pattern = '*',
+		callback = function()
+			vim.opt_local.number = false
+			vim.opt_local.relativenumber = false
+		end
+	})
 end
 
 local function override_colortheme()
