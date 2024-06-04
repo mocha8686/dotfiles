@@ -3,7 +3,7 @@
 dunstrc:~/.config/dunst
 hyprland.conf:~/.config/hypr
 hyprpaper.conf:~/.config/hypr
-init.vim:~/.config/nvim
+init.lua:~/.config/nvim
 kitty.conf:~/.config/kitty
 wal/99-colors-dunst.conf:~/.config/wal/templates
 wal/colors-hyprland.conf:~/.config/wal/templates
