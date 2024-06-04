@@ -35,7 +35,7 @@
 	},
 	"disk": {
 		"interval": 30,
-		"format": "  {percentage_used}%",
+		"format": "󰋊 {percentage_used}%",
 		"states": {
 			"warning": 85,
 			"critical": 95
@@ -47,7 +47,7 @@
 	},
 	"memory": {
 		"interval": 2,
-		"format": "  {percentage}%",
+		"format": "󰍛 {percentage}%",
 		"states": {
 			"warning": 85,
 			"critical": 95
@@ -56,20 +56,20 @@
 	},
 	"network": {
 		"interval": 10,
-		"format-wifi": "直 {essid} {signalStrength}%",
-		"format-ethernet": " {essid} {signalStrength}%",
-		"format-disconnected": "睊",
+		"format-wifi": "󰖩  {essid} {signalStrength}%",
+		"format-ethernet": "󰈁 {essid} {signalStrength}%",
+		"format-disconnected": "󰖪 ",
 		"tooltip-format-wifi": "{bandwidthDownBytes} download, {bandwidthUpBytes} upload.\nConnected as {ipaddr}/{cidr} via {ifname}.",
 		"tooltip-format-ethernet": "{bandwidthDownBytes} download, {bandwidthUpBytes} upload.\nConnected as {ipaddr}/{cidr} via {ifname}."
 	},
 	"pulseaudio": {
 		"format": "{icon} {volume}%",
 		"format-icons": [
-			"奄 ",
-			"奔 ",
-			"墳 "
+			"󰕿",
+			"󰖀",
+			"󰕾"
 		],
-		"format-muted": "婢 {volume}%"
+		"format-muted": "󰝟 {volume}%"
 	},
 	"tray": {
 		"icon-size": 16
