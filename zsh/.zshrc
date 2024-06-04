@@ -113,6 +113,8 @@ alias gf='git fetch'
 alias nc='ncat'
 alias ssh='TERM=xterm ssh'
 
+eval "$(zoxide init zsh)"
+
 if [[ -f ~/.os.sh ]] then
 	source ~/.os.sh
 fi
