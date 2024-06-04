@@ -13,6 +13,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -41,6 +42,9 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 " Tagbar
 nnoremap <C-y> :TagbarToggle<CR>
+
+" CtrlP
+nnoremap <C-p> :CtrlPMixed<CR>
 
 " Functionalities
 set backspace=indent,eol,start
