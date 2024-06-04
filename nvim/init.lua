@@ -51,8 +51,6 @@ local function set_vim_options()
 		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 	augroup END
 	]]
-
-	vim.cmd [[ autocmd FileType haskell setlocal expandtab ]]
 end
 
 set_vim_options()
@@ -269,13 +267,13 @@ return require('packer').startup(function(use)
 					'dockerls',
 					'emmet_ls',
 					'eslint',
-					'hls',
 					'html',
 					'jsonls',
 					'marksman',
 					'pyright',
 					'rust_analyzer',
 					'svelte',
+					'texlab',
 					'tsserver',
 				}
 
