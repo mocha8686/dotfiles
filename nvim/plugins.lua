@@ -103,6 +103,7 @@ local plugins = {
 	{
 		{
 			'mfussenegger/nvim-dap',
+			dependencies = 'nvim-telescope/telescope.nvim',
 			keys = keys.get_plugin_keys 'nvim-dap',
 			config = function()
 				require 'config.nvim_dap'
