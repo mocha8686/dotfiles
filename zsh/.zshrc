@@ -112,6 +112,7 @@ alias gf='git fetch'
 
 alias nc='ncat'
 alias ssh='TERM=xterm ssh'
+alias ses='source ~/.session.sh'
 
 eval "$(zoxide init zsh)"
 
