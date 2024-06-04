@@ -19,21 +19,21 @@ local function on_attach(client, buf)
 	vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 	keys.map_plugin_keys_buffer('nvim-lspconfig', buf)
 
-	if client.supports_method('textDocument/formatting') then
+	if client.supports_method 'textDocument/formatting' then
 		local augroup = vim.api.nvim_create_augroup('LSPFormat', { clear = true })
 		vim.api.nvim_create_autocmd('BufWritePre', {
 			group = augroup,
 			buffer = buf,
 			callback = function()
-				vim.lsp.buf.format({
+				vim.lsp.buf.format {
 					async = false,
 					bufnr = buf,
-				})
-			end
+				}
+			end,
 		})
 	end
 
-	if client.supports_method('textDocument/documentHighlight') then
+	if client.supports_method 'textDocument/documentHighlight' then
 		local augroup = vim.api.nvim_create_augroup('LSPHighlights', { clear = true })
 		vim.api.nvim_create_autocmd('CursorHold', {
 			group = augroup,
@@ -60,6 +60,25 @@ mason_lspconfig.setup_handlers {
 		lspconfig[server].setup {
 			on_attach = on_attach,
 			capabilities = capabilities,
+		}
+	end,
+	['lua_ls'] = function()
+		lspconfig.lua_ls.setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				Lua = {
+					runtime = {
+						version = 'LuaJIT',
+					},
+					workspace = {
+						checkThirdParty = false,
+					},
+					diagnostics = {
+						globals = { 'vim' },
+					},
+				},
+			},
 		}
 	end,
 }
