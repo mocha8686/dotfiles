@@ -18,6 +18,8 @@ M.keys = {
 
 			vim.opt.number = false
 			vim.opt.relativenumber = false
+
+			vim.cmd [[ startinsert ]]
 		end },
 		{ '<ESC><ESC>', '<C-\\><C-N>', mode = { 't' } },
 	},
