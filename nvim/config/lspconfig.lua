@@ -52,7 +52,13 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 mason.setup()
 mason_lspconfig.setup()
-neoconf.setup()
+neoconf.setup {
+	plugins = {
+		jsonls = {
+			configured_servers_only = false,
+		},
+	},
+}
 neodev.setup()
 
 mason_lspconfig.setup_handlers {
