@@ -13,7 +13,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'preservim/nerdtree'
 Plug 'preservim/tagbar'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 
@@ -54,7 +53,7 @@ let g:ctrlp_custom_ignore = {
 \ }
 
 " Taboo
-nnoremap <C-i> :TabooRename 
+nnoremap <Tab> :TabooRename 
 nnoremap <C-u> :TabooReset<CR>
 let g:taboo_tab_format = '%I %r%m %u'
 let g:taboo_renamed_tab_format = '%I %l%m %u'
