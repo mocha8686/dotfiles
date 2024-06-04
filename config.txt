@@ -1,10 +1,10 @@
 .gitconfig:~
 .zshrc:~
-init.vim:~/.config/nvim
-kitty.conf:~/.config/kitty
-picom.conf:~/.config/picom
+bspwmrc:~/.config/bspwm
 config.ini:~/.config/polybar
 config.rasi:~/.config/rofi
-sxhkdrc:~/.config/sxhkd
-bspwmrc:~/.config/bspwm
+init.vim:~/.config/nvim
+kitty.conf:~/.config/kitty
 launch.sh:~/.config/polybar
+picom.conf:~/.config/picom
+sxhkdrc:~/.config/sxhkd
