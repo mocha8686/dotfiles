@@ -1,6 +1,5 @@
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local keys = require 'keys'
-local lsp_format = require 'lsp-format'
 local lsp_signature = require 'lsp_signature'
 local lspconfig = require 'lspconfig'
 local mason = require 'mason'
@@ -28,16 +27,25 @@ end
 
 local function on_attach(client, buf)
 	lsp_signature.on_attach(require 'opts.lsp_signature', buf)
-	lsp_format.on_attach(client)
 
 	vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 	keys.map_plugin_keys_buffer('nvim-lspconfig', buf)
 
-	if client.server_capabilities.documentFormattingProvider then
-		vim.cmd [[ cabbrev wq execute 'Format sync' <bar> wq ]]
+	if client.supports_method('textDocument/formatting') then
+		local augroup = vim.api.nvim_create_augroup('LSPFormat', { clear = true })
+		vim.api.nvim_create_autocmd('BufWritePre', {
+			group = augroup,
+			buffer = buf,
+			callback = function()
+				vim.lsp.buf.format({
+					async = false,
+					bufnr = buf,
+				})
+			end
+		})
 	end
 
-	if client.server_capabilities.documentHighlightProvider then
+	if client.supports_method('textDocument/documentHighlight') then
 		local augroup = vim.api.nvim_create_augroup('LSPHighlights', { clear = true })
 		vim.api.nvim_create_autocmd('CursorHold', {
 			group = augroup,
@@ -58,7 +66,6 @@ mason.setup()
 mason_lspconfig.setup()
 neoconf.setup()
 neodev.setup()
-lsp_format.setup()
 
 mason_lspconfig.setup_handlers {
 	function(server)

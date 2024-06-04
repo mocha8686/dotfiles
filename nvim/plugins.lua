@@ -64,7 +64,6 @@ local plugins = {
 				'folke/neodev.nvim',
 				'hrsh7th/nvim-cmp',
 				'jose-elias-alvarez/null-ls.nvim',
-				'lukas-reineke/lsp-format.nvim',
 				'nvim-telescope/telescope.nvim',
 				'ray-x/lsp_signature.nvim',
 				'rcarriga/nvim-notify',
