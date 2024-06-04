@@ -1,9 +1,7 @@
 " Plugins
 call plug#begin()
 
-Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'adelarsq/vim-matchit'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
@@ -47,7 +45,7 @@ let g:ctrlp_custom_ignore = {
 \ }
 
 " Taboo
-nnoremap <C-i> :TabooRename 
+nnoremap <C-i> :TabooRename
 nnoremap <C-u> :TabooReset<CR>
 let g:taboo_tab_format = '%I %r%m %u'
 let g:taboo_renamed_tab_format = '%I %l%m %u'
@@ -73,6 +71,7 @@ nnoremap <C-s> :%s/\v
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-o> :tabnew<CR>
+nnoremap <C-k> :tabclose<CR>
 
 
 " Information
