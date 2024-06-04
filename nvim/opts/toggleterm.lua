@@ -8,6 +8,7 @@ local opts = {
 	shade_terminals = false,
 	direction = 'vertical',
 	size = vim.o.columns * 0.4,
+	persist_mode = false,
 }
 
 return opts
