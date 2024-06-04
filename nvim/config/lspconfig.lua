@@ -77,7 +77,7 @@ mason_lspconfig.setup_handlers {
 		}
 	end,
 	['lua_ls'] = function()
-		lspconfig.lua_ls.setup {
+		lspconfig['lua_ls'].setup {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = {
