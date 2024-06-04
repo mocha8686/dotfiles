@@ -219,13 +219,15 @@ M.keys = {
 		}
 	end,
 	['trouble.nvim'] = {
-		{ '<leader>xx', '<Cmd>TroubleToggle<CR>',                       desc = 'Toggle Trouble' },
-		{ '<leader>xw', '<Cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Workspace diagnostics' },
-		{ '<leader>xd', '<Cmd>TroubleToggle document_diagnostics<CR>',  desc = 'Document diagnostics' },
-		{ '<leader>xl', '<Cmd>TroubleToggle loclist<CR>',               desc = 'Location list' },
-		{ '<leader>xq', '<Cmd>TroubleToggle quickfix<CR>',              desc = 'Quickfix' },
-		{ '<leader>xt', '<Cmd>TodoTrouble<CR>',                         desc = 'TODOs' },
-		{ '<leader>xr', '<Cmd>TroubleToggle lsp_references<CR>',        desc = 'References' },
+		{ '<leader>xx', '<Cmd>Trouble diagnostics toggle<CR>', desc = 'Diagnostics' },
+		{ '<leader>xl', '<Cmd>Trouble loclist toggle<CR>',     desc = 'Location list' },
+		{ '<leader>xq', '<Cmd>Trouble qflist toggle<CR>',      desc = 'Quickfix' },
+		{ '<leader>xt', '<Cmd>TodoTrouble<CR>',                desc = 'TODOs' },
+		{
+			'<leader>xr',
+			'<Cmd>Trouble lsp toggle focus=false win.position=bottom<CR>',
+			desc = 'LSP definitions / references / ...',
+		},
 	},
 	['toggleterm.nvim'] = {
 		{ '<leader>tt', function() end, desc = 'Toggle terminal' },
