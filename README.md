@@ -4,6 +4,8 @@ Installation:
 
 1. run `install.sh`
 
+Inline [link](https://google.com).
+
 ## TODO
-- [ ] [NVChad](https://nvchad.com/)
+
 - [ ] [NixOS](https://nixos.org/)
