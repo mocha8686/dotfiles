@@ -104,6 +104,10 @@ alias gf='git fetch'
 
 alias nc='ncat'
 
+if [[ -f ~/.session.sh ]] then
+	source ~/.session.sh
+fi
+
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
