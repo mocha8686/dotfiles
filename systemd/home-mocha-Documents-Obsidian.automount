@@ -1,9 +1,0 @@
-[Unit]
-Description=Rclone automount for Obsidian vault
-
-[Automount]
-Where=/home/mocha/Documents/Obsidian/
-TimeoutIdleSec=600
-
-[Install]
-WantedBy=default.target
