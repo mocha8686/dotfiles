@@ -1,20 +1,35 @@
 #!/bin/bash
 for entry in $(cat config.txt); do
-	filename=$(echo $entry | cut -d ':' -f 1)
-	destdir=$(echo $entry | cut -d ':' -f 2)
+	fullsrc=$(echo $entry | cut -d ':' -f 1)
+	fulldest=$(echo $entry | cut -d ':' -f 2)
 
-	destdirexpanded=${destdir/#\~/$HOME}
-	src=$(pwd)/$filename
-	dest=$destdirexpanded/$filename
+	destdir=${fulldest/#\~/$HOME}
+	case $fullsrc in
+		*/*)
+			srcdir=$(echo $fullsrc | rev | cut -d '/' -f 2- | rev)
+			;;
+		*)
+			srcdir=.
+			;;
+	esac
+	srcname=$(echo $fullsrc | rev | cut -d '/' -f 1 | rev)
 
-	if [[ ! -d $destdir ]]; then 
-		mkdir -p $destdir
-	fi
+	src=$(pwd)/$srcdir/$srcname
+	dest=$destdir
 
 	while true; do
-		read -p "Install $filename to $destdir? [Y/n] " yn
+		if [[ ! -d $destdir ]]; then 
+			mkdir -p $destdir
+		fi
+
+		if [[ -f $destdir/$srcname ]]; then
+			break
+		fi
+
+		read -p "Install $srcname to $destdir? [Y/n] " yn
 		case $yn in
 			[Yy]*)
+
 				ln -sni $src $dest
 				break
 				;;

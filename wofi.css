@@ -1,0 +1,19 @@
+@import url("/home/huece/.cache/wal/colors.gtk.css");
+
+#outer-box, #input {
+	color: @fg;
+	background-color: @bg;
+	font-family: 'Iosevka', 'Jetbrains Mono', monospace;
+	font-size: 10pt;
+	border: none;
+	border-radius: 0;
+}
+
+#outer-box {
+	border: 2px solid @color1;
+}
+
+#entry:selected {
+	background-color: @color1;
+	outline: none;
+}
