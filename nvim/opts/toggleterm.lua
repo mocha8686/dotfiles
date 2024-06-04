@@ -9,6 +9,7 @@ local opts = {
 	direction = 'vertical',
 	size = vim.o.columns * 0.4,
 	persist_mode = false,
+	persist_size = false,
 }
 
 return opts
