@@ -22,7 +22,7 @@ zstyle ':completion:*' select-prompt '%p'
 zstyle ':completion:*' substitute 1
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-zstyle :compinstall filename '/home/huece/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -Uz compinit
 compinit
@@ -105,6 +105,6 @@ alias gf='git fetch'
 alias nc='ncat'
 
 # pnpm
-export PNPM_HOME="/home/huece/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
