@@ -19,6 +19,7 @@ nvim/opts/lualine.lua:~/.config/nvim/lua/opts
 nvim/opts/mason_null_ls.lua:~/.config/nvim/lua/opts
 nvim/opts/null_ls.lua:~/.config/nvim/lua/opts
 nvim/opts/nvim_web_devicons.lua:~/.config/nvim/lua/opts
+nvim/opts/telescope.lua:~/.config/nvim/lua/opts
 nvim/opts/treesitter.lua:~/.config/nvim/lua/opts
 nvim/plugins.lua:~/.config/nvim/lua
 nvim/util.lua:~/.config/nvim/lua
