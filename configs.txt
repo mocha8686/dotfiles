@@ -34,6 +34,7 @@
 ./nvim/plugins.lua:~/.config/nvim/lua
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
+./pywal-vencord/colors-discord.css:~/.config/wal/templates
 ./tofi/config:~/.config/tofi
 ./tofi/power_menu.sh:~/.local/bin
 ./tofi/screenshot_menu.sh:~/.local/bin

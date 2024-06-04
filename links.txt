@@ -2,3 +2,4 @@
 ~/.cache/wal/hyprpaper.conf:~/.config/hypr
 ~/.cache/wal/mako_config:~/.config/mako/config
 ~/.local/bin/change_wallpaper.sh:~/.local/bin/change_wallpaper
+~/.cache/wal/colors-discord.css:~/.config/vesktop/themes/pywal-vencord.theme.css
