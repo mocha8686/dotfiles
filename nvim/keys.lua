@@ -2,11 +2,6 @@ local set = vim.keymap.set
 
 local M = {}
 
-local function rpgbot()
-	vim.cmd [[ 8TermExec cmd="pnpm dev" ]]
-	vim.cmd [[ 9TermExec cmd="pnpm dev:db" ]]
-end
-
 M.keys = {
 	defaults = {
 		noremap = true,
@@ -235,7 +230,6 @@ M.keys = {
 	},
 	['toggleterm.nvim'] = {
 		{ '<leader>tt', function() end, desc = 'Toggle terminal' },
-		{ '<leader>tr', rpgbot,         desc = 'Start RPGBot dev servers' },
 	},
 	['nvim-dap'] = function()
 		local function set_conditional_breakpoint()
