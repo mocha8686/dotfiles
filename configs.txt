@@ -1,3 +1,4 @@
+./cava/config:~/.config/cava
 ./git/.gitconfig:~
 ./hyprland/hypridle.conf:~/.config/hypr
 ./hyprland/hypridle.conf:~/.config/hypr
