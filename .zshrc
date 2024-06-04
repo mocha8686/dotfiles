@@ -47,57 +47,57 @@ picom-trans -co 80
 # zstyle ':vcs_info:' enable git
 
 # Environment variables
-export EDITOR="nvim"
-export LANG="en_US.UTF8"
-export PAGER="less"
+export EDITOR='nvim'
+export LANG='en_US.UTF8'
+export PAGER='less'
 export PS1='%F{white}%K{1} %n@%M %F{1}%K{2}%F{white} %~ %F{2}%K{3}%F{white} %* %F{3}%K%F{white}%K
 %F{white}%K{4} %# %F{4}%K%F{white} '
-export RPROMPT="%(?..%F{1}%K%F{white}%K{1} %? %K)"
+export RPROMPT='%(?..%F{1}%K%F{white}%K{1} %? %K)'
 
 # Aliases
-alias x="exa --icons --git"
-alias ls="x"
-alias lt="ls -T"
-alias ll="ls -l"
-alias llt="x -lT"
-alias la="ls -la"
-alias lat="x -laT"
+alias x='exa --icons --git'
+alias ls='x'
+alias lt='ls -T'
+alias ll='ls -l'
+alias llt='x -lT'
+alias la='ls -la'
+alias lat='x -laT'
 
-alias cl="cd -"
-alias mkdir="mkdir -pv"
+alias cl='cd -'
+alias mkdir='mkdir -pv'
 function mkcd() { mkdir -- "$1" && cd -- "$1" }
 
-alias cx="chmod +x"
-alias cp="cp -v"
-alias mv="mv -v"
-alias rm="rm -Iv"
+alias cx='chmod +x'
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -Iv'
 
-alias nv="nvim"
-alias nvup="nvim -c 'PlugInstall | PlugClean'"
+alias nv='nvim'
+alias nvup='nvim -c "PlugInstall | PlugClean"'
 
-alias ga="git add"
-alias gaa="git add ."
+alias ga='git add'
+alias gaa='git add .'
 
-alias gc="git commit"
-alias gcm="git commit -m"
-alias gac="gaa && gcm"
-alias gcp="git commit --amend"
-alias gcpm="git commit --amend -m"
-alias gacpm="gaa && gcpm"
-alias gcpn="git commit --amend --no-edit"
-alias gacpn="gaa && gcpn"
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gac='gaa && gcm'
+alias gcp='git commit --amend'
+alias gcpm='git commit --amend -m'
+alias gacpm='gaa && gcpm'
+alias gcpn='git commit --amend --no-edit'
+alias gacpn='gaa && gcpn'
 
-alias gt="git stash"
-alias gtp="git stash pop"
+alias gt='git stash'
+alias gtp='git stash pop'
 
-alias gs="git status"
-alias gd="git diff"
-alias gb="git branch"
-alias gk="git checkout"
-alias gl="git log --oneline --graph --decorate"
-alias gw="git switch"
+alias gs='git status'
+alias gd='git diff'
+alias gb='git branch'
+alias gk='git checkout'
+alias gl='git log --oneline --graph --decorate'
+alias gw='git switch'
 
-alias gp="git push"
-alias gpu="git push -u origin"
-alias gpl="git pull"
-alias gf="git fetch"
+alias gp='git push'
+alias gpu='git push -u origin'
+alias gpl='git pull'
+alias gf='git fetch'
