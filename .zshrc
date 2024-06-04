@@ -81,5 +81,5 @@ alias gl="git log --oneline --graph --decorate"
 
 alias gp="git push"
 alias gpu="git push -u origin"
-alias gl="git pull"
+alias gpl="git pull"
 alias gf="git fetch"
