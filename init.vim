@@ -62,6 +62,7 @@ set tabstop=4
 set shiftwidth=4
 set updatetime=100
 nnoremap / /\v
+nnoremap <C-s> :%s/\v
 
 " Information
 set noshowmode
