@@ -11,6 +11,7 @@ local opts = {
 		null_ls.builtins.formatting.prettierd.with {
 			filetypes = { 'css', 'scss', 'less' },
 		},
+		null_ls.builtins.formatting.swift_format,
 	},
 }
 

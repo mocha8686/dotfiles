@@ -6,7 +6,6 @@ local lspconfig = require 'lspconfig'
 local mason = require 'mason'
 local mason_lspconfig = require 'mason-lspconfig'
 local neoconf = require 'neoconf'
-local neodev = require 'neodev'
 
 local sign_define = vim.fn.sign_define
 sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
@@ -58,7 +57,6 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 neoconf.setup()
-neodev.setup()
 mason.setup()
 mason_lspconfig.setup()
 lsp_inlayhints.setup()
@@ -109,4 +107,9 @@ mason_lspconfig.setup_handlers {
 			capabilities = capabilities,
 		}
 	end,
+}
+
+lspconfig['sourcekit'].setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
 }

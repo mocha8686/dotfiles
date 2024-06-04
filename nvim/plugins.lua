@@ -74,7 +74,6 @@ local plugins = {
 			'neovim/nvim-lspconfig',
 			dependencies = {
 				'folke/neoconf.nvim',
-				'folke/neodev.nvim',
 				'hrsh7th/nvim-cmp',
 				'lvimuser/lsp-inlayhints.nvim',
 				'nvim-telescope/telescope.nvim',
@@ -110,6 +109,11 @@ local plugins = {
 				require('nvim-lightbulb').setup(opts)
 				vim.fn.sign_define('LightBulbSign', { text = '󰌵' })
 			end,
+		},
+		{
+			'folke/lazydev.nvim',
+			ft = 'lua',
+			config = true,
 		},
 	},
 
