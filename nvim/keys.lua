@@ -5,7 +5,7 @@ local function create_terminal_callback(vsplit)
 		if vsplit then
 			vim.cmd [[ vsplit ]]
 		else
-			vim.cmd [[ 10split ]]
+			vim.cmd [[ 15split ]]
 		end
 		vim.cmd [[ term ]]
 
