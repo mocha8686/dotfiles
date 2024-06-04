@@ -28,8 +28,7 @@ export RPROMPT="%(?..%?)"
 export PS1="%F{1}┌─[%F{11}%n@%M%F{1}]──[%F{11}%~%F{1}]"$'\n'"└─[%F{11}%*%F{1}]─> %F{11}%#%F{white} "
 export EDITOR="nvim"
 export PAGER="less"
-export LANG="en_US.utf8"
-export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/bin"
+export LANG="en_US.UTF8"
 
 # Aliases
 

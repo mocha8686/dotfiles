@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import json
-import subprocess
 import os
 import shutil
 
@@ -11,8 +10,7 @@ with open('config.json', 'r') as f:
 
 # Helper functions
 def install_packages(command, packages):
-    success = subprocess.run(command.split(' ') + packages).returncode == 0
-    return success
+    os.popen(command + ' ' + ' '.join(packages))
 
 def install_config(path, config, move=False):
     # Expand paths
@@ -23,16 +21,16 @@ def install_config(path, config, move=False):
     if not os.path.exists(path):
         os.makedirs(path)
 
-    # Remove already existing files
+    # Remove existing files
     if os.path.exists(os.path.join(path, config)):
         os.remove(os.path.join(path, config))
 
-    # Move or copy
+    # Move or symlink
     try:
         if move:
             shutil.move(config, path)
         else:
-            shutil.copyfile(config, path)
+            os.symlink(config, path)
     except Exception:
         return
 
@@ -56,20 +54,10 @@ else:
     system['install'] = glob['install']
 
 
-# ARCH: Install yay
-if system_name == 'arch' and not shutil.which('yay'):
-    subprocess.run([ 'git', 'clone', 'https://aur.archlinux.org/yay.git' ])
-    os.chdir('yay')
-    subprocess.run([ 'makepkg', '-si' ])
-    os.chdir('..')
-
-
 # Install packages
 confirm_install = True if input('Install packages? [Y/n] ')[0].lower() != 'n' else False
-
 if confirm_install:
     print('Installing packages...')
-
     install_packages(system['install_command'], system['packages'])
     print('Done.')
 
@@ -106,6 +94,8 @@ if 'install' in system.keys():
 
 
 # Additional steps
-# vim-plug
-if confirm_install:
-    os.system('sh -c \'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim\'')
+confirm_additional = True if input('Use additional commands? [Y/n] ')[0].lower() != 'n' else False
+if confirm_additional:
+    print('Running additional commands...')
+    for command in system['additional_commands']:
+        os.popen(command)
