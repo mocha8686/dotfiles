@@ -7,6 +7,7 @@ local opts = {
 	terminal_mappings = false,
 	shade_terminals = false,
 	direction = 'vertical',
+	size = vim.o.columns * 0.4,
 }
 
 return opts
