@@ -4,6 +4,10 @@
 [init]
 	defaultBranch = main
 [pull]
-	rebase = false
+	rebase = true
 [push]
 	autoSetupRemote = true
+[core]
+	autocrlf = input
+[rebase]
+	autostash = true
