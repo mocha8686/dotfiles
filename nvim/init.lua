@@ -1,3 +1,7 @@
+local function no_numbers()
+	return vim.b['term_title'] or vim.bo.filetype == 'man' or vim.bo.filetype == 'help'
+end
+
 -- Vim options
 local function set_vim_options()
 	local opt = vim.opt
@@ -60,7 +64,7 @@ local function set_vim_options()
 		group = number_augroup,
 		pattern = '*',
 		callback = function()
-			if not vim.b['term_title'] then
+			if not no_numbers() then
 				opt.relativenumber = true
 			end
 		end
@@ -69,7 +73,7 @@ local function set_vim_options()
 		group = number_augroup,
 		pattern = '*',
 		callback = function()
-			if not vim.b['term_title'] then
+			if not no_numbers() then
 				opt.relativenumber = false
 			end
 		end
