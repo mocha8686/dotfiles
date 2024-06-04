@@ -52,10 +52,10 @@ export PAGER='less'
 export PS1='%F{white}%K{1} %n@%M %F{1}%K{2}%F{white} %~ %F{2}%K{3}%F{white} %* %F{3}%K%F{white}%K
 %F{white}%K{4} %# %F{4}%K%F{white} '
 export RPROMPT='%(?..%F{1}%K%F{white}%K{1} %? %K)'
-path+=("$HOME/.local/bin")
+path+=("$HOME/.local/bin", "$HOME/.cargo/bin")
 
 # Aliases
-alias x='exa --icons --git'
+alias x='exa --icons --git --git-ignore --group-directories-first'
 alias ls='x'
 alias lt='ls -T'
 alias ll='ls -l'
@@ -103,10 +103,7 @@ alias gpl='git pull'
 alias gf='git fetch'
 
 alias nc='ncat'
-
-if [[ -f ~/.session.sh ]] then
-	source ~/.session.sh
-fi
+alias ssh='TERM=xterm ssh'
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -115,3 +112,7 @@ path+=($PNPM_HOME)
 
 typeset -U path
 export PATH
+
+if [[ -f ~/.session.sh ]] then
+	source ~/.session.sh
+fi
