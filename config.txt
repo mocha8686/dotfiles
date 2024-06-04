@@ -5,6 +5,6 @@ kitty.conf:~/.config/kitty
 hyprland.conf:~/.config/hypr
 hyprpaper.conf:~/.config/hypr
 wofi.css:~/.config/wofi
+waybar/config:~/.config/waybar
 wal/colors-hyprland.conf:~/.config/wal/templates
 wal/hyprpaper.conf:~/.config/wal/templates
-wal/colors.gtk.css:~/.config/wal/templates
