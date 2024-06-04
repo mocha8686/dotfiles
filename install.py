@@ -12,7 +12,7 @@ with open('config.json', 'r') as f:
 def install_packages(command, packages):
     os.popen(command + ' ' + ' '.join(packages))
 
-def install_config(path, config, move=False):
+def install_config(path, config):
     # Expand paths
     path = os.path.expanduser(path)
     config = os.path.expanduser(config)
@@ -25,12 +25,9 @@ def install_config(path, config, move=False):
     if os.path.exists(os.path.join(path, config)):
         os.remove(os.path.join(path, config))
 
-    # Move or symlink
+    # Symlink
     try:
-        if move:
-            shutil.move(config, path)
-        else:
-            os.symlink(config, path)
+        os.symlink(os.path.join(os.getcwd(), config), os.path.join(path, config))
     except Exception:
         return
 
@@ -62,19 +59,10 @@ if confirm_install:
     print('Done.')
 
 
-# Remove old system profile
-with open('.zshrc', 'r') as cfg, open('.zshrctmp', 'w') as tmp:
-    copy = True
-    for line in cfg:
-        if 'SYS PROFILE' in line:
-            if 'START' in line:
-                copy = False
-            elif 'END' in line:
-                copy = True
-
-        if copy:
-            tmp.write(line)
-
+# Install config files
+if 'install' in system.keys():
+    for file in system['install']:
+        install_config(system['install'][file], file)
 
 # Update profile
 if 'profile' in system:
@@ -82,16 +70,8 @@ if 'profile' in system:
     for i, line in [ (i, line) for i, line in enumerate(contents) ]:
         contents[i] = line + "\n"
     contents = ''.join(contents)
-
-    with open('.zshrctmp', 'a') as f:
+    with open(os.path.expanduser('~/.zshrc'), 'a') as f:
         f.write(contents)
-    install_config(os.path.join(os.path.expanduser('~'), '.zshrc'), '.zshrctmp', True)
-
-# Install other config files
-if 'install' in system.keys():
-    for file in system['install']:
-        install_config(system['install'][file], file)
-
 
 # Additional steps
 confirm_additional = True if input('Use additional commands? [Y/n] ')[0].lower() != 'n' else False
