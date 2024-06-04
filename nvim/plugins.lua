@@ -298,7 +298,7 @@ local plugins = {
 			config = true,
 		},
 		{
-			'norcalli/nvim-colorizer.lua',
+			'uga-rosa/ccc.nvim',
 			ft = {
 				'javascript',
 				'typescript',
@@ -309,7 +309,7 @@ local plugins = {
 				'sass',
 				'html',
 			},
-			opts = require 'opts.colorizer',
+			config = true,
 		},
 		{
 			'folke/todo-comments.nvim',

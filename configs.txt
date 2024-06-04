@@ -13,7 +13,6 @@
 ./nvim/init.lua:~/.config/nvim
 ./nvim/keys.lua:~/.config/nvim/lua
 ./nvim/opts/bufferline.lua:~/.config/nvim/lua/opts
-./nvim/opts/colorizer.lua:~/.config/nvim/lua/opts
 ./nvim/opts/flit.lua:~/.config/nvim/lua/opts
 ./nvim/opts/gitsigns.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lightbulb.lua:~/.config/nvim/lua/opts
