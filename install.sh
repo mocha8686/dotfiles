@@ -17,29 +17,26 @@ while read -r entry; do
 	src=$(pwd)/$srcdir/$srcname
 	dest=$destdir
 
-	while true; do
-		if [[ ! -d $destdir ]]; then 
-			mkdir -p "$destdir"
-		fi
+	if [[ ! -d $destdir ]]; then 
+		mkdir -p "$destdir"
+	fi
 
-		if [[ -f $destdir/$srcname ]]; then
-			break
-		fi
+	if [[ -f $destdir/$srcname ]]; then
+		continue
+	fi
 
-		read -rp "Install $srcname to $destdir? [Y/n] " yn
-		case $yn in
-			[Yy]*)
-
-				ln -sni "$src" "$dest"
-				break
-				;;
-			[Nn]*)
-				break
-				;;
-			*)
-				ln -sni "$src" "$dest"
-				break
-				;;
-		esac
-	done
+	read -rp "Install $srcname to $destdir? [Y/n] " yn
+	case $yn in
+		[Nn]*) continue;;
+		*)
+			if [[ -L "$src" ]] && [[ -e "$src" ]]; then
+				read -rp "Replace $destdir? [y/N] " yn
+				case $yn in
+					[Yy]*) ;;
+					*) continue;;
+				esac
+			fi
+			ln -snf "$src" "$dest"
+			;;
+	esac
 done < config.txt
