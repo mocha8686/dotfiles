@@ -17,6 +17,9 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
+" Polyglot
+let g:vim_svelte_plugin_use_sass = 1
+
 " Lightline
 let g:lightline = {
 	\ 'active': {
