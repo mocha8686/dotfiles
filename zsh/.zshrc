@@ -112,6 +112,9 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 path+=($PNPM_HOME)
 # pnpm end
 
+# Mac path
+path+=("$HOME/Library/Python/3.10/bin")
+
 typeset -U path
 export PATH
 
