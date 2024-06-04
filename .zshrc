@@ -41,13 +41,18 @@ bindkey -v
 source ~/.cache/wal/colors.sh
 picom-trans -co 80
 
+# VCS Info
+# setopt prompt_subst
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:' enable git
+
 # Environment variables
 export EDITOR="nvim"
 export LANG="en_US.UTF8"
 export PAGER="less"
-export PS1="%F{1}┌─[%F{2}%n@%M%F{1}]──[%F{2}%~%F{1}]"$'\n'"└─[%F{2}%*%F{1}]─> %F{2}%#%F{white} "
-#export PS1="%F{BG}┌─[%F{FG}%n@%M%F{BG}]──[%F{FG}%~%F{BG}]"$'\n'"└─[%F{FG}%*%F{BG}]─> %F{FG}%#%F{0} "
-export RPROMPT="%(?..%?)"
+export PS1='%F{white}%K{1} %n@%M %F{1}%K{2}%F{white} %~ %F{2}%K{3}%F{white} %* %F{3}%K%F{white}%K
+%F{white}%K{4} %# %F{4}%K%F{white} '
+export RPROMPT="%(?..%F{1}%K%F{white}%K{1} %? %K)"
 
 # Aliases
 alias x="exa --icons --git"
