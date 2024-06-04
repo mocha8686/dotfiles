@@ -5,6 +5,16 @@ M.keys = {
 		noremap = true,
 		silent = true,
 	},
+	['vim'] = {
+		{ '<C-h>',      '<C-w>h' },
+		{ '<C-j>',      '<C-w>j' },
+		{ '<C-k>',      '<C-w>k' },
+		{ '<C-l>',      '<C-w>l' },
+		{ '<Tab>',      '<Cmd>bn<CR>' },
+		{ '<S-Tab>',    '<Cmd>bp<CR>' },
+		{ '<leader>tt', '<Cmd>10split<CR><Cmd>term<CR><Cmd>set nonumber norelativenumber<CR>i' },
+		{ '<ESC><ESC>', '<C-\\><C-N>',                                                         mode = { 't' } },
+	},
 	['Comment.nvim'] = {
 		{ 'gc', mode = { 'n', 'v' } },
 	},

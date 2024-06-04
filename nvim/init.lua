@@ -55,13 +55,13 @@ local function set_vim_options()
 
 	g.mapleader = ' '
 
-	autocmd({'BufEnter', 'FocusGained', 'InsertLeave'}, {
+	autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
 		pattern = '*',
 		callback = function()
 			opt.relativenumber = true
 		end
 	})
-	autocmd({'BufLeave', 'FocusLost', 'InsertEnter'}, {
+	autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
 		pattern = '*',
 		callback = function()
 			opt.relativenumber = false
@@ -69,24 +69,11 @@ local function set_vim_options()
 	})
 
 	autocmd('FileType', {
-		pattern = {'text', 'markdown', 'tex', 'plaintex'},
+		pattern = { 'text', 'markdown', 'tex', 'plaintex' },
 		callback = function()
 			opt.wrap = true
 		end
 	})
-end
-
-local function set_vim_maps()
-	local map = vim.keymap.set
-	local opts = { silent = true, remap = true }
-
-	map({'n'}, '<C-h>', '<C-w>h', opts)
-	map({'n'}, '<C-j>', '<C-w>j', opts)
-	map({'n'}, '<C-k>', '<C-w>k', opts)
-	map({'n'}, '<C-l>', '<C-w>l', opts)
-
-	map({'n'}, '<Tab>', '<Cmd>bn<CR>', opts)
-	map({'n'}, '<S-Tab>', '<Cmd>bp<CR>', opts)
 end
 
 local function override_colortheme()
@@ -118,7 +105,7 @@ local function ensure_lazy()
 end
 
 set_vim_options()
-set_vim_maps()
+require('keys').map_plugin_keys('vim')
 ensure_lazy()
 
 local plugins = require 'plugins'
