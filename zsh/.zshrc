@@ -69,9 +69,8 @@ else
 	alias la='ll -a'
 fi
 
-alias cl='cd -'
 alias mkdir='mkdir -pv'
-function mkcd() { mkdir -- "$1" && cd -- "$1" }
+function mkz() { mkdir -- "$1" && z "$1" }
 
 alias cx='chmod +x'
 alias cp='cp -v'
