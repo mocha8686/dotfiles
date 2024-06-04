@@ -87,4 +87,20 @@ mason_lspconfig.setup_handlers {
 			},
 		}
 	end,
+	['rust_analyzer'] = function()
+		lspconfig['rust_analyzer'].setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				procMacro = {
+					ignored = {
+						leptos_macro = {
+							'server',
+							'component',
+						},
+					},
+				},
+			},
+		}
+	end,
 }
