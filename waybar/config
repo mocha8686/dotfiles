@@ -77,3 +77,5 @@
 	}
 }
 // vim:ft=json5
+// TODO: add cava, idle inhibitor, mpd, power, user?
+// TODO: update hyprland, pulseaudio -> wireplumber
