@@ -85,6 +85,7 @@ alias gt="git stash"
 alias gtp="git stash pop"
 
 alias gs="git status"
+alias gd="git diff"
 alias gb="git branch"
 alias gk="git checkout"
 alias gl="git log --oneline --graph --decorate"
