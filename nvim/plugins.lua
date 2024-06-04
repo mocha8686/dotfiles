@@ -91,7 +91,7 @@ local plugins = {
 		{
 			'kosayoda/nvim-lightbulb',
 			dependencies = 'neovim/nvim-lspconfig',
-			init = util.lazy_load 'nvim-lightbulb',
+			event = 'VeryLazy',
 			opts = require 'opts.lightbulb',
 			config = function(_, opts)
 				require('nvim-lightbulb').setup(opts)
@@ -264,7 +264,7 @@ local plugins = {
 				'nvim-lua/plenary.nvim',
 				'nvim-telescope/telescope.nvim',
 			},
-			init = util.lazy_load 'todo-comments.nvim',
+			event = 'VeryLazy',
 			config = true,
 		},
 	},
