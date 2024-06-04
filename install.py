@@ -41,7 +41,7 @@ glob = config['systems']['global']
 system_name = None
 systems = [ system for system in config['systems'] if system != 'global' ]
 system_query = 'Choose system:\n- ' + '\n- '.join(systems)
-while system_name not in systems:
+while system_name not in systems or system_name == 'global':
     print(system_query)
     system_name = input('> ')
 system = config['systems'][system_name]
