@@ -1,5 +1,10 @@
 local M = {}
 
+local function rpgbot()
+	vim.cmd [[ 8TermExec cmd="pnpm dev" ]]
+	vim.cmd [[ 9TermExec cmd="pnpm dev:db" ]]
+end
+
 M.keys = {
 	defaults = {
 		noremap = true,
@@ -206,7 +211,10 @@ M.keys = {
 		{ '<leader>xt', '<Cmd>TodoTrouble<CR>',                         desc = 'TODOs' },
 		{ '<leader>xr', '<Cmd>TroubleToggle lsp_references<CR>',        desc = 'References' },
 	},
-	['toggleterm.nvim'] = '<leader>t',
+	['toggleterm.nvim'] = {
+		{'<leader>tt', desc='Toggle terminal'},
+		{'<leader>tr', rpgbot, desc='Start RPGBot dev servers'},
+	},
 }
 
 ---Get keys for a plugin.
