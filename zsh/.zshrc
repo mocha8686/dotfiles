@@ -109,13 +109,8 @@ alias gf='git fetch'
 alias nc='ncat'
 alias ssh='TERM=xterm ssh'
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-path+=($PNPM_HOME)
-# pnpm end
-
-if [[ -f ~/.os_path.sh ]] then
-	source ~/.os_path.sh
+if [[ -f ~/.os.sh ]] then
+	source ~/.os.sh
 fi
 
 typeset -U path
