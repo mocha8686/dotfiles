@@ -300,6 +300,16 @@ local plugins = {
 		{
 			'uga-rosa/ccc.nvim',
 			keys = keys.get_plugin_keys 'ccc.nvim',
+			ft = {
+				'html',
+				'css',
+				'scss',
+				'sass',
+				'javascript',
+				'javascriptreact',
+				'typescript',
+				'typescriptreact',
+			},
 			config = function()
 				require 'config.ccc'
 			end,

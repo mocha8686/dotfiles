@@ -14,5 +14,15 @@ ccc.setup {
 	},
 	highlighter = {
 		['auto-enable'] = true,
+		filetypes = {
+			'html',
+			'css',
+			'scss',
+			'sass',
+			'javascript',
+			'javascriptreact',
+			'typescript',
+			'typescriptreact',
+		},
 	},
 }
