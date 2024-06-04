@@ -257,6 +257,19 @@ local plugins = {
 		},
 	},
 
+	-- CSS
+	{
+		'luckasRanarison/tailwind-tools.nvim',
+		ft = {
+			'html',
+			'javascript',
+			'javascriptreact',
+			'typescript',
+			'typescriptreact',
+		},
+		opts = require 'opts.tailwind-tools',
+	},
+
 	-- Treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',

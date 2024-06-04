@@ -19,6 +19,7 @@
 ./nvim/opts/flit.lua:~/.config/nvim/lua/opts
 ./nvim/opts/gitsigns.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lightbulb.lua:~/.config/nvim/lua/opts
+./nvim/opts/tailwind-tools.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lsp_signature.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lualine.lua:~/.config/nvim/lua/opts
 ./nvim/opts/mason_null_ls.lua:~/.config/nvim/lua/opts
