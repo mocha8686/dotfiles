@@ -45,6 +45,8 @@ system = config['systems'][system_name]
 system['packages'] += glob['packages']
 if 'install' in system.keys():
     system['install'].update(glob['install'])
+else:
+    system['install'] = glob['install']
 
 
 # ARCH: Install yay
