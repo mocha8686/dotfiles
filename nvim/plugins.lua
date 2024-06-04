@@ -27,6 +27,11 @@ local plugins = {
 			keys = keys.get_plugin_keys 'nvim-surround',
 			config = true,
 		},
+		{
+			'sQVe/sort.nvim',
+			cmd = 'Sort',
+			config = true,
+		},
 	},
 
 	-- Git
