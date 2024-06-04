@@ -32,11 +32,6 @@ local plugins = {
 			cmd = 'Sort',
 			config = true,
 		},
-		{
-			'max397574/colortils.nvim',
-			cmd = 'Colortils',
-			config = true,
-		},
 	},
 
 	-- Git
