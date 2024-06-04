@@ -26,6 +26,9 @@ bindkey -v
 # zsh Options
 setopt autocd
 
+# ITerm2
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # Environment variables
 export RPROMPT="%(?..%?)"
 export PS1="%F{1}┌─[%F{11}%n@%M%F{1}]──[%F{11}%~%F{1}]"$'\n'"└─[%F{11}%*%F{1}]─> %F{11}%#%F{white} "
