@@ -51,6 +51,8 @@ local function set_vim_options()
 		autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 	augroup END
 	]]
+
+	vim.cmd [[ autocmd FileType text,markdown,tex,plaintex set wrap ]]
 end
 
 set_vim_options()
