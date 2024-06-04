@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'gcmt/taboo.vim'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -44,6 +45,13 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir': '\(\.git\|node_modules\|dist\)$'
 \ }
 
+" Taboo
+nnoremap <C-i> :TabooRename 
+nnoremap <C-u> :TabooReset<CR>
+let g:taboo_tab_format = '%I %r%m %u'
+let g:taboo_renamed_tab_format = '%I %l%m %u'
+let g:taboo_modified_tab_flag = ' | +'
+
 " Functionality
 set backspace=indent,eol,start
 set history=25
@@ -58,6 +66,10 @@ set shiftwidth=4
 set updatetime=100
 nnoremap / /\v
 nnoremap <C-s> :%s/\v
+nnoremap <C-h> :tabnext<CR>
+nnoremap <C-l> :tabprevious<CR>
+nnoremap <C-o> :tabnew<CR>
+
 
 " Information
 set noshowmode
