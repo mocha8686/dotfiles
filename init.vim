@@ -14,7 +14,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vimsence/vimsence'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -49,10 +48,6 @@ nnoremap <C-p> :CtrlPMixed<CR>
 let g:ctrlp_custom_ignore = {
 	\ 'dir': '\(\.git\|node_modules\|dist\)$'
 \ }
-
-" Vimsence
-let g:vimsence_small_text = 'NeoVim'
-let g:vimsence_small_image = 'neovim'
 
 " Functionality
 set backspace=indent,eol,start
