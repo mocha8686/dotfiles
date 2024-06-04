@@ -23,6 +23,9 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+# zsh Options
+setopt autocd
+
 # Environment variables
 export RPROMPT="%(?..%?)"
 export PS1="%F{1}┌─[%F{11}%n@%M%F{1}]──[%F{11}%~%F{1}]"$'\n'"└─[%F{11}%*%F{1}]─> %F{11}%#%F{white} "
@@ -63,14 +66,17 @@ alias nvup="nvim +PlugInstall"
 alias nvcl="nvim +PlugClean"
 
 # git
+alias ga="git add"
 alias ga="git add ."
-alias gc="git commit -m"
+alias gc="git commit"
+alias gcm="git commit -m"
 alias gac="ga && gc"
+
 alias gs="git status"
 alias gb="git branch"
 alias gk="git checkout"
 alias gnb="git checkout -b"
 alias gl="git log --oneline --graph --decorate"
-alias gp="git push"
-alias gpu="git push -u origin"
+
+alias gpu="git push"
 alias gpl="git pull"
