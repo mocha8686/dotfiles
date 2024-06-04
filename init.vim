@@ -14,6 +14,7 @@ Plug 'preservim/tagbar'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'adelarsq/vim-matchit'
 
 Plug 'ryanoasis/vim-devicons'
 
