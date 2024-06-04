@@ -107,11 +107,6 @@ alias gf='git fetch'
 alias nc='ncat'
 alias ssh='TERM=xterm ssh'
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-path+=($PNPM_HOME)
-# pnpm end
-
 # Mac path
 path+=("$HOME/Library/Python/3.10/bin")
 
