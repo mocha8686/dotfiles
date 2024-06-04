@@ -2,10 +2,15 @@
 	"systems": {
 		"global": {
 			"packages": [
+				"neovim",
+				"fzf",
+				"ctags"
 			],
 			"install": {
 				".gitconfig": "~/",
-				"init.vim": "~/.config/nvim/",
+				"init.vim": "~/.config/nvim/"
+			},
+			"copy": {
 				".zshrc": "~/"
 			},
 			"additional_commands": [
@@ -15,13 +20,13 @@
 
 		"dietpi": {
 			"profile": [
-				"export PATH=\"$PATH:/usr/local/go/bin\"",
+				"export PATH=\"/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin\"",
 				"alias apt=\"sudo apt\"",
 				"alias update=\"apt update && apt upgrade\""
 			],
 			"install_command":"sudo apt install",
-			"packages": [
-			]
+			"packages": [],
+			"additional_commands": []
 		},
 
 		"mac": {
@@ -30,10 +35,8 @@
 				"alias ls=\"ls -Gh\""
 			],
 			"install_command": "brew install",
-			"packages": [
-				"neovim",
-				"fzf"
-			]
+			"packages": [],
+			"additional_commands": []
 		}
 	}
 }

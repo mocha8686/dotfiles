@@ -2,7 +2,7 @@
 import json
 import os
 import shutil
-
+import subprocess
 
 with open('config.json', 'r') as f:
     config = json.loads(f.read())
@@ -10,9 +10,9 @@ with open('config.json', 'r') as f:
 
 # Helper functions
 def install_packages(command, packages):
-    os.popen(command + ' ' + ' '.join(packages))
+    subprocess.call(command.split(' ') + packages)
 
-def install_config(path, config):
+def install_config(path, config, copy=False):
     # Expand paths
     path = os.path.expanduser(path)
     config = os.path.expanduser(config)
@@ -27,7 +27,10 @@ def install_config(path, config):
 
     # Symlink
     try:
-        os.symlink(os.path.join(os.getcwd(), config), os.path.join(path, config))
+        if copy:
+            shutil.copy(config, path)
+        else:
+            os.symlink(os.path.join(os.getcwd(), config), os.path.join(path, config))
     except Exception:
         return
 
@@ -44,12 +47,25 @@ while system_name not in systems:
 system = config['systems'][system_name]
 
 # Merge with global
-system['packages'] += glob['packages']
-if 'install' in system.keys():
-    system['install'].update(glob['install'])
-else:
-    system['install'] = glob['install']
+keys = set()
+for key in system.keys():
+    keys.add(key)
+for key in glob.keys():
+    keys.add(key)
 
+for key in keys:
+    if key not in glob.keys():
+        continue
+
+    if key in system.keys():
+        if type(system[key]) == dict:
+            system[key].update(glob[key])
+        elif type(system[key]) == list:
+            system[key] += glob[key]
+        else:
+            raise TypeError('invalid type ' + str(type(system[key])))
+    else:
+        system[key] = glob[key]
 
 # Install packages
 confirm_install = True if input('Install packages? [Y/n] ')[0].lower() != 'n' else False
@@ -63,6 +79,10 @@ if confirm_install:
 if 'install' in system.keys():
     for file in system['install']:
         install_config(system['install'][file], file)
+
+if 'copy' in system.keys():
+    for file in system['copy']:
+        install_config(system['copy'][file], file, True)
 
 # Update profile
 if 'profile' in system:
