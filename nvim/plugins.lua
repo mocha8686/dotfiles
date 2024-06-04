@@ -165,9 +165,10 @@ local plugins = {
 			keys = keys.get_plugin_keys 'vim-sayonara',
 		},
 		{
-			'simeji/winresizer',
-			keys = '<C-e>',
-			cmd = 'WinResizerStartResize',
+			'nvim-focus/focus.nvim',
+			event = 'VeryLazy',
+			version = false,
+			config = true,
 		},
 		{
 			'akinsho/toggleterm.nvim',
