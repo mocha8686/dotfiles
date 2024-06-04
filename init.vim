@@ -45,7 +45,7 @@ let g:ctrlp_custom_ignore = {
 \ }
 
 " Taboo
-nnoremap <C-i> :TabooRename
+nnoremap <C-i> :TabooRename 
 nnoremap <C-u> :TabooReset<CR>
 let g:taboo_tab_format = '%I %r%m %u'
 let g:taboo_renamed_tab_format = '%I %l%m %u'
