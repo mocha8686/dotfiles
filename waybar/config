@@ -114,10 +114,6 @@
 	"hyprland/workspaces": {
 		"format": "{icon}\n{windows}",
 		"format-window-separator": "\n",
-		"format-icons": {
-			"special": "S",
-		},
-		"show-special": true,
 		"window-rewrite-default": "",
 		"window-rewrite": {
 			"class<cider>": "󰝚",
