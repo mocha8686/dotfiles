@@ -143,7 +143,10 @@ local plugins = {
 		},
 		{
 			'rcarriga/nvim-dap-ui',
-			dependencies = 'mfussenegger/nvim-dap',
+			dependencies = {
+				'mfussenegger/nvim-dap',
+				'nvim-neotest/nvim-nio',
+			},
 			keys = keys.get_plugin_keys 'nvim-dap-ui',
 			config = function()
 				require 'config.nvim_dap_ui'
