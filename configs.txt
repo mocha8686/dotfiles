@@ -1,4 +1,5 @@
 ./bin/change_wallpaper.sh:~/.local/bin
+./bin/update_git_email.sh:~/.local/bin
 ./cava/config:~/.config/cava
 ./git/.gitconfig:~
 ./hyprland/hypridle.conf:~/.config/hypr
