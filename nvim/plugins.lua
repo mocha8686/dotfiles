@@ -11,7 +11,9 @@ local plugins = {
 		{
 			'windwp/nvim-autopairs',
 			event = 'InsertEnter',
-			config = true,
+			config = function()
+				require 'config.nvim_autopairs'
+			end,
 		},
 		{
 			'numToStr/Comment.nvim',
@@ -37,6 +39,30 @@ local plugins = {
 			dependencies = 'nvim-lua/plenary.nvim',
 			config = true,
 			keys = keys.get_plugin_keys 'nvim-spectre',
+		},
+		{
+			'dhruvasagar/vim-table-mode',
+			ft = {
+				'markdown',
+				'text',
+				'tex',
+				'plaintex',
+				'norg',
+			},
+		},
+		{
+			'gaoDean/autolist.nvim',
+			-- ft = {
+			-- 	'markdown',
+			-- 	'text',
+			-- 	'tex',
+			-- 	'plaintex',
+			-- 	'norg',
+			-- },
+			event = 'InsertEnter',
+			priority = 25,
+			config = true,
+			keys = keys.get_plugin_keys 'autolist.nvim',
 		},
 	},
 

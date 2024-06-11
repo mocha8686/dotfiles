@@ -64,6 +64,11 @@ local function set_vim_options()
 
 	g.mapleader = ' '
 
+	local remap_keys = { 'j', 'k', '0', '^', '$' }
+	for _, key in ipairs(remap_keys) do
+		vim.keymap.set({ 'n', 'v' }, key, 'g' .. key, { silent = true, noremap = true })
+	end
+
 	local number_augroup = vim.api.nvim_create_augroup('SetNumberRelativeNumber', { clear = true })
 	autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
 		group = number_augroup,
@@ -88,6 +93,7 @@ local function set_vim_options()
 		pattern = { 'text', 'markdown', 'tex', 'plaintex' },
 		callback = function()
 			opt.wrap = true
+			opt.linebreak = true
 		end,
 	})
 

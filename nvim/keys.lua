@@ -4,7 +4,7 @@ local M = {}
 
 M.keys = {
 	defaults = {
-		noremap = true,
+		remap = false,
 		silent = true,
 	},
 	['vim'] = {
@@ -341,6 +341,37 @@ M.keys = {
 			desc = 'Search current file',
 		},
 	},
+	['autolist.nvim'] = {
+		{ '<Tab>',      '<Cmd>AutolistTab<CR>',              mode = { 'i' } },
+		{ '<S-Tab>',    '<Cmd>AutolistShiftTab<CR>',         mode = { 'i' } },
+		{ '<CR>',       '<CR><Cmd>AutolistNewBullet<CR>',    mode = { 'i' } },
+		{ 'o',          'o<Cmd>AutolistNewBullet<CR>',       mode = { 'n' } },
+		{ 'O',          'O<Cmd>AutolistNewBulletBefore<CR>', mode = { 'n' } },
+		{ '<CR>',       '<Cmd>AutolistToggleCheckbox<CR>',   mode = { 'n' } },
+		{ '>>',         '>><Cmd>AutolistRecalculate<CR>',    mode = { 'n' } },
+		{ '<<',         '<<<Cmd>AutolistRecalculate<CR>',    mode = { 'n' } },
+		{ 'dd',         'dd<Cmd>AutolistRecalculate<CR>',    mode = { 'n' } },
+		{ 'd',          'd<Cmd>AutolistRecalculate<CR>',     mode = { 'v' } },
+		{ '<leader>ir', '<Cmd>AutolistRecalculate<CR>',      mode = { 'n' }, desc = 'Recalculate list' },
+		{
+			'<leader>in',
+			function()
+				require('autolist').cycle_next_dr()
+			end,
+			mode = { 'n' },
+			desc = 'Next list type',
+			expr = true,
+		},
+		{
+			'<leader>ip',
+			function()
+				require('autolist').cycle_prev_dr()
+			end,
+			mode = { 'n' },
+			desc = 'Previous list type',
+			expr = true,
+		},
+	},
 }
 
 ---Get keys for a plugin.
@@ -376,36 +407,12 @@ end
 ---Map plugin keys.
 ---@param plugin string Plugin to map.
 M.map_plugin_keys = function(plugin)
-	local plugin_keys = M.get_plugin_keys(plugin)
-	while type(plugin_keys) == 'function' do
-		plugin_keys = plugin_keys()
-	end
-	if type(plugin_keys) ~= 'table' then
-		error('key must be a table to map a key for plugin' .. plugin .. '.')
-	end
-
-	for _, key in ipairs(plugin_keys) do
-		if key[2] == nil then
-			error('`key[2]` must be defined to map a key for plugin ' .. plugin .. '.')
-		end
-
-		set(key.mode or 'n', key[1], key[2], {
-			nowait = key.nowait,
-			silent = key.silent,
-			script = key.script,
-			expr = key.expr,
-			unique = key.unique,
-			noremap = key.noremap,
-			desc = key.desc,
-			callback = key.callback,
-			replace_keycodes = key.replace_keycodes,
-		})
-	end
+	M.map_plugin_keys_buffer(plugin, nil)
 end
 
 ---Map plugin keys in a buffer.
 ---@param plugin string Plugin to map.
----@param buf integer Buffer to map in.
+---@param buf integer|nil Buffer to map in.
 M.map_plugin_keys_buffer = function(plugin, buf)
 	local plugin_keys = M.get_plugin_keys(plugin)
 	while type(plugin_keys) == 'function' do

@@ -8,4 +8,5 @@ wk.register({
 	d = 'DAP',
 	c = 'Colors',
 	s = 'Spectre',
+	i = 'Autolist',
 }, { prefix = '<leader>' })

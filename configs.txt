@@ -12,6 +12,7 @@
 ./nvim/config/git_conflict.lua:~/.config/nvim/lua/config
 ./nvim/config/lspconfig.lua:~/.config/nvim/lua/config
 ./nvim/config/null_ls.lua:~/.config/nvim/lua/config
+./nvim/config/nvim_autopairs.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap_ui.lua:~/.config/nvim/lua/config
 ./nvim/config/telescope.lua:~/.config/nvim/lua/config
