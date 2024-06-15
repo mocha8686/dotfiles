@@ -64,6 +64,12 @@ local plugins = {
 			config = true,
 			keys = keys.get_plugin_keys 'autolist.nvim',
 		},
+		{
+			'Vonr/align.nvim',
+			branch = 'v2',
+			config = true,
+			keys = keys.get_plugin_keys 'align.nvim',
+		},
 	},
 
 	-- Git

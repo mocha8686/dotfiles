@@ -353,23 +353,41 @@ M.keys = {
 		{ 'dd',         'dd<Cmd>AutolistRecalculate<CR>',    mode = { 'n' } },
 		{ 'd',          'd<Cmd>AutolistRecalculate<CR>',     mode = { 'v' } },
 		{ '<leader>ir', '<Cmd>AutolistRecalculate<CR>',      mode = { 'n' }, desc = 'Recalculate list' },
+		{ '<leader>in', '<Cmd>AutolistCycleNext<CR>',        mode = { 'n' }, desc = 'Next list type' },
+		{ '<leader>ip', '<Cmd>AutolistCyclePrev<CR>',        mode = { 'n' }, desc = 'Previous list type' },
+	},
+	['align.nvim'] = {
 		{
-			'<leader>in',
+			'<leader>aa',
 			function()
-				require('autolist').cycle_next_dr()
+				require('align').align_to_char { length = 1 }
 			end,
-			mode = { 'n' },
-			desc = 'Next list type',
-			expr = true,
+			mode = { 'x' },
+			desc = 'Align to 1 character',
 		},
 		{
-			'<leader>ip',
+			'<leader>ad',
 			function()
-				require('autolist').cycle_prev_dr()
+				require('align').align_to_char { preview = true, length = 2 }
 			end,
-			mode = { 'n' },
-			desc = 'Previous list type',
-			expr = true,
+			mode = { 'x' },
+			desc = 'Align to 2 characters',
+		},
+		{
+			'<leader>aw',
+			function()
+				require('align').align_to_string { preview = true, regex = false }
+			end,
+			mode = { 'x' },
+			desc = 'Align to string',
+		},
+		{
+			'<leader>ar',
+			function()
+				require('align').align_to_string { preview = true, regex = true }
+			end,
+			mode = { 'x' },
+			desc = 'Align to regex',
 		},
 	},
 }
