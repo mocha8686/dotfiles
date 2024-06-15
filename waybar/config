@@ -100,7 +100,7 @@
 	},
 	"hyprland/window": {
 		"rewrite": {
-			"(.*) - Thunar": "    $1",
+			"(.*) - Thunar": "󰝰    $1",
 			"(.*) - YouTube — Mozilla Firefox": "󰗃   $1",
 			"(.*) \\((.*)\\) - NVIM": "󱇧  $1",
 			"(.*) at DuckDuckGo — Mozilla Firefox": "󰜏   $1",
@@ -126,7 +126,7 @@
 			"class<minecraft.*>": "󰍳",
 			"class<org.prismlauncher.PrismLauncher>": "",
 			"class<steam>": "󰓓",
-			"class<thunar>": "",
+			"class<thunar>": "󰉋",
 			"class<vesktop>": "󰙯",
 			"title<.*nvim>": "",
 		},
