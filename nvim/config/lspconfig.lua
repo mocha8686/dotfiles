@@ -108,8 +108,3 @@ mason_lspconfig.setup_handlers {
 		}
 	end,
 }
-
-lspconfig['sourcekit'].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-}
