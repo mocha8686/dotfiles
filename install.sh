@@ -1,8 +1,8 @@
 #!/bin/bash
 
-###########
+#=========#
 # Configs #
-###########
+#=========#
 while read -r entry; do
 	fullsrc=$(echo "$entry" | cut -d ':' -f 1)
 	fulldest=$(echo "$entry" | cut -d ':' -f 2)
@@ -32,9 +32,9 @@ while read -r entry; do
 	ln -snf "$src" "$dest"
 done < configs.txt
 
-#########
+#=======#
 # Links #
-#########
+#=======#
 while read -r entry; do
 	target=$(echo "$entry" | cut -d ':' -f 1)
 	linkname=$(echo "$entry" | cut -d ':' -f 2)
