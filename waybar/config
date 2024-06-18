@@ -117,7 +117,6 @@
 		"format-window-separator": "\n",
 		"window-rewrite-default": "",
 		"window-rewrite": {
-			"class<obsidian>": "󰠮",
 			"class<cider>": "󰝚",
 			"class<firefox> title<.*github.*>": "󰊤",
 			"class<firefox> title<.*youtube.*>": "󰗃",
@@ -126,8 +125,10 @@
 			"class<kitty>": "",
 			"class<lutris>": "󰊴",
 			"class<minecraft.*>": "󰍳",
+			"class<obsidian>": "󰠮",
 			"class<org.prismlauncher.PrismLauncher>": "",
 			"class<steam>": "󰓓",
+			"class<tetrio-desktop>": "󰕰",
 			"class<thunar>": "󰉋",
 			"class<vesktop>": "󰙯",
 			"title<.*nvim>": "",
