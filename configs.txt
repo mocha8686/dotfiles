@@ -1,7 +1,8 @@
 ./bin/change_wallpaper.sh:~/.local/bin
-./bin/update_git_email.sh:~/.local/bin
 ./bin/reload_waybar.sh:~/.local/bin
+./bin/update_git_email.sh:~/.local/bin
 ./cava/config:~/.config/cava
+./documents/notepad.html:~/Documents
 ./git/.gitconfig:~
 ./hyprland/hypridle.conf:~/.config/hypr
 ./hyprland/hypridle.conf:~/.config/hypr
