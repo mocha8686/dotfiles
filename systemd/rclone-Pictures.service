@@ -1,0 +1,6 @@
+[Unit]
+Description="rclone bisync for Dropbox Pictures"
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rclone bisync /home/mocha/Pictures/Dropbox dropbox:Images --config /home/mocha/.config/rclone/rclone.conf --create-empty-src-dirs --compare size,modtime,checksum --slow-hash-sync-only --resilient --recover --fix-case --conflict-resolve newer --max-lock 2m --verbose

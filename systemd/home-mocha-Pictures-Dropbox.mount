@@ -1,8 +1,0 @@
-[Unit]
-Description=Rclone mount for Dropbox images
-
-[Mount]
-Type=rclone
-What=dropbox:Images
-Where=/home/mocha/Pictures/Dropbox/
-Options=rw,_netdev,allow_other,args2env,vfs-cache-mode=writes,config=/home/mocha/.config/rclone/rclone.conf,cache-dir=/var/rclone

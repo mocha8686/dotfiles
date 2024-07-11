@@ -1,9 +1,0 @@
-[Unit]
-Description=Rclone automount for Dropbox documents
-
-[Automount]
-Where=/home/mocha/Documents/Dropbox/
-TimeoutIdleSec=600
-
-[Install]
-WantedBy=default.target

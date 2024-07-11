@@ -1,8 +1,0 @@
-[Unit]
-Description=Rclone mount for Dropbox documents
-
-[Mount]
-Type=rclone
-What=dropbox:Documents
-Where=/home/mocha/Documents/Dropbox/
-Options=rw,_netdev,allow_other,args2env,vfs-cache-mode=writes,config=/home/mocha/.config/rclone/rclone.conf,cache-dir=/var/rclone

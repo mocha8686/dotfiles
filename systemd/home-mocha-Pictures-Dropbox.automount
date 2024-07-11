@@ -1,9 +1,0 @@
-[Unit]
-Description=Rclone automount for Dropbox images
-
-[Automount]
-Where=/home/mocha/Pictures/Dropbox/
-TimeoutIdleSec=600
-
-[Install]
-WantedBy=default.target
