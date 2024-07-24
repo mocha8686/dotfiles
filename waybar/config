@@ -123,6 +123,7 @@
 			"class<firefox> title<.*youtube.*>": "󰗃",
 			"class<firefox>": "󰈹",
 			"class<firefox>": "󰈹",
+			"class<imv>": "",
 			"class<kitty>": "",
 			"class<lutris>": "󰊴",
 			"class<minecraft.*>": "󰍳",
