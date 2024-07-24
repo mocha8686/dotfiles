@@ -129,6 +129,7 @@
 			"class<minecraft.*>": "󰍳",
 			"class<obsidian>": "󰠮",
 			"class<org.prismlauncher.PrismLauncher>": "",
+			"class<org\\.inkscape\\.Inkscape>": "",
 			"class<steam>": "󰓓",
 			"class<tetrio-desktop>": "󰕰",
 			"class<thunar>": "󰉋",
