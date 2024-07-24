@@ -49,3 +49,4 @@
 ./waybar/config:~/.config/waybar
 ./waybar/style.css:~/.config/waybar
 ./zsh/.zshrc:~
+./kanata/config.kbd:~/.config/kanata
