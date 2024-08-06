@@ -40,16 +40,16 @@ local plugins = {
 			config = true,
 			keys = keys.get_plugin_keys 'nvim-spectre',
 		},
-		{
-			'dhruvasagar/vim-table-mode',
-			ft = {
-				'markdown',
-				'text',
-				'tex',
-				'plaintex',
-				'norg',
-			},
-		},
+		-- {
+		-- 	'dhruvasagar/vim-table-mode',
+		-- 	ft = {
+		-- 		'markdown',
+		-- 		'text',
+		-- 		'tex',
+		-- 		'plaintex',
+		-- 		'norg',
+		-- 	},
+		-- },
 		{
 			'gaoDean/autolist.nvim',
 			-- ft = {
