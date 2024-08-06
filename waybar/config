@@ -117,6 +117,7 @@
 		"format-window-separator": "\n",
 		"window-rewrite-default": "",
 		"window-rewrite": {
+			"class<Zotero>": "󰰶",
 			"class<cider>": "󰝚",
 			"class<evince>": "",
 			"class<firefox> title<.*github.*>": "󰊤",
