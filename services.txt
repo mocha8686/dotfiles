@@ -1,3 +1,5 @@
 ./systemd/rclone-Documents.timer
 ./systemd/rclone-Pictures.timer
 NetworkManager
+avahi
+cups
