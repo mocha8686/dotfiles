@@ -1,3 +1,3 @@
-NetworkManager
-./systemd/rclone-Pictures.timer
 ./systemd/rclone-Documents.timer
+./systemd/rclone-Pictures.timer
+NetworkManager
