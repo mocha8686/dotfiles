@@ -1,9 +1,11 @@
 ~/.cache/wal/99-colors-dunst.conf:~/.config/dunst/dunstrc.d/99-colors-dunst.conf
+~/.cache/wal/colors-discord.css:~/.config/vesktop/themes/pywal-vencord.theme.css
+~/.cache/wal/colors-discord.css:~/Library/Application Support/vesktop/themes
 ~/.cache/wal/hyprpaper.conf:~/.config/hypr
 ~/.cache/wal/mako_config:~/.config/mako/config
 ~/.local/bin/change_wallpaper.sh:~/.local/bin/change_wallpaper
-~/.local/bin/update_git_email.sh:~/.local/bin/update_git_email
 ~/.local/bin/reload_waybar.sh:~/.local/bin/reload_waybar
 ~/.local/bin/reload_waybar.sh:~/.local/bin/rway
-~/.cache/wal/colors-discord.css:~/.config/vesktop/themes/pywal-vencord.theme.css
-~/.cache/wal/colors-discord.css:~/Library/Application Support/vesktop/themes
+~/.local/bin/spells_to_printable.sh:~/.local/bin/spells_to_printable
+~/.local/bin/update_git_email.sh:~/.local/bin/update_git_email
+~/.local/bin/update_git_email.sh:~/.local/bin/update_git_email
