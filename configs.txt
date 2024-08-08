@@ -9,6 +9,7 @@
 ./hyprland/hypridle.conf:~/.config/hypr
 ./hyprland/hyprland.conf:~/.config/hypr
 ./hyprland/hyprlock.conf:~/.config/hypr
+./kanata/config.kbd:~/.config/kanata
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/config/ccc.lua:~/.config/nvim/lua/config
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
@@ -50,4 +51,3 @@
 ./waybar/config:~/.config/waybar
 ./waybar/style.css:~/.config/waybar
 ./zsh/.zshrc:~
-./kanata/config.kbd:~/.config/kanata
