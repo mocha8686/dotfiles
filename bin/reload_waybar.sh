@@ -1,3 +1,3 @@
 #!/bin/bash
 killall waybar
-waybar & disown
+nohup waybar 2>&1 >/dev/null & disown
