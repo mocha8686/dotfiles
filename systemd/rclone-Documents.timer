@@ -2,7 +2,7 @@
 Description="Bisync Documents every 5 minutes"
 
 [Timer]
-OnBootSec=1min
+OnBootSec=10sec
 OnUnitActiveSec=5min
 
 [Install]
