@@ -1,5 +1,3 @@
-;; vim:ft=lisp
-
 (defsrc
   caps
 
@@ -45,3 +43,5 @@
   1 2 3
   0
 )
+
+;; vim:ft=lisp
