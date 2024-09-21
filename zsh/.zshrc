@@ -47,7 +47,7 @@ source ~/.cache/wal/colors.sh
 
 # Environment variables
 export EDITOR='nvim'
-export LANG='en_US.UTF8'
+export LANG='en_US.UTF-8'
 export PAGER='less'
 export PS1='%F{white}%K{1} %n@%M %F{1}%K{2}%F{white} %~ %F{2}%K{3}%F{white} %* %F{3}%K%F{white}%K
 %F{white}%K{4} %# %F{4}%K%F{white} '
