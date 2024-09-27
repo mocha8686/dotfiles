@@ -95,8 +95,8 @@ mason_lspconfig.setup_handlers {
 			},
 		}
 	end,
-	['tsserver'] = function()
-		lspconfig['tsserver'].setup {
+	['ts_ls'] = function()
+		lspconfig['ts_ls'].setup {
 			on_attach = on_attach_disable_formatting,
 			capabilities = capabilities,
 		}
