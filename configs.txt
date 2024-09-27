@@ -20,7 +20,6 @@
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap_ui.lua:~/.config/nvim/lua/config
 ./nvim/config/telescope.lua:~/.config/nvim/lua/config
-./nvim/config/which_key.lua:~/.config/nvim/lua/config
 ./nvim/init.lua:~/.config/nvim
 ./nvim/keys.lua:~/.config/nvim/lua
 ./nvim/opts/bufferline.lua:~/.config/nvim/lua/opts
@@ -37,6 +36,7 @@
 ./nvim/opts/telescope.lua:~/.config/nvim/lua/opts
 ./nvim/opts/toggleterm.lua:~/.config/nvim/lua/opts
 ./nvim/opts/treesitter.lua:~/.config/nvim/lua/opts
+./nvim/opts/which_key.lua:~/.config/nvim/lua/opts
 ./nvim/plugins.lua:~/.config/nvim/lua
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
