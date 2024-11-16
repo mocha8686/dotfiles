@@ -63,6 +63,7 @@ local function set_vim_options()
 	opt.history = 25
 
 	g.mapleader = ' '
+	g.maplocalleader = '\\'
 
 	local number_augroup = vim.api.nvim_create_augroup('SetNumberRelativeNumber', { clear = true })
 	autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
