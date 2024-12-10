@@ -6,15 +6,15 @@ default-timeout=7500
 layer=overlay
 width=400
 
-background-color={background}
-text-color={foreground}
-progress-color=over {color2}
+background-color={{ background }}
+text-color={{ foreground }}
+progress-color=over {{ color2 }}
 
 [urgency="low"]
-border-color={color2}
+border-color={{ color2 }}
 
 [urgency="normal"]
-border-color={color1}
+border-color={{ color1 }}
 
 [urgency="critical"]
 border-color=#bf616a

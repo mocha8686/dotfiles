@@ -40,6 +40,11 @@ local plugins = {
 			config = true,
 			keys = keys.get_plugin_keys 'nvim-spectre',
 		},
+		{
+			'stevearc/dressing.nvim',
+			lazy = false,
+			config = true,
+		},
 		-- {
 		-- 	'dhruvasagar/vim-table-mode',
 		-- 	ft = {
@@ -266,7 +271,9 @@ local plugins = {
 			'nvim-lualine/lualine.nvim',
 			lazy = false,
 			dependencies = 'nvim-tree/nvim-web-devicons',
-			opts = require 'opts.lualine',
+			config = function()
+				require 'config.lualine'
+			end,
 		},
 		{
 			'akinsho/bufferline.nvim',
@@ -336,11 +343,13 @@ local plugins = {
 			keys = '/',
 		},
 		{
-			'AlphaTechnolog/pywal.nvim',
-			name = 'pywal',
+			'RedsXDD/neopywal.nvim',
+			name = 'neopywal',
 			lazy = false,
 			priority = 1000,
-			config = true,
+			config = function()
+				require 'config.neopywal'
+			end,
 		},
 		{
 			'uga-rosa/ccc.nvim',

@@ -1,6 +1,11 @@
-local opts = {
+local lualine = require 'lualine'
+local neopywal_lualine = require 'neopywal.theme.plugins.lualine'
+
+neopywal_lualine.setup()
+
+lualine.setup {
 	options = {
-		theme = 'pywal',
+		theme = 'neopywal',
 		component_separators = { left = '', right = '' },
 		section_separators = { left = '', right = '' },
 	},
@@ -29,5 +34,3 @@ local opts = {
 		},
 	},
 }
-
-return opts

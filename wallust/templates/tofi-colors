@@ -1,0 +1,7 @@
+text-color = {{ foreground }}
+placeholder-color = {{ foreground }}a8
+selection-color = {{ color1 }}
+selection-match-color = {{ color2 }}
+background-color = {{ background }}dd
+border-color = {{ color1 }}
+# vim:ft=ini
