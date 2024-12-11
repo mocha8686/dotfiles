@@ -33,6 +33,7 @@
 ./nvim/opts/mason_nvim_dap.lua:~/.config/nvim/lua/opts
 ./nvim/opts/null_ls.lua:~/.config/nvim/lua/opts
 ./nvim/opts/nvim_web_devicons.lua:~/.config/nvim/lua/opts
+./nvim/opts/spectre.lua:~/.config/nvim/lua/opts
 ./nvim/opts/tailwind-tools.lua:~/.config/nvim/lua/opts
 ./nvim/opts/telescope.lua:~/.config/nvim/lua/opts
 ./nvim/opts/toggleterm.lua:~/.config/nvim/lua/opts

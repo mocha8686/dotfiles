@@ -37,8 +37,9 @@ local plugins = {
 		{
 			'nvim-pack/nvim-spectre',
 			dependencies = 'nvim-lua/plenary.nvim',
-			config = true,
+			opts = require 'opts.spectre',
 			keys = keys.get_plugin_keys 'nvim-spectre',
+			build = './build.sh',
 		},
 		{
 			'stevearc/dressing.nvim',
