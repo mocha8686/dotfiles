@@ -6,9 +6,9 @@
 ./documents/notepad.html:~/Documents
 ./git/.gitconfig:~
 ./hyprland/hypridle.conf:~/.config/hypr
-./hyprland/hypridle.conf:~/.config/hypr
 ./hyprland/hyprland.conf:~/.config/hypr
 ./hyprland/hyprlock.conf:~/.config/hypr
+./hyprland/hyprpaper.conf:~/.config/hypr
 ./kanata/config.kbd:~/.config/kanata
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/config/ccc.lua:~/.config/nvim/lua/config
