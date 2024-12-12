@@ -11,3 +11,4 @@ tofi = { src = 'tofi-colors', dst = '~/.cache/wallust/tofi-colors' }
 kitty = { src = 'colors-kitty.conf', dst = '~/.cache/wallust/colors-kitty.conf' }
 waybar = { src = 'colors-waybar.css', dst = '~/.cache/wallust/colors-waybar.css' }
 nvim = { src = 'colors_neopywal.vim', dst = '~/.cache/wallust/colors_neopywal.vim' }
+vesktop = { src = 'colors-discord.css', dst = '~/.config/vesktop/themes/colors_discord.css' }

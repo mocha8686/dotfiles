@@ -45,6 +45,7 @@
 ./tofi/config:~/.config/tofi
 ./tofi/power_menu.sh:~/.local/bin
 ./tofi/screenshot_menu.sh:~/.local/bin
+./wallust/templates/colors-discord.css:~/.config/wallust/templates
 ./wallust/templates/colors-hyprland.conf:~/.config/wallust/templates
 ./wallust/templates/colors-kitty.conf:~/.config/wallust/templates
 ./wallust/templates/colors-waybar.css:~/.config/wallust/templates
