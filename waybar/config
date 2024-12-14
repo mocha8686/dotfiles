@@ -118,7 +118,6 @@
 		"window-rewrite-default": "",
 		"window-rewrite": {
 			"class<Zotero>": "󰰶",
-			"class<cider>": "󰝚",
 			"class<evince>": "",
 			"class<firefox> title<.*github.*>": "󰊤",
 			"class<firefox> title<.*youtube.*>": "󰗃",
