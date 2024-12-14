@@ -11,11 +11,8 @@
 ./hyprland/hyprpaper.conf:~/.config/hypr
 ./kanata/config.kbd:~/.config/kanata
 ./kitty/kitty.conf:~/.config/kitty
-./nvim/opts/ccc.lua:~/.config/nvim/lua/opts
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
-./nvim/opts/git_conflict.lua:~/.config/nvim/lua/opts
 ./nvim/config/lspconfig.lua:~/.config/nvim/lua/config
-./nvim/opts/lualine.lua:~/.config/nvim/lua/opts
 ./nvim/config/neopywal.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_autopairs.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
@@ -24,10 +21,13 @@
 ./nvim/init.lua:~/.config/nvim
 ./nvim/keys.lua:~/.config/nvim/lua
 ./nvim/opts/bufferline.lua:~/.config/nvim/lua/opts
+./nvim/opts/ccc.lua:~/.config/nvim/lua/opts
 ./nvim/opts/flit.lua:~/.config/nvim/lua/opts
+./nvim/opts/git_conflict.lua:~/.config/nvim/lua/opts
 ./nvim/opts/gitsigns.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lightbulb.lua:~/.config/nvim/lua/opts
 ./nvim/opts/lsp_signature.lua:~/.config/nvim/lua/opts
+./nvim/opts/lualine.lua:~/.config/nvim/lua/opts
 ./nvim/opts/mason_null_ls.lua:~/.config/nvim/lua/opts
 ./nvim/opts/mason_nvim_dap.lua:~/.config/nvim/lua/opts
 ./nvim/opts/null_ls.lua:~/.config/nvim/lua/opts
