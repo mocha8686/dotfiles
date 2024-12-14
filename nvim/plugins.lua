@@ -232,6 +232,9 @@ local plugins = {
 			'nvim-focus/focus.nvim',
 			event = 'VeryLazy',
 			version = false,
+			init = function()
+				require 'init.focus-nvim'
+			end,
 			config = true,
 		},
 		{
