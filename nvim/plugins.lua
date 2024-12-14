@@ -37,7 +37,9 @@ local plugins = {
 		{
 			'nvim-pack/nvim-spectre',
 			dependencies = 'nvim-lua/plenary.nvim',
-			opts = require 'opts.spectre',
+			opts = function()
+				return require 'opts.spectre'
+			end,
 			keys = keys.get_plugin_keys 'nvim-spectre',
 			build = './build.sh',
 		},
@@ -153,7 +155,9 @@ local plugins = {
 			'kosayoda/nvim-lightbulb',
 			dependencies = 'neovim/nvim-lspconfig',
 			event = 'VeryLazy',
-			opts = require 'opts.lightbulb',
+			opts = function()
+				return require 'opts.lightbulb'
+			end,
 			config = function(_, opts)
 				require('nvim-lightbulb').setup(opts)
 				vim.fn.sign_define('LightBulbSign', { text = '󰌵' })
@@ -183,7 +187,9 @@ local plugins = {
 				'mfussenegger/nvim-dap',
 			},
 			cmd = { 'DapInstall', 'DapUninstall' },
-			opts = require 'opts.mason_nvim_dap',
+			opts = function()
+				return require 'opts.mason_nvim_dap'
+			end,
 		},
 		{
 			'rcarriga/nvim-dap-ui',
@@ -232,7 +238,9 @@ local plugins = {
 			'akinsho/toggleterm.nvim',
 			version = '*',
 			keys = keys.get_plugin_keys 'toggleterm.nvim',
-			opts = require 'opts.toggleterm',
+			opts = function()
+				return require 'opts.toggleterm'
+			end,
 		},
 	},
 
@@ -267,12 +275,16 @@ local plugins = {
 	{
 		{
 			'nvim-tree/nvim-web-devicons',
-			opts = require 'opts.nvim_web_devicons',
+			opts = function()
+				return require 'opts.nvim_web_devicons'
+			end,
 		},
 		{
 			'lewis6991/gitsigns.nvim',
 			init = util.git_lazy_load 'gitsigns.nvim',
-			opts = require 'opts.gitsigns',
+			opts = function()
+				return require 'opts.gitsigns'
+			end,
 		},
 		{
 			'nvim-lualine/lualine.nvim',
@@ -290,7 +302,9 @@ local plugins = {
 			lazy = false,
 			version = '*',
 			dependencies = 'nvim-tree/nvim-web-devicons',
-			opts = require 'opts.bufferline',
+			opts = function()
+				return require 'opts.bufferline'
+			end,
 		},
 		{
 			'j-hui/fidget.nvim',
@@ -310,7 +324,9 @@ local plugins = {
 		{
 			'folke/which-key.nvim',
 			event = 'VeryLazy',
-			opts = require 'opts.which_key',
+			opts = function()
+				return require 'opts.which_key'
+			end,
 			config = true,
 		},
 	},
@@ -325,7 +341,9 @@ local plugins = {
 			'typescript',
 			'typescriptreact',
 		},
-		opts = require 'opts.tailwind-tools',
+		opts = function()
+			return require 'opts.tailwind-tools'
+		end,
 	},
 
 	-- Treesitter
@@ -340,7 +358,9 @@ local plugins = {
 		},
 		cmd = { 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
 		init = util.lazy_load 'nvim-treesitter',
-		opts = require 'opts.treesitter',
+		opts = function()
+			return require 'opts.treesitter'
+		end,
 		config = function(_, opts)
 			require('nvim-treesitter.configs').setup(opts)
 		end,
