@@ -1,6 +1,6 @@
 local ccc = require 'ccc'
 
-ccc.setup {
+local opts = {
 	inputs = {
 		ccc.input.hsl,
 		ccc.input.rgb,
@@ -26,3 +26,5 @@ ccc.setup {
 		},
 	},
 }
+
+return opts

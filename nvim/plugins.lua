@@ -83,8 +83,8 @@ local plugins = {
 		'akinsho/git-conflict.nvim',
 		version = '*',
 		init = util.git_lazy_load 'git-conflict.nvim',
-		config = function()
-			require 'config.git_conflict'
+		opts = function()
+			return require 'opts.git_conflict'
 		end,
 	},
 
@@ -132,6 +132,12 @@ local plugins = {
 			end,
 		},
 		{
+			'jay-babu/mason-null-ls.nvim',
+			opts = function()
+				return require 'opts.mason_null_ls'
+			end,
+		},
+		{
 			'nvimtools/none-ls.nvim',
 			dependencies = {
 				'jay-babu/mason-null-ls.nvim',
@@ -139,8 +145,8 @@ local plugins = {
 				'nvim-lua/plenary.nvim',
 				'williamboman/mason.nvim',
 			},
-			config = function()
-				require 'config.null_ls'
+			opts = function()
+				return require 'opts.null_ls'
 			end,
 		},
 		{
@@ -271,9 +277,12 @@ local plugins = {
 		{
 			'nvim-lualine/lualine.nvim',
 			lazy = false,
-			dependencies = 'nvim-tree/nvim-web-devicons',
-			config = function()
-				require 'config.lualine'
+			dependencies = {
+				'nvim-tree/nvim-web-devicons',
+				'RedsXDD/neopywal.nvim',
+			},
+			opts = function()
+				return require 'opts.lualine'
 			end,
 		},
 		{
@@ -365,8 +374,8 @@ local plugins = {
 				'typescript',
 				'typescriptreact',
 			},
-			config = function()
-				require 'config.ccc'
+			opts = function()
+				return require 'opts.ccc'
 			end,
 		},
 		{

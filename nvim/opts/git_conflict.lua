@@ -1,8 +1,8 @@
-local git_conflict = require 'git-conflict'
-
-git_conflict.setup {
+local opts = {
 	highlights = {
 		incoming = 'DiffDelete',
 		current = 'DiffChange',
 	},
 }
+
+return opts
