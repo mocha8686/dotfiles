@@ -168,6 +168,11 @@ local plugins = {
 			ft = 'lua',
 			config = true,
 		},
+		{
+			'danymat/neogen',
+			config = true,
+			keys = keys.get_plugin_keys 'neogen',
+		},
 	},
 
 	-- DAP
