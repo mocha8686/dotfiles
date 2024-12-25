@@ -99,6 +99,13 @@ mason_lspconfig.setup_handlers {
 		lspconfig['ts_ls'].setup {
 			on_attach = on_attach_disable_formatting,
 			capabilities = capabilities,
+			settings = {
+				javascript = {
+					implicitProjectConfig = {
+						checkJs = true,
+					},
+				},
+			},
 		}
 	end,
 	['jsonls'] = function()
