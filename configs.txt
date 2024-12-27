@@ -8,7 +8,6 @@
 ./hyprland/hypridle.conf:~/.config/hypr
 ./hyprland/hyprland.conf:~/.config/hypr
 ./hyprland/hyprlock.conf:~/.config/hypr
-./hyprland/hyprpaper.conf:~/.config/hypr
 ./kanata/config.kbd:~/.config/kanata
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
