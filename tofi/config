@@ -21,7 +21,7 @@
 	# characters not in the chosen font will fail to render.
 	#
 	# Otherwise, fonts are interpreted in Pango format.
-	font = "/home/mocha/.local/share/fonts/Tilt_Neon/static/TiltNeNerdFont-Regular.ttf"
+	font = "/home/mocha/.local/share/fonts/TiltNeNerdFont-Regular.ttf"
 
 	# Point size of text.
 	font-size = 14
