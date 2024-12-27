@@ -10,6 +10,7 @@
 
 * {
 	font-family: 'TiltNe Nerd Font', sans-serif;
+	font-size: 14px;
 	transition-property: color, border;
 	transition-duration: 150ms;
 	transition-timing-function: ease-in-out;
