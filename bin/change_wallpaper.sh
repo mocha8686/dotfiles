@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wallust run "$1"
+wallust run "$@"
 
 # hyprpaper
 if command -v hyprpaper >/dev/null; then
