@@ -5,7 +5,6 @@ threshold = 7
 
 [templates]
 hyprland = { src = 'colors-hyprland.conf', dst = '~/.cache/wallust/colors-hyprland.conf' }
-hyprpaper = { src = 'hyprpaper.conf', dst = '~/.config/hypr/hyprpaper.conf' }
 kitty = { src = 'colors-kitty.conf', dst = '~/.cache/wallust/colors-kitty.conf' }
 mako = { src = 'mako_config', dst = '~/.config/mako/config' }
 nvim = { src = 'colors_neopywal.vim', dst = '~/.cache/wallust/colors_neopywal.vim' }

@@ -118,6 +118,10 @@ if [[ -f ~/.os.sh ]] then
 	source ~/.os.sh
 fi
 
+if [[ -f ~/.swww.sh ]] then
+	source ~/.swww
+fi
+
 typeset -U path
 export PATH
 

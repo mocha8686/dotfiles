@@ -41,6 +41,7 @@
 ./nvim/plugins.lua:~/.config/nvim/lua
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
+./swww/.swww:~
 ./tofi/config:~/.config/tofi
 ./tofi/power_menu.sh:~/.local/bin
 ./tofi/screenshot_menu.sh:~/.local/bin
