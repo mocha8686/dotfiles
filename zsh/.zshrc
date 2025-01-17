@@ -118,9 +118,9 @@ if [[ -f ~/.os.sh ]] then
 	source ~/.os.sh
 fi
 
-if [[ -f ~/.swww.sh ]] then
-	source ~/.swww
-fi
+set -o allexport
+source ~/.swww
+set +o allexport
 
 typeset -U path
 export PATH
