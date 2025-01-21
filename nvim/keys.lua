@@ -229,6 +229,7 @@ M.keys = {
 	},
 	['toggleterm.nvim'] = {
 		{ '<leader>tt', function() end, desc = 'Toggle terminal' },
+		{ "<C-'>",      '<C-\\><C-n>',  mode = { 't' },          desc = 'Exit to normal mode' },
 	},
 	['nvim-dap'] = function()
 		local function set_conditional_breakpoint()
