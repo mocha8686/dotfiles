@@ -367,6 +367,7 @@ local plugins = {
 		{
 			'RedsXDD/neopywal.nvim',
 			name = 'neopywal',
+			tag = 'v2.6.0',
 			lazy = false,
 			priority = 1000,
 			config = function()
