@@ -45,9 +45,9 @@ bindkey -v
 export EDITOR='nvim'
 export LANG='en_US.UTF-8'
 export PAGER='less'
-export PS1='%F{white}%K{1} %n@%M %F{1}%K{2}%F{white} %~ %F{2}%K{3}%F{white} %* %F{3}%k%F{white}
-%F{white}%K{4} %# %F{4}%k%F{white} '
-export RPROMPT='%(?..%F{1}%k%F{white}%K{1} %? %k)'
+export PS1='%f%K{1} %n@%M %F{1}%K{2}%f %~ %F{2}%K{3}%f %* %F{3}%k%f
+%f%K{4} %# %F{4}%k%f '
+export RPROMPT='%(?..%F{1}%k%f%K{1} %? %k)'
 export GOPATH="$HOME/go"
 path+=("$HOME/.local/bin" "$HOME/.cargo/bin" "$GOPATH/bin" "$HOME/.local/share/nvim/mason/bin")
 
