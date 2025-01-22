@@ -5,7 +5,6 @@ local lsp_signature = require 'lsp_signature'
 local lspconfig = require 'lspconfig'
 local mason = require 'mason'
 local mason_lspconfig = require 'mason-lspconfig'
-local neoconf = require 'neoconf'
 
 local sign_define = vim.fn.sign_define
 sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
@@ -56,7 +55,6 @@ end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-neoconf.setup()
 mason.setup()
 mason_lspconfig.setup()
 lsp_inlayhints.setup()

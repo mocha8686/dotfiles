@@ -118,7 +118,6 @@ local plugins = {
 		{
 			'neovim/nvim-lspconfig',
 			dependencies = {
-				'folke/neoconf.nvim',
 				'hrsh7th/nvim-cmp',
 				'lvimuser/lsp-inlayhints.nvim',
 				'nvim-telescope/telescope.nvim',
