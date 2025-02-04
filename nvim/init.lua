@@ -30,6 +30,8 @@ local function set_vim_options()
 	opt.tabstop = 4
 	opt.undofile = true
 
+	vim.filetype.add { extension = { snippets = 'snippets' } }
+
 	-- Styling
 	opt.encoding = 'utf-8'
 	opt.laststatus = 3

@@ -12,6 +12,7 @@
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
 ./nvim/config/lspconfig.lua:~/.config/nvim/lua/config
+./nvim/config/luasnip.lua:~/.config/nvim/lua/config
 ./nvim/config/neopywal.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_autopairs.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
@@ -39,6 +40,7 @@
 ./nvim/opts/treesitter.lua:~/.config/nvim/lua/opts
 ./nvim/opts/which_key.lua:~/.config/nvim/lua/opts
 ./nvim/plugins.lua:~/.config/nvim/lua
+./nvim/snippets/python.snippets:~/.config/nvim/snippets
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
 ./swww/.swww:~
