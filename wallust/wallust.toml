@@ -10,4 +10,5 @@ mako = { src = 'mako_config', dst = '~/.config/mako/config' }
 nvim = { src = 'colors_neopywal.vim', dst = '~/.cache/wallust/colors_neopywal.vim' }
 tofi = { src = 'tofi-colors', dst = '~/.cache/wallust/tofi-colors' }
 vesktop = { src = 'colors-discord.css', dst = '~/.config/vesktop/themes/colors_discord.css' }
+vesktop_mac = { src = 'colors-discord.css', dst = '~/Library/Application Support/vesktop/themes/colors-discord.css' }
 waybar = { src = 'colors-waybar.css', dst = '~/.cache/wallust/colors-waybar.css' }
