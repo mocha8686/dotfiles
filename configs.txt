@@ -17,6 +17,7 @@
 ./nvim/config/nvim_autopairs.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap_ui.lua:~/.config/nvim/lua/config
+./nvim/config/nvim_notify.lua:~/.config/nvim/lua/config
 ./nvim/config/telescope.lua:~/.config/nvim/lua/config
 ./nvim/init.lua:~/.config/nvim
 ./nvim/init/focus-nvim.lua:~/.config/nvim/lua/init
