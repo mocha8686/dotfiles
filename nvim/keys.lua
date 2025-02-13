@@ -12,6 +12,7 @@ M.keys = {
 		{ '<C-j>',     '<Cmd>wincmd j<CR>', desc = 'Select window below',        mode = { 'n', 't' } },
 		{ '<C-k>',     '<Cmd>wincmd k<CR>', desc = 'Select window above',        mode = { 'n', 't' } },
 		{ '<C-l>',     '<Cmd>wincmd l<CR>', desc = 'Select window to the right', mode = { 'n', 't' } },
+		{ '<leader>q', '<Cmd>wincmd c<CR>', desc = 'Close window' },
 		{ '<Tab>',     '<Cmd>bn<CR>',       desc = 'Select next tab' },
 		{ '<S-Tab>',   '<Cmd>bp<CR>',       desc = 'Select previous tab' },
 		{ ']q',        '<Cmd>cn<CR>',       desc = 'Next quickfix' },
@@ -361,13 +362,6 @@ M.keys = {
 				require('mini.bufremove').delete()
 			end,
 			desc = 'Delete buffer',
-		},
-		{
-			'<leader>q',
-			function()
-				require('mini.bufremove').wipeout()
-			end,
-			desc = 'Wipeout buffer',
 		},
 	},
 }
