@@ -13,8 +13,8 @@
 ./nvim/config/cmp.lua:~/.config/nvim/lua/config
 ./nvim/config/lspconfig.lua:~/.config/nvim/lua/config
 ./nvim/config/luasnip.lua:~/.config/nvim/lua/config
+./nvim/config/mini_nvim.lua:~/.config/nvim/lua/config
 ./nvim/config/neopywal.lua:~/.config/nvim/lua/config
-./nvim/config/nvim_autopairs.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_dap_ui.lua:~/.config/nvim/lua/config
 ./nvim/config/nvim_notify.lua:~/.config/nvim/lua/config

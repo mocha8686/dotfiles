@@ -2,37 +2,20 @@ local keys = require 'keys'
 local util = require 'util'
 
 local plugins = {
+	{
+		'echasnovski/mini.nvim',
+		version = false,
+		event = 'VeryLazy',
+		config = function()
+			require 'config.mini_nvim'
+		end,
+	},
+
 	-- Editing
 	{
 		{
 			'andymass/vim-matchup',
 			event = 'InsertEnter',
-		},
-		{
-			'windwp/nvim-autopairs',
-			event = 'InsertEnter',
-			config = function()
-				require 'config.nvim_autopairs'
-			end,
-		},
-		{
-			'numToStr/Comment.nvim',
-			keys = keys.get_plugin_keys 'Comment.nvim',
-			config = true,
-		},
-		{
-			'kylechui/nvim-surround',
-			dependencies = {
-				'nvim-treesitter/nvim-treesitter',
-				'nvim-treesitter/nvim-treesitter-textobjects',
-			},
-			keys = keys.get_plugin_keys 'nvim-surround',
-			config = true,
-		},
-		{
-			'sQVe/sort.nvim',
-			cmd = 'Sort',
-			config = true,
 		},
 		{
 			'nvim-pack/nvim-spectre',
@@ -72,12 +55,6 @@ local plugins = {
 		-- 	config = true,
 		-- 	keys = keys.get_plugin_keys 'autolist.nvim',
 		-- },
-		{
-			'Vonr/align.nvim',
-			branch = 'v2',
-			config = true,
-			keys = keys.get_plugin_keys 'align.nvim',
-		},
 	},
 
 	-- Git
@@ -214,14 +191,6 @@ local plugins = {
 	-- Navigation
 	{
 		{
-			'chaoren/vim-wordmotion',
-			keys = keys.get_plugin_keys 'vim-wordmotion',
-		},
-		{
-			'wellle/targets.vim',
-			keys = keys.get_plugin_keys 'targets.vim',
-		},
-		{
 			'folke/flash.nvim',
 			event = 'VeryLazy',
 			config = true,
@@ -231,10 +200,6 @@ local plugins = {
 
 	-- Buffer, window, and tab management
 	{
-		{
-			'mhinz/vim-sayonara',
-			keys = keys.get_plugin_keys 'vim-sayonara',
-		},
 		{
 			'nvim-focus/focus.nvim',
 			event = 'VeryLazy',
@@ -348,7 +313,6 @@ local plugins = {
 		dependencies = {
 			'RRethy/nvim-treesitter-endwise',
 			'nvim-treesitter/nvim-treesitter-refactor',
-			'nvim-treesitter/nvim-treesitter-textobjects',
 			'windwp/nvim-ts-autotag',
 		},
 		cmd = { 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },

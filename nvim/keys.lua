@@ -21,39 +21,6 @@ M.keys = {
 		{ '<C-Left>',  'g0',                mode = { 'n', 'v' } },
 		{ '<C-Right>', 'g$',                mode = { 'n', 'v' } },
 	},
-	['Comment.nvim'] = {
-		{ 'gc', mode = { 'n', 'v' } },
-	},
-	['nvim-surround'] = {
-		{ 'ys', mode = { 'n', 'v' } },
-		{ 'ds', mode = { 'n', 'v' } },
-		{ 'cs', mode = { 'n', 'v' } },
-	},
-	['vim-wordmotion'] = {
-		{ 'w',          mode = { 'n', 'x', 'o' } },
-		{ 'W',          mode = { 'n', 'x', 'o' } },
-		{ 'b',          mode = { 'n', 'x', 'o' } },
-		{ 'B',          mode = { 'n', 'x', 'o' } },
-		{ 'e',          mode = { 'n', 'x', 'o' } },
-		{ 'E',          mode = { 'n', 'x', 'o' } },
-		{ 'ge',         mode = { 'n', 'x', 'o' } },
-		{ 'gE',         mode = { 'n', 'x', 'o' } },
-		{ 'aw',         mode = { 'x', 'o' } },
-		{ 'aW',         mode = { 'x', 'o' } },
-		{ 'iw',         mode = { 'x', 'o' } },
-		{ 'iW',         mode = { 'x', 'o' } },
-		{ '<C-R><C-W>', mode = 'c' },
-	},
-	['targets.vim'] = {
-		{ 'i', mode = { 'x', 'o' } },
-		{ 'I', mode = { 'x', 'o' } },
-		{ 'a', mode = { 'x', 'o' } },
-		{ 'A', mode = { 'x', 'o' } },
-	},
-	['vim-sayonara'] = {
-		{ '<leader>w', '<Cmd>Sayonara!<CR>', desc = 'Delete the current buffer and close the window' },
-		{ '<leader>q', '<Cmd>Sayonara<CR>',  desc = 'Delete the current buffer' },
-	},
 	['flash.nvim'] = {
 		{
 			'z',
@@ -101,13 +68,6 @@ M.keys = {
 		local picker_opts = { theme = theme, workspace = 'CWD' }
 
 		local keys = {
-			{
-				'<C-t>',
-				function()
-					require('telescope').extensions.file_browser.file_browser(picker_opts)
-				end,
-				desc = 'Open file browser',
-			},
 			{
 				'<C-p>',
 				function()
@@ -355,40 +315,6 @@ M.keys = {
 		{ '<leader>in', '<Cmd>AutolistCycleNext<CR>',        mode = { 'n' }, desc = 'Next list type' },
 		{ '<leader>ip', '<Cmd>AutolistCyclePrev<CR>',        mode = { 'n' }, desc = 'Previous list type' },
 	},
-	['align.nvim'] = {
-		{
-			'<leader>aa',
-			function()
-				require('align').align_to_char { length = 1 }
-			end,
-			mode = { 'x' },
-			desc = 'Align to 1 character',
-		},
-		{
-			'<leader>ad',
-			function()
-				require('align').align_to_char { preview = true, length = 2 }
-			end,
-			mode = { 'x' },
-			desc = 'Align to 2 characters',
-		},
-		{
-			'<leader>aw',
-			function()
-				require('align').align_to_string { preview = true, regex = false }
-			end,
-			mode = { 'x' },
-			desc = 'Align to string',
-		},
-		{
-			'<leader>ar',
-			function()
-				require('align').align_to_string { preview = true, regex = true }
-			end,
-			mode = { 'x' },
-			desc = 'Align to regex',
-		},
-	},
 	['neogen'] = {
 		{
 			'<leader>lgg',
@@ -417,6 +343,31 @@ M.keys = {
 				require('neogen').generate { type = 'type' }
 			end,
 			desc = 'Generate type docstring',
+		},
+	},
+	['mini.files'] = {
+		{
+			'<C-t>',
+			function()
+				require('mini.files').open()
+			end,
+			desc = 'Open file browser',
+		},
+	},
+	['mini.bufremove'] = {
+		{
+			'<leader>w',
+			function()
+				require('mini.bufremove').delete()
+			end,
+			desc = 'Delete buffer',
+		},
+		{
+			'<leader>q',
+			function()
+				require('mini.bufremove').wipeout()
+			end,
+			desc = 'Wipeout buffer',
 		},
 	},
 }
