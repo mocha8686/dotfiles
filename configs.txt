@@ -45,6 +45,7 @@
 ./nvim/snippets/python.snippets:~/.config/nvim/snippets
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
+./radare2/.radare2rc:~
 ./swww/.swww:~
 ./tofi/config:~/.config/tofi
 ./tofi/power_menu.sh:~/.local/bin
