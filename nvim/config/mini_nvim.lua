@@ -8,12 +8,23 @@ local text_editing = {
 	'mini.operators',
 	'mini.pairs',
 	'mini.splitjoin',
-	'mini.surround', -- TODO: see if keybinds should change
+	'mini.surround',
 }
 
 local workflow = {
 	{ 'mini.bufremove', keys = true },
-	{ 'mini.files',     keys = true },
+	{
+		'mini.files',
+		keys = true,
+		post = function()
+			vim.api.nvim_create_autocmd('User', {
+				pattern = 'MiniFilesActionRename',
+				callback = function(event)
+					Snacks.rename.on_rename_file(event.data.from, event.data.to)
+				end,
+			})
+		end,
+	},
 }
 
 local appearance = {
@@ -38,10 +49,15 @@ for _, module_set in ipairs(module_sets) do
 			local module_name = module[1]
 			local use_keys = module['keys']
 			local module_options = module['options']
+			local post = module['post']
 
 			require(module_name).setup(module_options)
 			if use_keys then
 				keys.map_plugin_keys(module_name)
+			end
+
+			if post then
+				post()
 			end
 		else
 			error('Module type not recognized (type: ' .. type(module) .. ')')

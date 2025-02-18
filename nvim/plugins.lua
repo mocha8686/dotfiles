@@ -4,10 +4,22 @@ local util = require 'util'
 local plugins = {
 	{
 		'echasnovski/mini.nvim',
+		dependencies = {
+			'folke/snacks.nvim',
+		},
 		version = false,
 		event = 'VeryLazy',
 		config = function()
 			require 'config.mini_nvim'
+		end,
+	},
+
+	{
+		'folke/snacks.nvim',
+		lazy = false,
+		priority = 100,
+		opts = function()
+			return require 'opts.snacks'
 		end,
 	},
 
