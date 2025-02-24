@@ -1,9 +1,9 @@
+local action_state = require 'telescope.actions.state'
+local actions = require 'telescope.actions'
+local conf = require('telescope.config').values
 local dap = require 'dap'
 local finders = require 'telescope.finders'
 local pickers = require 'telescope.pickers'
-local conf = require('telescope.config').values
-local action_state = require 'telescope.actions.state'
-local actions = require 'telescope.actions'
 
 local hl = vim.api.nvim_set_hl
 local sign_define = vim.fn.sign_define
@@ -22,12 +22,8 @@ sign_define('DapBreakpointRejected', { text = '', texthl = 'DapError' })
 
 dap.adapters.codelldb = {
 	name = 'codelldb',
-	type = 'server',
-	port = '${port}',
-	executable = {
-		command = 'codelldb',
-		args = { '--port', '${port}' },
-	},
+	type = 'executable',
+	command = 'codelldb',
 }
 
 dap.adapters.delve = {
@@ -41,40 +37,45 @@ dap.adapters.delve = {
 	},
 }
 
-local lldb_config = {
-	name = 'Launch',
-	type = 'codelldb',
-	request = 'launch',
-	program = function()
-		return coroutine.create(function(coro)
-			local opts = {}
-			pickers
-				.new(opts, {
-					prompt_title = 'Path to executable',
-					finder = finders.new_oneshot_job({
-						'fd',
-						'--unrestricted',
-						'--type',
-						'x',
-						'--full-path',
-						'(builddir|target/(debug|release))/[^/]+$',
-					}, {}),
-					sorter = conf.generic_sorter(opts),
-					attach_mappings = function(buffer_number)
-						actions.select_default:replace(function()
-							actions.close(buffer_number)
-							coroutine.resume(coro, action_state.get_selected_entry()[1])
-						end)
-						return true
-					end,
-				})
-				:find()
-		end)
-	end,
+local function lldb_config(list_exes_program)
+	local config = {
+		name = 'Launch',
+		type = 'codelldb',
+		request = 'launch',
+		cwd = '${workspaceFolder}',
+		stopOnEntry = false,
+		program = function()
+			return coroutine.create(function(co)
+				local opts = {}
+				pickers
+					.new(opts, {
+						prompt_title = 'Path to executable',
+						finder = finders.new_oneshot_job(list_exes_program or {
+							'fd',
+							'--unrestricted',
+							'--type',
+							'x',
+							'--full-path',
+							'(builddir|target/(debug|release))/[^/]+$',
+						}, {}),
+						sorter = conf.generic_sorter(opts),
+						attach_mappings = function(buffer_number)
+							actions.select_default:replace(function()
+								actions.close(buffer_number)
+								local entry = action_state.get_selected_entry()
+								local exe = entry[1]
+								coroutine.resume(co, exe)
+							end)
+							return true
+						end,
+					})
+					:find()
+			end)
+		end,
+	}
 
-	cwd = '${workspaceFolder}',
-	stopOnEntry = false,
-}
+	return config
+end
 
 local delve_config = {
 	name = 'Launch',
@@ -83,6 +84,8 @@ local delve_config = {
 	program = '${file}',
 }
 
-dap.configurations.rust = { lldb_config }
-dap.configurations.cpp = { lldb_config }
+dap.configurations.rust = { lldb_config() }
+dap.configurations.cpp = { lldb_config() }
+dap.configurations.zig = { lldb_config { 'zig', 'build', 'debug' } }
+-- dap.configurations.zig = { lldb_config { 'fd', '--hidden', '--no-ignore', '--type', 'x' } }
 dap.configurations.go = { delve_config }
