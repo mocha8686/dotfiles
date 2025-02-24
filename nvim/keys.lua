@@ -247,6 +247,13 @@ M.keys = {
 				end,
 				desc = 'Run last',
 			},
+			{
+				'<leader>dq',
+				function()
+					require('dap').terminate()
+				end,
+				desc = 'Terminate',
+			},
 		}
 	end,
 	['nvim-dap-ui'] = {
