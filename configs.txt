@@ -43,6 +43,7 @@
 ./nvim/opts/which_key.lua:~/.config/nvim/lua/opts
 ./nvim/plugins.lua:~/.config/nvim/lua
 ./nvim/snippets/python.snippets:~/.config/nvim/snippets
+./nvim/snippets/zig.snippets:~/.config/nvim/snippets
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
 ./radare2/.radare2rc:~
