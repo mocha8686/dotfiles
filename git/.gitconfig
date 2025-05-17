@@ -9,5 +9,14 @@
 	autoSetupRemote = true
 [core]
 	autocrlf = input
+	pager = delta
 [rebase]
 	autostash = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = true
+[merge]
+	conflictStyle = zdiff3
