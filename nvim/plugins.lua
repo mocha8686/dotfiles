@@ -43,6 +43,22 @@ local plugins = {
 			lazy = false,
 			config = true,
 		},
+		{
+			'johmsalas/text-case.nvim',
+			lazy = false,
+			config = true,
+			keys = keys.get_plugin_keys 'text-case.nvim',
+			cmd = {
+				'Subs',
+				'TextCaseOpenTelescope',
+				'TextCaseOpenTelescopeQuickChange',
+				'TextCaseOpenTelescopeLSPChange',
+				'TextCaseStartReplacingCommand',
+			},
+			opts = function()
+				return require 'opts.text_case'
+			end,
+		},
 		-- {
 		-- 	'dhruvasagar/vim-table-mode',
 		-- 	ft = {
@@ -336,6 +352,12 @@ local plugins = {
 			require('nvim-treesitter.configs').setup(opts)
 		end,
 	},
+	{
+		'davidmh/mdx.nvim',
+		dependencies = { 'nvim-treesitter/nvim-treesitter' },
+		config = true,
+		lazy = false,
+	},
 
 	-- Aesthetics
 	{
@@ -365,6 +387,8 @@ local plugins = {
 				'javascriptreact',
 				'typescript',
 				'typescriptreact',
+				'markdown',
+				'mdx',
 			},
 			opts = function()
 				return require 'opts.ccc'

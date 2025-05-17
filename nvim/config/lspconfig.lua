@@ -112,4 +112,17 @@ mason_lspconfig.setup_handlers {
 			capabilities = capabilities,
 		}
 	end,
+	['stylelint_lsp'] = function()
+		lspconfig['stylelint_lsp'].setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { 'astro', 'css', 'html', 'less', 'scss', 'sugarss', 'vue', 'wxss' },
+		}
+	end,
+	['html'] = function()
+		lspconfig['html'].setup {
+			on_attach = on_attach_disable_formatting,
+			capabilities = capabilities,
+		}
+	end,
 }

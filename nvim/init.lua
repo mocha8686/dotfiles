@@ -29,8 +29,9 @@ local function set_vim_options()
 	opt.shiftwidth = 4
 	opt.tabstop = 4
 	opt.undofile = true
+	opt.virtualedit = { 'onemore', 'block' }
 
-	vim.filetype.add { extension = { snippets = 'snippets' } }
+	vim.filetype.add { extension = { snippets = 'snippets', webc = 'html' } }
 
 	-- Styling
 	opt.encoding = 'utf-8'
@@ -88,7 +89,7 @@ local function set_vim_options()
 	})
 
 	autocmd('FileType', {
-		pattern = { 'text', 'markdown', 'tex', 'plaintex' },
+		pattern = { 'text', 'markdown', 'tex', 'plaintex', 'mdx' },
 		callback = function()
 			opt.wrap = true
 			opt.linebreak = true

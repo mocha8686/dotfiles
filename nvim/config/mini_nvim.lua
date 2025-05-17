@@ -28,7 +28,10 @@ local workflow = {
 }
 
 local appearance = {
-	'mini.animate',
+	{
+		'mini.animate',
+		keys = true,
+	},
 	'mini.icons',
 	'mini.indentscope',
 }

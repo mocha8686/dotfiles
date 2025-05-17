@@ -189,7 +189,7 @@ M.keys = {
 		},
 	},
 	['toggleterm.nvim'] = {
-		{ '<leader>tt', function() end, desc = 'Toggle terminal' },
+		{ '<leader>tr', function() end, desc = 'Toggle terminal' },
 		{ "<C-'>",      '<C-\\><C-n>',  mode = { 't' },          desc = 'Exit to normal mode' },
 	},
 	['nvim-dap'] = function()
@@ -370,6 +370,32 @@ M.keys = {
 			end,
 			desc = 'Delete buffer',
 		},
+	},
+	['mini.animate'] = {
+		{
+			'<leader>ad',
+			function ()
+				local config = require('mini.animate').config
+				for key, _ in pairs(config) do
+					config[key].enable = false
+				end
+			end,
+			desc = 'Disable animations',
+		},
+		{
+			'<leader>ai',
+			function ()
+				local config = require('mini.animate').config
+				for key, _ in pairs(config) do
+					config[key].enable = true
+				end
+			end,
+			desc = 'Enable animations',
+		},
+	},
+	['text-case.nvim'] = {
+		'gq',
+		{ 'gq.', '<Cmd>TextCaseOpenTelescope<CR>', mode = { 'n', 'x' }, desc = 'Telescope' },
 	},
 }
 

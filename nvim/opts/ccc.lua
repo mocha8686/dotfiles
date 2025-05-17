@@ -23,6 +23,8 @@ local opts = {
 			'javascriptreact',
 			'typescript',
 			'typescriptreact',
+			'markdown',
+			'mdx',
 		},
 	},
 }

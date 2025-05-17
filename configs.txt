@@ -38,6 +38,7 @@
 ./nvim/opts/spectre.lua:~/.config/nvim/lua/opts
 ./nvim/opts/tailwind-tools.lua:~/.config/nvim/lua/opts
 ./nvim/opts/telescope.lua:~/.config/nvim/lua/opts
+./nvim/opts/text_case.lua:~/.config/nvim/lua/opts
 ./nvim/opts/toggleterm.lua:~/.config/nvim/lua/opts
 ./nvim/opts/treesitter.lua:~/.config/nvim/lua/opts
 ./nvim/opts/which_key.lua:~/.config/nvim/lua/opts
