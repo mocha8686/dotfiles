@@ -49,6 +49,7 @@ export PS1='%f%K{1} %n@%M %F{1}%K{2}%f %~ %F{2}%K{3}%f %* %F{3}%k%f
 %f%K{4} %# %F{4}%k%f '
 export RPROMPT='%(?..%F{1}%k%f%K{1} %? %k)'
 export GOPATH="$HOME/go"
+PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 path+=("$HOME/.local/bin" "$HOME/.cargo/bin" "$GOPATH/bin" "$HOME/.local/share/nvim/mason/bin")
 
 # Aliases
