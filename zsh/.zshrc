@@ -112,6 +112,8 @@ alias nc='ncat'
 alias ssh='TERM=xterm ssh'
 alias ses='source ~/.session.sh'
 
+function xsltopen() { xsltproc -o "$1".{html,xml} && open "$1".html }
+
 eval "$(zoxide init zsh)"
 
 if [[ -f ~/.os.sh ]] then
