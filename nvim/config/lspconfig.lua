@@ -7,10 +7,22 @@ local mason = require 'mason'
 local mason_lspconfig = require 'mason-lspconfig'
 
 local sign_define = vim.fn.sign_define
-sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+vim.diagnostic.config {
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.INFO] = '󰋼',
+			[vim.diagnostic.severity.HINT] = '󰌵',
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+			[vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+			[vim.diagnostic.severity.HINT] = 'DiagnosticSignInfo',
+			[vim.diagnostic.severity.INFO] = 'DiagnosticSignHint',
+		},
+	},
+}
 
 local function on_attach(client, buf)
 	lsp_signature.on_attach(require 'opts.lsp_signature', buf)
@@ -19,7 +31,7 @@ local function on_attach(client, buf)
 	vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 	keys.map_plugin_keys_buffer('nvim-lspconfig', buf)
 
-	if client.supports_method 'textDocument/formatting' then
+	if client:supports_method 'textDocument/formatting' then
 		local augroup = vim.api.nvim_create_augroup('LSPFormat', { clear = true })
 		vim.api.nvim_create_autocmd('BufWritePre', {
 			group = augroup,
@@ -33,7 +45,7 @@ local function on_attach(client, buf)
 		})
 	end
 
-	if client.supports_method 'textDocument/documentHighlight' then
+	if client:supports_method 'textDocument/documentHighlight' then
 		local augroup = vim.api.nvim_create_augroup('LSPHighlights', { clear = true })
 		vim.api.nvim_create_autocmd('CursorHold', {
 			group = augroup,
@@ -59,70 +71,59 @@ mason.setup()
 mason_lspconfig.setup()
 lsp_inlayhints.setup()
 
-mason_lspconfig.setup_handlers {
-	function(server)
-		lspconfig[server].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-		}
-	end,
-	['clangd'] = function()
-		lspconfig['clangd'].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			cmd = (vim.fn.has 'macunix' and { '/usr/local/opt/llvm/bin/clangd' } or nil),
-			filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-		}
-	end,
-	['denols'] = function()
-		lspconfig['denols'].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				deno = {
-					enable = true,
-					unstable = true,
-					suggest = {
-						imports = {
-							hosts = {
-								['https://deno.land'] = true,
-							},
-						},
+vim.lsp.config('*', {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+vim.lsp.config('clangd', {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = (vim.fn.has 'macunix' and { '/usr/local/opt/llvm/bin/clangd' } or nil),
+	filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+})
+vim.lsp.config('denols', {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		deno = {
+			enable = true,
+			unstable = true,
+			suggest = {
+				imports = {
+					hosts = {
+						['https://deno.land'] = true,
 					},
 				},
 			},
-		}
-	end,
-	['ts_ls'] = function()
-		lspconfig['ts_ls'].setup {
-			on_attach = on_attach_disable_formatting,
-			capabilities = capabilities,
-			settings = {
-				javascript = {
-					implicitProjectConfig = {
-						checkJs = true,
-					},
-				},
+		},
+	},
+})
+
+vim.lsp.config('ts_ls', {
+	on_attach = on_attach_disable_formatting,
+	capabilities = capabilities,
+	settings = {
+		javascript = {
+			implicitProjectConfig = {
+				checkJs = true,
 			},
-		}
-	end,
-	['jsonls'] = function()
-		lspconfig['jsonls'].setup {
-			on_attach = on_attach_disable_formatting,
-			capabilities = capabilities,
-		}
-	end,
-	['stylelint_lsp'] = function()
-		lspconfig['stylelint_lsp'].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			filetypes = { 'astro', 'css', 'html', 'less', 'scss', 'sugarss', 'vue', 'wxss' },
-		}
-	end,
-	['html'] = function()
-		lspconfig['html'].setup {
-			on_attach = on_attach_disable_formatting,
-			capabilities = capabilities,
-		}
-	end,
-}
+		},
+	},
+})
+
+vim.lsp.config('jsonls', {
+	on_attach = on_attach_disable_formatting,
+	capabilities = capabilities,
+})
+
+vim.lsp.config('stylelint_lsp', {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { 'astro', 'css', 'html', 'less', 'scss', 'sugarss', 'vue', 'wxss' },
+})
+
+vim.lsp.config('html', {
+	on_attach = on_attach_disable_formatting,
+	capabilities = capabilities,
+})

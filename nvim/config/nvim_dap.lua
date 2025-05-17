@@ -14,11 +14,11 @@ hl(0, 'DapLogPoint', { fg = '#d484ff' })
 hl(0, 'DapStopped', { ctermfg = 4, fg = 'LightBlue' })
 hl(0, 'DapBreakpoint', { fg = '#f70067' })
 
-sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint' })
-sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpointCondition' })
-sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint' })
-sign_define('DapStopped', { text = '', texthl = 'DapStopped' })
-sign_define('DapBreakpointRejected', { text = '', texthl = 'DapError' })
+-- sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint' })
+-- sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpointCondition' })
+-- sign_define('DapLogPoint', { text = '', texthl = 'DapLogPoint' })
+-- sign_define('DapStopped', { text = '', texthl = 'DapStopped' })
+-- sign_define('DapBreakpointRejected', { text = '', texthl = 'DapError' })
 
 dap.adapters.codelldb = {
 	name = 'codelldb',

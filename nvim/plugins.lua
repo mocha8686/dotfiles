@@ -165,10 +165,7 @@ local plugins = {
 			opts = function()
 				return require 'opts.lightbulb'
 			end,
-			config = function(_, opts)
-				require('nvim-lightbulb').setup(opts)
-				vim.fn.sign_define('LightBulbSign', { text = '󰌵' })
-			end,
+			config = true,
 		},
 		{
 			'folke/lazydev.nvim',
