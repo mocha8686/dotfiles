@@ -127,7 +127,6 @@ local plugins = {
 			'neovim/nvim-lspconfig',
 			dependencies = {
 				'hrsh7th/nvim-cmp',
-				'lvimuser/lsp-inlayhints.nvim',
 				'nvim-telescope/telescope.nvim',
 				'nvimtools/none-ls.nvim',
 				'ray-x/lsp_signature.nvim',

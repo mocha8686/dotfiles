@@ -1,6 +1,5 @@
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local keys = require 'keys'
-local lsp_inlayhints = require 'lsp-inlayhints'
 local lsp_signature = require 'lsp_signature'
 local lspconfig = require 'lspconfig'
 local mason = require 'mason'
@@ -26,7 +25,6 @@ vim.diagnostic.config {
 
 local function on_attach(client, buf)
 	lsp_signature.on_attach(require 'opts.lsp_signature', buf)
-	lsp_inlayhints.on_attach(client, buf)
 
 	vim.bo[buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 	keys.map_plugin_keys_buffer('nvim-lspconfig', buf)
@@ -69,7 +67,6 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 mason.setup()
 mason_lspconfig.setup()
-lsp_inlayhints.setup()
 
 vim.lsp.config('*', {
 	on_attach = on_attach,

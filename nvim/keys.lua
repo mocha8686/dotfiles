@@ -141,13 +141,6 @@ M.keys = {
 				desc = 'Format',
 			},
 			{
-				'<leader>lh',
-				function()
-					require('lsp-inlayhints').toggle()
-				end,
-				desc = 'Toggle inlay hints',
-			},
-			{
 				']e',
 				function()
 					vim.diagnostic.goto_next { float = { scope = 'line' } }
@@ -374,7 +367,7 @@ M.keys = {
 	['mini.animate'] = {
 		{
 			'<leader>ad',
-			function ()
+			function()
 				local config = require('mini.animate').config
 				for key, _ in pairs(config) do
 					config[key].enable = false
@@ -384,7 +377,7 @@ M.keys = {
 		},
 		{
 			'<leader>ai',
-			function ()
+			function()
 				local config = require('mini.animate').config
 				for key, _ in pairs(config) do
 					config[key].enable = true
