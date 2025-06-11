@@ -1,0 +1,6 @@
+[Unit]
+Description="rclone bisync for REAPER files"
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rclone bisync /home/mocha/Music/REAPER drive:REAPER --config /home/mocha/.config/rclone/rclone.conf --create-empty-src-dirs --compare size,modtime,checksum --slow-hash-sync-only --resilient --recover --fix-case --conflict-resolve newer --conflict-loser delete --max-lock 2m -v

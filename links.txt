@@ -4,3 +4,5 @@
 ~/.local/bin/spells_to_printable.sh:~/.local/bin/spells_to_printable
 ~/.local/bin/update_git_email.sh:~/.local/bin/update_git_email
 ~/.local/bin/update_git_email.sh:~/.local/bin/update_git_email
+~/Music/REAPER/VitalPresets:~/.local/share/vital/User/Presets
+~/Music/REAPER/Config:~/.config/REAPER

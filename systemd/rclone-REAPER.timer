@@ -1,0 +1,10 @@
+[Unit]
+Description="Bisync REAPER every 5 minutes"
+
+[Timer]
+OnBootSec=10sec
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
+
