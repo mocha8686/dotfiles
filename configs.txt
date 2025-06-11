@@ -55,6 +55,7 @@
 ./wallust/templates/colors-discord.css:~/.config/wallust/templates
 ./wallust/templates/colors-hyprland.conf:~/.config/wallust/templates
 ./wallust/templates/colors-kitty.conf:~/.config/wallust/templates
+./wallust/templates/colors-obsidian.css:~/.config/wallust/templates
 ./wallust/templates/colors-waybar.css:~/.config/wallust/templates
 ./wallust/templates/colors_neopywal.vim:~/.config/wallust/templates
 ./wallust/templates/hyprpaper.conf:~/.config/wallust/templates

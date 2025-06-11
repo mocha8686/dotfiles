@@ -1,0 +1,72 @@
+:root {
+	--cl-gen-foreground: {{ foreground }};
+	--cl-gen-background: {{ background }};
+	--cl-gen-cursor: {{ cursor }};
+
+	--cl-gen-color0: {{ color0 }};
+	--cl-gen-color1: {{ color1 }};
+	--cl-gen-color2: {{ color2 }};
+	--cl-gen-color3: {{ color3 }};
+	--cl-gen-color4: {{ color4 }};
+	--cl-gen-color5: {{ color5 }};
+	--cl-gen-color6: {{ color6 }};
+	--cl-gen-color7: {{ color7 }};
+	--cl-gen-color8: {{ color8 }};
+	--cl-gen-color9: {{ color9 }};
+	--cl-gen-color10: {{ color10 }};
+	--cl-gen-color11: {{ color11 }};
+	--cl-gen-color12: {{ color12 }};
+	--cl-gen-color13: {{ color13 }};
+	--cl-gen-color14: {{ color14 }};
+	--cl-gen-color15: {{ color15 }};
+
+	{% set accent = color0 %}
+	{% set digits = {
+		"0": 0,
+		"1": 1,
+		"2": 2,
+		"3": 3,
+		"4": 4,
+		"5": 5,
+		"6": 6,
+		"7": 7,
+		"8": 8,
+		"9": 9,
+		"A": 10,
+		"B": 11,
+		"C": 12,
+		"D": 13,
+		"E": 14,
+		"F": 15,
+	} %}
+
+	{% set r = digits[accent[1]] * 16 + digits[accent[2]] %}
+	{% set g = digits[accent[3]] * 16 + digits[accent[4]] %}
+	{% set b = digits[accent[5]] * 16 + digits[accent[6]] %}
+	{% set max = r if r > g and g > b else b if b > r and b > g else g %}
+	{% set min = r if r < g and g < b else b if b < r and b < g else g %}
+	{% set delta = max - min %}
+	{% if delta == 0 %}
+		{% set h = 0 %}
+	{% else %}
+		{% if max == r %}
+			{% set segment = (g - b) / delta %}
+			{% set shift = 360 / 60 if segment < 0 else 0 / 60 %}
+		{% elif max == g %}
+			{% set segment = (b - r) / delta %}
+			{% set shift = 120 / 60 %}
+		{% else %}
+			{% set segment = (r - g) / delta %}
+			{% set shift = 240 / 60 %}
+		{% endif %}
+		{% set h = (segment + shift) * 60 %}
+	{% endif %}
+
+	{% set l = (max + min) / 2 / 255 %}
+	{% set s = (delta / 255 / (1 - (2 * l - 1 if 2 * l - 1 >= 0 else 1 - 2 * l))) * 100 %}
+	{% set l = l * 100 %}
+
+	--cl-gen-accent-h: {{ h | int }};
+	--cl-gen-accent-s: {{ s | int }}%;
+	--cl-gen-accent-l: {{ l | int }}%;
+}
