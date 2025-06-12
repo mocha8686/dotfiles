@@ -1,0 +1,28 @@
+return {
+	'gaoDean/autolist.nvim',
+	-- ft = {
+	-- 	'markdown',
+	-- 	'text',
+	-- 	'tex',
+	-- 	'plaintex',
+	-- 	'norg',
+	-- },
+	event = 'InsertEnter',
+	priority = 25,
+	config = true,
+	keys = {
+		{ '<Tab>',      '<Cmd>AutolistTab<CR>',              mode = { 'i' } },
+		{ '<S-Tab>',    '<Cmd>AutolistShiftTab<CR>',         mode = { 'i' } },
+		{ '<CR>',       '<CR><Cmd>AutolistNewBullet<CR>',    mode = { 'i' } },
+		{ 'o',          'o<Cmd>AutolistNewBullet<CR>',       mode = { 'n' } },
+		{ 'O',          'O<Cmd>AutolistNewBulletBefore<CR>', mode = { 'n' } },
+		{ '<CR>',       '<Cmd>AutolistToggleCheckbox<CR>',   mode = { 'n' } },
+		{ '>>',         '>><Cmd>AutolistRecalculate<CR>',    mode = { 'n' } },
+		{ '<<',         '<<<Cmd>AutolistRecalculate<CR>',    mode = { 'n' } },
+		{ 'dd',         'dd<Cmd>AutolistRecalculate<CR>',    mode = { 'n' } },
+		{ 'd',          'd<Cmd>AutolistRecalculate<CR>',     mode = { 'v' } },
+		{ '<leader>ir', '<Cmd>AutolistRecalculate<CR>',      mode = { 'n' }, desc = 'Recalculate list' },
+		{ '<leader>in', '<Cmd>AutolistCycleNext<CR>',        mode = { 'n' }, desc = 'Next list type' },
+		{ '<leader>ip', '<Cmd>AutolistCyclePrev<CR>',        mode = { 'n' }, desc = 'Previous list type' },
+	},
+}

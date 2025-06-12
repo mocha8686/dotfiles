@@ -123,6 +123,38 @@ local function load_project_config()
 	end
 end
 
+local function setup_keys()
+	local keys = {
+		{ '<C-h>',     '<Cmd>wincmd h<CR>', desc = 'Select window to the left',  mode = { 'n', 't' } },
+		{ '<C-j>',     '<Cmd>wincmd j<CR>', desc = 'Select window below',        mode = { 'n', 't' } },
+		{ '<C-k>',     '<Cmd>wincmd k<CR>', desc = 'Select window above',        mode = { 'n', 't' } },
+		{ '<C-l>',     '<Cmd>wincmd l<CR>', desc = 'Select window to the right', mode = { 'n', 't' } },
+		{ '<leader>q', '<Cmd>wincmd c<CR>', desc = 'Close window' },
+		{ '<Tab>',     '<Cmd>bn<CR>',       desc = 'Select next tab' },
+		{ '<S-Tab>',   '<Cmd>bp<CR>',       desc = 'Select previous tab' },
+		{ ']q',        '<Cmd>cn<CR>',       desc = 'Next quickfix' },
+		{ '[q',        '<Cmd>cp<CR>',       desc = 'Previous quickfix' },
+		{ '<Up>',      'gk',                mode = { 'n', 'v' } },
+		{ '<Down>',    'gj',                mode = { 'n', 'v' } },
+		{ '<C-Left>',  'g0',                mode = { 'n', 'v' } },
+		{ '<C-Right>', 'g$',                mode = { 'n', 'v' } },
+	}
+
+	for _, key in ipairs(keys) do
+		vim.keymap.set(key.mode or 'n', key[1], key[2], {
+			nowait = key.nowait,
+			silent = key.silent,
+			script = key.script,
+			expr = key.expr,
+			unique = key.unique,
+			noremap = key.noremap,
+			desc = key.desc,
+			callback = key.callback,
+			replace_keycodes = key.replace_keycodes,
+		})
+	end
+end
+
 -- Lazy
 local function ensure_lazy()
 	local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -140,7 +172,7 @@ local function ensure_lazy()
 end
 
 set_vim_options()
-require('keys').map_plugin_keys 'vim'
+setup_keys()
 ensure_lazy()
 
 local plugins = require 'plugins'
