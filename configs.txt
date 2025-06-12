@@ -1,7 +1,4 @@
-./bin/change_wallpaper.sh:~/.local/bin
-./bin/reload_waybar.sh:~/.local/bin
-./bin/spells_to_printable.sh:~/.local/bin
-./bin/update_git_email.sh:~/.local/bin
+./bin:~/.local
 ./cava/config:~/.config/cava
 ./documents/notepad.html:~/Documents
 ./git/.gitconfig:~
@@ -11,8 +8,7 @@
 ./kanata/config.kbd:~/.config/kanata
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/plugins:~/.config/nvim/lua
-./nvim/snippets/python.snippets:~/.config/nvim/snippets
-./nvim/snippets/zig.snippets:~/.config/nvim/snippets
+./nvim/snippets:~/.config/nvim
 ./nvim/init.lua:~/.config/nvim
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
@@ -21,16 +17,6 @@
 ./tofi/config:~/.config/tofi
 ./tofi/power_menu.sh:~/.local/bin
 ./tofi/screenshot_menu.sh:~/.local/bin
-./wallust/templates/colors-discord.css:~/.config/wallust/templates
-./wallust/templates/colors-hyprland.conf:~/.config/wallust/templates
-./wallust/templates/colors-kitty.conf:~/.config/wallust/templates
-./wallust/templates/colors-obsidian.css:~/.config/wallust/templates
-./wallust/templates/colors-waybar.css:~/.config/wallust/templates
-./wallust/templates/colors_neopywal.vim:~/.config/wallust/templates
-./wallust/templates/hyprpaper.conf:~/.config/wallust/templates
-./wallust/templates/mako_config:~/.config/wallust/templates
-./wallust/templates/tofi-colors:~/.config/wallust/templates
-./wallust/wallust.toml:~/.config/wallust
-./waybar/config:~/.config/waybar
-./waybar/style.css:~/.config/waybar
+./wallust:~/.config
 ./zsh/.zshrc:~
+./waybar:~/.config

@@ -1,0 +1,1 @@
+../tofi/power_menu.sh

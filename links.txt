@@ -1,8 +1,2 @@
-~/.local/bin/change_wallpaper.sh:~/.local/bin/change_wallpaper
-~/.local/bin/reload_waybar.sh:~/.local/bin/reload_waybar
-~/.local/bin/reload_waybar.sh:~/.local/bin/rway
-~/.local/bin/spells_to_printable.sh:~/.local/bin/spells_to_printable
-~/.local/bin/update_git_email.sh:~/.local/bin/update_git_email
-~/.local/bin/update_git_email.sh:~/.local/bin/update_git_email
 ~/Music/REAPER/VitalPresets:~/.local/share/vital/User/Presets
 ~/Music/REAPER/Config:~/.config/REAPER
