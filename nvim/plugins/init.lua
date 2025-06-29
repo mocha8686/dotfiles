@@ -1,6 +1,7 @@
 local plugins = {
 	require 'plugins.mini',
 	require 'plugins.snacks',
+	require 'plugins.leetcode',
 
 	require 'plugins.editing',
 	require 'plugins.git',

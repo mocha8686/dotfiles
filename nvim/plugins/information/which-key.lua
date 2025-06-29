@@ -15,6 +15,7 @@ return {
 			{ '<leader>t',  group = 'Terminal' },
 			{ '<leader>x',  group = 'Trouble' },
 			{ '<leader>f', group = 'Writing' },
+			{ '<leader>v', group = 'Leet' },
 		},
 	},
 	config = true,
