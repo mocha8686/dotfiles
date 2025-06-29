@@ -2,7 +2,7 @@
 Description="Bisync REAPER every 5 minutes"
 
 [Timer]
-OnBootSec=10sec
+OnBootSec=5min
 OnUnitActiveSec=5min
 
 [Install]
