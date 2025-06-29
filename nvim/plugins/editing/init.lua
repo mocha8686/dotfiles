@@ -1,6 +1,7 @@
 local plugins = {
 	require 'plugins.editing.ccc',
 	require 'plugins.editing.dressing',
+	require 'plugins.editing.goyo',
 	require 'plugins.editing.nvim-spectre',
 	require 'plugins.editing.text-case',
 	require 'plugins.editing.vim-matchup',

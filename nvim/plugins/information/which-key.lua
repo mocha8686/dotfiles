@@ -14,6 +14,7 @@ return {
 			{ '<leader>s',  group = 'Spectre' },
 			{ '<leader>t',  group = 'Terminal' },
 			{ '<leader>x',  group = 'Trouble' },
+			{ '<leader>f', group = 'Writing' },
 		},
 	},
 	config = true,
