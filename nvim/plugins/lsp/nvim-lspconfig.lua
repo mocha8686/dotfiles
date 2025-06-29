@@ -103,11 +103,11 @@ local function setup_keys(buf)
 	end
 end
 
-local function config()
+local function init()
 	local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 	local lsp_signature = require 'lsp_signature'
-	local mason = require 'mason'
-	local mason_lspconfig = require 'mason-lspconfig'
+
+	util.lazy_load 'nvim-lspconfig'
 
 	vim.diagnostic.config {
 		signs = {
@@ -173,9 +173,6 @@ local function config()
 
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
-	mason.setup()
-	mason_lspconfig.setup()
-
 	vim.lsp.config('*', {
 		on_attach = on_attach,
 		capabilities = capabilities,
@@ -232,6 +229,19 @@ local function config()
 		on_attach = on_attach_disable_formatting,
 		capabilities = capabilities,
 	})
+
+	vim.lsp.config('rust_analyzer', {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+end
+
+local function config()
+	local mason = require 'mason'
+	local mason_lspconfig = require 'mason-lspconfig'
+
+	mason.setup()
+	mason_lspconfig.setup()
 end
 
 return {
@@ -245,6 +255,6 @@ return {
 		'williamboman/mason.nvim',
 	},
 	event = 'InsertEnter',
-	init = util.lazy_load 'nvim-lspconfig',
+	init = init,
 	config = config,
 }
