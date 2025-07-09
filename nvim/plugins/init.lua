@@ -1,6 +1,7 @@
 local plugins = {
 	require 'plugins.leetcode',
 	require 'plugins.mini',
+	require 'plugins.neoconf',
 	require 'plugins.snacks',
 
 	require 'plugins.editing',
