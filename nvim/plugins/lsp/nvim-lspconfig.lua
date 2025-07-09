@@ -106,6 +106,21 @@ end
 local function init()
 	local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 	local lsp_signature = require 'lsp_signature'
+	local mason = require 'mason'
+	local mason_lspconfig = require 'mason-lspconfig'
+	local neoconf = require 'neoconf'
+
+	mason.setup()
+	mason_lspconfig.setup()
+
+	neoconf.setup {
+		plugins = {
+			lua_ls = {
+				enabled_for_neovim_config = true,
+				enabled = true,
+			},
+		},
+	}
 
 	util.lazy_load 'nvim-lspconfig'
 
@@ -234,19 +249,26 @@ local function init()
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
-end
 
-local function config()
-	local mason = require 'mason'
-	local mason_lspconfig = require 'mason-lspconfig'
-
-	mason.setup()
-	mason_lspconfig.setup()
+	vim.lsp.config('lua_ls', {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		settings = {
+			Lua = {
+				workspace = {
+					userThirdParty = { '/home/mocha/Projects/dotfiles/nvim/lua_ls_lib/' },
+					checkThirdParty = true,
+					library = { '/home/mocha/Projects/dotfiles/nvim/lua_ls_lib/CC-Tweaked/library' },
+				},
+			},
+		},
+	})
 end
 
 return {
 	'neovim/nvim-lspconfig',
 	dependencies = {
+		'folke/neoconf.nvim',
 		'hrsh7th/nvim-cmp',
 		'nvim-telescope/telescope.nvim',
 		'nvimtools/none-ls.nvim',
@@ -256,5 +278,4 @@ return {
 	},
 	event = 'InsertEnter',
 	init = init,
-	config = config,
 }
