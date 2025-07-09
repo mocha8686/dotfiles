@@ -5,7 +5,7 @@ local plugins = {
 	require 'plugins.aesthetics.limelight',
 	require 'plugins.aesthetics.lualine',
 	require 'plugins.aesthetics.neopywal',
-	require 'plugins.aesthetics.nvim-notify',
+	require 'plugins.aesthetics.noice',
 	require 'plugins.aesthetics.nvim-web-devicons',
 	require 'plugins.aesthetics.todo-comments',
 	require 'plugins.aesthetics.vim-cool',
