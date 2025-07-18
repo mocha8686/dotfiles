@@ -96,6 +96,15 @@ local function set_vim_options()
 		end,
 	})
 
+	autocmd('FileType', {
+		pattern = { 'haskell' },
+		callback = function()
+			opt.expandtab = true
+			opt.shiftwidth = 2
+			opt.tabstop = 2
+		end,
+	})
+
 	autocmd('TermOpen', {
 		pattern = '*',
 		callback = function()
@@ -125,19 +134,19 @@ end
 
 local function setup_keys()
 	local keys = {
-		{ '<C-h>',     '<Cmd>wincmd h<CR>', desc = 'Select window to the left',  mode = { 'n', 't' } },
-		{ '<C-j>',     '<Cmd>wincmd j<CR>', desc = 'Select window below',        mode = { 'n', 't' } },
-		{ '<C-k>',     '<Cmd>wincmd k<CR>', desc = 'Select window above',        mode = { 'n', 't' } },
-		{ '<C-l>',     '<Cmd>wincmd l<CR>', desc = 'Select window to the right', mode = { 'n', 't' } },
+		{ '<C-h>', '<Cmd>wincmd h<CR>', desc = 'Select window to the left', mode = { 'n', 't' } },
+		{ '<C-j>', '<Cmd>wincmd j<CR>', desc = 'Select window below', mode = { 'n', 't' } },
+		{ '<C-k>', '<Cmd>wincmd k<CR>', desc = 'Select window above', mode = { 'n', 't' } },
+		{ '<C-l>', '<Cmd>wincmd l<CR>', desc = 'Select window to the right', mode = { 'n', 't' } },
 		{ '<leader>q', '<Cmd>wincmd c<CR>', desc = 'Close window' },
-		{ '<Tab>',     '<Cmd>bn<CR>',       desc = 'Select next tab' },
-		{ '<S-Tab>',   '<Cmd>bp<CR>',       desc = 'Select previous tab' },
-		{ ']q',        '<Cmd>cn<CR>',       desc = 'Next quickfix' },
-		{ '[q',        '<Cmd>cp<CR>',       desc = 'Previous quickfix' },
-		{ '<Up>',      'gk',                mode = { 'n', 'v' } },
-		{ '<Down>',    'gj',                mode = { 'n', 'v' } },
-		{ '<C-Left>',  'g0',                mode = { 'n', 'v' } },
-		{ '<C-Right>', 'g$',                mode = { 'n', 'v' } },
+		{ '<Tab>', '<Cmd>bn<CR>', desc = 'Select next tab' },
+		{ '<S-Tab>', '<Cmd>bp<CR>', desc = 'Select previous tab' },
+		{ ']q', '<Cmd>cn<CR>', desc = 'Next quickfix' },
+		{ '[q', '<Cmd>cp<CR>', desc = 'Previous quickfix' },
+		{ '<Up>', 'gk', mode = { 'n', 'v' } },
+		{ '<Down>', 'gj', mode = { 'n', 'v' } },
+		{ '<C-Left>', 'g0', mode = { 'n', 'v' } },
+		{ '<C-Right>', 'g$', mode = { 'n', 'v' } },
 	}
 
 	for _, key in ipairs(keys) do
