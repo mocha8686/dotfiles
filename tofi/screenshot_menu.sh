@@ -8,6 +8,15 @@ case $op in
 "Select region (clipboard)") grim -g "$(slurp)" - | wl-copy ;;
 "Screen capture") grim ;;
 "Select region") grim -g "$(slurp)" ;;
-"Screen capture (imv)") dir=$(mktemp) && grim "$dir" && imv "$dir" ;;
-"Select region (imv)") dir=$(mktemp) && grim -g "$(slurp)" "$dir" && imv "$dir" ;;
+"Screen capture (imv)")
+	dir=$(mktemp)
+	grim "$dir"
+	hyprctl dispatch "exec [float; pin; move 100%-w-20; size 25%] imv $dir"
+	;;
+"Select region (imv)")
+	dir=$(mktemp)
+	dim=$(slurp)
+	grim -g "$dim" "$dir"
+	size=$(echo "$dim" | cut -d " " -f 2 | tr "x" " ")
+	hyprctl dispatch "exec [float; pin; size $size] imv $dir" ;;
 esac
