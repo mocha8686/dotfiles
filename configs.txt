@@ -8,9 +8,9 @@
 ./hyprland/hyprlock.conf:~/.config/hypr
 ./kanata/config.kbd:~/.config/kanata
 ./kitty/kitty.conf:~/.config/kitty
+./nvim/init.lua:~/.config/nvim
 ./nvim/plugins:~/.config/nvim/lua
 ./nvim/snippets:~/.config/nvim
-./nvim/init.lua:~/.config/nvim
 ./nvim/util.lua:~/.config/nvim/lua
 ./pipewire/switch-on-connect.conf:~/.config/pipewire/pipewire-pulse.conf.d
 ./radare2/.radare2rc:~
@@ -19,5 +19,5 @@
 ./tofi/power_menu.sh:~/.local/bin
 ./tofi/screenshot_menu.sh:~/.local/bin
 ./wallust:~/.config
-./zsh/.zshrc:~
 ./waybar:~/.config
+./zsh/.zshrc:~
