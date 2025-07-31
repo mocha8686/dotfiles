@@ -1,5 +1,6 @@
 ./bin:~/.local
 ./cava/config:~/.config/cava
+./clang/.clang-format:~/
 ./documents/notepad.html:~/Documents
 ./git/.gitconfig:~
 ./hyprland/hypridle.conf:~/.config/hypr
