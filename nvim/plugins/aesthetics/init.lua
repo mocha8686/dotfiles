@@ -1,7 +1,6 @@
 local plugins = {
 	require 'plugins.aesthetics.bufferline',
 	require 'plugins.aesthetics.fidget',
-	require 'plugins.aesthetics.image',
 	require 'plugins.aesthetics.limelight',
 	require 'plugins.aesthetics.lualine',
 	require 'plugins.aesthetics.neopywal',
