@@ -196,7 +196,7 @@ local function init()
 	vim.lsp.config('clangd', {
 		on_attach = on_attach,
 		capabilities = capabilities,
-		cmd = (vim.fn.has 'macunix' and { '/usr/local/opt/llvm/bin/clangd' } or nil),
+		cmd = (vim.loop.os_uname().sysname == 'Darwin' and { '/usr/local/opt/llvm/bin/clangd' } or nil),
 		filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
 	})
 	vim.lsp.config('denols', {
