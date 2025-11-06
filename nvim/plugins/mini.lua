@@ -100,6 +100,11 @@ local function config()
 			end
 		end
 	end
+
+	vim.keymap.set({ 'n', 'v' }, 's', 's', {
+		noremap = true,
+		silent = true,
+	})
 end
 
 return {
