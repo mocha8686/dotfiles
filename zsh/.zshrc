@@ -114,6 +114,8 @@ alias ses='source ~/.session.sh'
 
 function xsltopen() { xsltproc -o "$1".{html,xml} && open "$1".html }
 
+alias get_idf='. $HOME/esp/esp-idf/export.sh'
+
 eval "$(zoxide init zsh)"
 
 if [[ -f ~/.os.sh ]] then
