@@ -108,7 +108,7 @@ local function config()
 end
 
 return {
-	'echasnovski/mini.nvim',
+	'nvim-mini/mini.nvim',
 	dependencies = {
 		'folke/snacks.nvim',
 	},
