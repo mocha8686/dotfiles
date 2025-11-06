@@ -16,6 +16,19 @@ local keys = {
 		end,
 		desc = 'Delete buffer',
 	},
+	{
+		'<leader>W',
+		function()
+			local delete = require('mini.bufremove').delete
+			local name = vim.api.nvim_buf_get_name(0)
+
+			while name ~= '' do
+				delete()
+				name = vim.api.nvim_buf_get_name(0)
+			end
+		end,
+		desc = 'Delete all buffers',
+	},
 
 	-- mini.animate
 	{
