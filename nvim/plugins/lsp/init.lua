@@ -1,5 +1,6 @@
 local plugins = {
 	require 'plugins.lsp.lazydev',
+	require 'plugins.lsp.lean',
 	require 'plugins.lsp.lightbulb',
 	require 'plugins.lsp.luasnip',
 	require 'plugins.lsp.mason-null-ls',
