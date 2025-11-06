@@ -89,7 +89,7 @@ local function set_vim_options()
 	})
 
 	autocmd('FileType', {
-		pattern = { 'text', 'markdown', 'tex', 'plaintex', 'mdx' },
+		pattern = { 'text', 'markdown', 'tex', 'plaintex', 'mdx', 'typst' },
 		callback = function()
 			opt.wrap = true
 			opt.linebreak = true
