@@ -6,6 +6,7 @@ local plugins = {
 	require 'plugins.lsp.none-ls',
 	require 'plugins.lsp.nvim-cmp',
 	require 'plugins.lsp.nvim-lspconfig',
+	require 'plugins.lsp.typst-preview',
 }
 
 return plugins
