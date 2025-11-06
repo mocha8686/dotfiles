@@ -250,18 +250,20 @@ local function init()
 		capabilities = capabilities,
 	})
 
-	vim.lsp.config('lua_ls', {
+	vim.lsp.config('tinymist', {
 		on_attach = on_attach,
 		capabilities = capabilities,
-		settings = {
-			Lua = {
-				workspace = {
-					userThirdParty = { '/home/mocha/Projects/dotfiles/nvim/lua_ls_lib/' },
-					checkThirdParty = true,
-					library = { '/home/mocha/Projects/dotfiles/nvim/lua_ls_lib/CC-Tweaked/library' },
-				},
-			},
-		},
+	})
+
+	vim.lsp.config('eslint', {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		root_markers = { 'eslint.config.js' },
+	})
+
+	vim.lsp.config('astro', {
+		on_attach = on_attach_disable_formatting,
+		capabilities = capabilities,
 	})
 end
 
