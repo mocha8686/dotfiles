@@ -2,8 +2,8 @@ return {
 	'uga-rosa/ccc.nvim',
 	keys = {
 		{ '<leader>ch', '<Cmd>CccHighlighterToggle<CR>', desc = 'Highlight colors' },
-		{ '<leader>cp', '<Cmd>CccPick<CR>',              desc = 'Open color picker' },
-		{ '<leader>cc', '<Cmd>CccConvert<CR>',           desc = 'Convert color to other formats' },
+		{ '<leader>cp', '<Cmd>CccPick<CR>', desc = 'Open color picker' },
+		{ '<leader>cc', '<Cmd>CccConvert<CR>', desc = 'Convert color to other formats' },
 	},
 	ft = {
 		'html',
@@ -22,11 +22,13 @@ return {
 
 		return {
 			inputs = {
+				ccc.input.oklch,
 				ccc.input.hsl,
 				ccc.input.rgb,
 				ccc.input.cmyk,
 			},
 			outputs = {
+				ccc.output.css_oklch,
 				ccc.output.css_hsl,
 				ccc.output.hex_short,
 				ccc.output.hex,
