@@ -4,6 +4,7 @@ local plugins = {
 	require 'plugins.editing.goyo',
 	require 'plugins.editing.nvim-spectre',
 	require 'plugins.editing.text-case',
+	require 'plugins.editing.venn',
 	require 'plugins.editing.vim-matchup',
 	-- require 'plugins.editing.autolist',
 	-- require 'plugins.editing.vim-table-mode',
