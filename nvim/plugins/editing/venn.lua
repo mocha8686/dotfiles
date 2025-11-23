@@ -24,8 +24,10 @@ end
 return {
 	'jbyuki/venn.nvim',
 	keys = {
-		'<leader>V',
-		toggle_venn,
-		desc = 'Toggle venn',
+		{
+			'<leader>V',
+			toggle_venn,
+			desc = 'Toggle venn',
+		},
 	},
 }
