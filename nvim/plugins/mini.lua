@@ -31,26 +31,26 @@ local keys = {
 	},
 
 	-- mini.animate
-	{
-		'<leader>ad',
-		function()
-			local config = require('mini.animate').config
-			for key, _ in pairs(config) do
-				config[key].enable = false
-			end
-		end,
-		desc = 'Disable animations',
-	},
-	{
-		'<leader>ai',
-		function()
-			local config = require('mini.animate').config
-			for key, _ in pairs(config) do
-				config[key].enable = true
-			end
-		end,
-		desc = 'Enable animations',
-	},
+	-- {
+	-- 	'<leader>ad',
+	-- 	function()
+	-- 		local config = require('mini.animate').config
+	-- 		for key, _ in pairs(config) do
+	-- 			config[key].enable = false
+	-- 		end
+	-- 	end,
+	-- 	desc = 'Disable animations',
+	-- },
+	-- {
+	-- 	'<leader>ai',
+	-- 	function()
+	-- 		local config = require('mini.animate').config
+	-- 		for key, _ in pairs(config) do
+	-- 			config[key].enable = true
+	-- 		end
+	-- 	end,
+	-- 	desc = 'Enable animations',
+	-- },
 }
 
 local function config()
@@ -81,7 +81,7 @@ local function config()
 	}
 
 	local appearance = {
-		'mini.animate',
+		-- 'mini.animate',
 		'mini.icons',
 		'mini.indentscope',
 	}
