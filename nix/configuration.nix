@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, ... } @ args:
 
 {
   imports =
@@ -58,9 +58,6 @@
     shell = pkgs.zsh;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.iosevka
   ];
@@ -70,7 +67,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    neovim
+    (neovim.override { configure = { packages.myPlugins = { start = [ args.lazyNixHelper ]; }; }; })
     wget
     uwsm
     git
