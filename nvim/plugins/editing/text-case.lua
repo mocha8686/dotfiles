@@ -3,8 +3,8 @@ return {
 	lazy = false,
 	config = true,
 	keys = {
-		'gq',
-		{ 'gq.', '<Cmd>TextCaseOpenTelescope<CR>', mode = { 'n', 'x' }, desc = 'Telescope' },
+		'gt',
+		{ 'gt.', '<Cmd>TextCaseOpenTelescope<CR>', mode = { 'n', 'x' }, desc = 'Telescope' },
 	},
 	cmd = {
 		'Subs',
@@ -14,6 +14,6 @@ return {
 		'TextCaseStartReplacingCommand',
 	},
 	opts = {
-		prefix = 'gq',
+		prefix = 'gt',
 	},
 }
