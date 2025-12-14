@@ -3,37 +3,31 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    homeManager = {
+    nixvim.url = "github:nix-community/nixvim";
+    home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lazyNixHelper = {
-      url = "github:b-src/lazy-nix-helper.nvim";
-      flake = false;
-    };
   };
 
-  outputs = { self, nixpkgs, homeManager, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
   let
-    pkgs = import nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
-    lazyNixHelper = pkgs.vimUtils.buildVimPlugin {
-      name = "lazy-nix-helper";
-      src = inputs.lazyNixHelper;
-    };
+    system =  "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
   in
   {
     nixosConfigurations = {
       asahina = nixpkgs.lib.nixosSystem {
         pkgs = pkgs;
-        specialArgs = { lazyNixHelper = lazyNixHelper; };
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          homeManager.nixosModules.home-manager {
+          home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.mocha = ./home.nix;
+              extraSpecialArgs = { inherit inputs; };
             };
           }
         ];

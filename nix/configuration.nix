@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... } @ args:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -67,7 +67,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    (neovim.override { configure = { packages.myPlugins = { start = [ args.lazyNixHelper ]; }; }; })
+    # neovim
     wget
     uwsm
     git
