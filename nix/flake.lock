@@ -41,6 +41,23 @@
         "type": "github"
       }
     },
+    "neopywal": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723226430,
+        "narHash": "sha256-P28gg5fPPPyhepPHOZFgMnGTToCXK+v4ev6oTRSZXtg=",
+        "owner": "RedsXDD",
+        "repo": "neopywal.nvim",
+        "rev": "2d65d138463bbbe9d824b9bc1048ef1888017da6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RedsXDD",
+        "ref": "v2.6.0",
+        "repo": "neopywal.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1765472234,
@@ -96,6 +113,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "neopywal": "neopywal",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim"
       }

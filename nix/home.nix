@@ -1,7 +1,16 @@
 { config, pkgs, inputs, ... }:
 
+let
+  neopywal = pkgs.vimUtils.buildVimPlugin {
+    name = "neopywal";
+    src = inputs.neopywal;
+    doCheck = false;
+  };
+in
 {
-  imports = [ inputs.nixvim.homeModules.nixvim ];
+  imports = [
+    inputs.nixvim.homeModules.nixvim
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -104,14 +113,18 @@
     # EDITOR = "emacs";
   };
 
-  programs.nixvim = {
-    enable = true;
-
-    plugins.lualine.enable = true;
-  };
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.nixvim = {
+    enable = true;
+    defaultEditor = true;
+    extraPlugins = [
+      neopywal
+    ];
+
+    imports = [ ./programs/nixvim.nix ];
+  };
 
   programs.zsh = {
     enable = true;
