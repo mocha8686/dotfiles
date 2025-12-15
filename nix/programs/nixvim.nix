@@ -1,214 +1,442 @@
 { pkgs, lib, inputs, ... }:
-{
-  plugins = {
-    mini-diff.enable = true;
-    mini-git.enable = true;
-    mini-icons = {
-      enable = true;
-      mockDevIcons = true;
-    };
+rec {
+	plugins = {
+		todo-comments.enable = true;
+		gitsigns.enable = true;
+		git-conflict.enable = true;
+		vim-matchup.enable = true;
 
-    mini-statusline = {
-      enable = true;
-      settings = let
-        fn = lib.nixvim.utils.mkRaw ''
+		spectre = {
+			enable = true;
+		};
+
+		toggleterm = {
+			enable = true;
+			settings = {
+				open_mapping = "'<leader>to'";
+				direction = "vertical";
+				hide_numbers = true;
+				insert_mappings = false;
+				persist_mode = false;
+				persist_size = false;
+				shade_terminals = false;
+				size = lib.nixvim.mkRaw "vim.o.columns * 0.4";
+				terminal_mappings = false;
+			};
+		};
+
+		ccc = {
+			enable = true;
+			settings = {
+				inputs = [
+					"ccc.input.oklch"
+					"ccc.input.hsl"
+					"ccc.input.rgb"
+					"ccc.input.cmyk"
+				];
+				outputs = [
+					"ccc.output.css_oklch"
+					"ccc.output.css_hsl"
+					"ccc.output.hex_short"
+					"ccc.output.hex"
+					"ccc.output.css_rgb"
+				];
+				highlighter = {
+					auto_enable = true;
+					filetypes = [
+						"html"
+						"css"
+						"scss"
+						"sass"
+						"javascript"
+						"javascriptreact"
+						"typescript"
+						"typescriptreact"
+						"markdown"
+						"mdx"
+					];
+				};
+			};
+		};
+
+		mini = {
+			enable = true;
+			mockDevIcons = true;
+
+			modules = {
+				# Editing
+				ai = {};
+				align = {};
+				move = {};
+				operators = {};
+				pairs = {};
+				splitjoin = {};
+				surround = {};
+				# TODO: configure these
+				completion = {};
+				snippets = {};
+
+				# General
+				cmdline = {};
+				diff = {};
+				extra = {};
+				files = {
+					mappings = {
+						go_in = "L";
+						go_in_plus = "l";
+						go_out = "h";
+						go_out_plus = "H";
+					};
+				};
+				git = {};
+				jump = {};
+				jump2d = {
+					mappings.start_jumping = "z";
+				};
+				pick = {};
+
+				# Appearance
+				icons = {
+					mockDevIcons = true;
+				};
+				indentscope = {};
+				notify = {};
+				tabline = {};
+
+				# Extra
+				clue = {
+					window.delay = 250;
+					triggers = lib.nixvim.mkRaw ''
+						{
+							-- Leader triggers
+							{ mode = 'n', keys = '<Leader>' },
+							{ mode = 'x', keys = '<Leader>' },
+
+							-- Built-in completion
+							{ mode = 'i', keys = '<C-x>' },
+
+							-- `g` key
+							{ mode = 'n', keys = 'g' },
+							{ mode = 'x', keys = 'g' },
+
+							-- Marks
+							{ mode = 'n', keys = "'" },
+							{ mode = 'n', keys = '`' },
+							{ mode = 'x', keys = "'" },
+							{ mode = 'x', keys = '`' },
+
+							-- Registers
+							{ mode = 'n', keys = '"' },
+							{ mode = 'x', keys = '"' },
+							{ mode = 'i', keys = '<C-r>' },
+							{ mode = 'c', keys = '<C-r>' },
+
+							-- Window commands
+							{ mode = 'n', keys = '<C-w>' },
+						}
+						'';
+					clues = lib.nixvim.mkRaw ''
+						{
+							{ mode = 'n', keys = '<leader>c', desc = '+CCC' },
+							{ mode = 'n', keys = '<leader>s', desc = '+Spectre' },
+							{ mode = 'n', keys = '<leader>t', desc = '+Toggleterm' },
+
+							require('mini.clue').gen_clues.builtin_completion(),
+							require('mini.clue').gen_clues.g(),
+							require('mini.clue').gen_clues.marks(),
+							require('mini.clue').gen_clues.registers(),
+							require('mini.clue').gen_clues.windows(),
+						}
+						'';
+				};
+				statusline = let
+						fn = lib.nixvim.mkRaw ''
 function()
-  local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-  local git           = MiniStatusline.section_git({ trunc_width = 40 })
-  local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
-  local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-  local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
-  local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
-  local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-  -- local location      = MiniStatusline.section_location({ trunc_width = 75 })
-  local location      = '%l %v'
-  local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
+	local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+	local git           = MiniStatusline.section_git({ trunc_width = 40 })
+	local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
+	local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+	local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
+	local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
+	local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+	-- local location   = MiniStatusline.section_location({ trunc_width = 75 })
+	local location      = '%l %v'
+	local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
-  return MiniStatusline.combine_groups({
-    { hl = mode_hl,                  strings = { string.upper(mode) } },
-    { hl = 'MiniStatuslineDevinfo',  strings = { git, diff, diagnostics, lsp } },
-    '%<', -- Mark general truncate point
-    { hl = 'MiniStatuslineFilename', strings = { filename } },
-    '%=', -- End left alignment
-    { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
-    { hl = mode_hl,                  strings = { search, location } },
-  })
+	return MiniStatusline.combine_groups({
+		{ hl = mode_hl,                       strings = { string.upper(mode) } },
+		{ hl = 'MiniStatuslineDevinfo',       strings = { git, diff, diagnostics, lsp } },
+		'%<', -- Mark general truncate point
+		{ hl = 'MiniStatuslineFilename',      strings = { filename } },
+		'%=', -- End left alignment
+		{ hl = 'MiniStatuslineFileinfo',      strings = { fileinfo } },
+		{ hl = mode_hl,                       strings = { search, location } },
+	})
 end
 '';
-      in
-      {
-        content.active = fn;
-        content.inactive = fn;
-      };
-    };
-  };
+					in
+				{
+					content.active = fn;
+					content.inactive = fn;
+				};
+			};
+		};
 
-  extraConfigLua = ''
-    require('neopywal').setup { use_wallust = true }
-    vim.cmd.colorscheme 'neopywal'
-  '';
+		snacks = {
+			enable = true;
+			settings = {
+				image.enable = true;
+				quickfile.enable = true;
+			};
+		};
+	};
 
-  global = {
-    mapleader = " ";
-    maplocalleader = "\\";
-  };
+	extraConfigLua = ''
+		require('neopywal').setup { use_wallust = true }
+		vim.cmd.colorscheme 'neopywal'
+	'';
 
-  opts = {
-    # Navigation
-    backspace = "indent,eol,start";
-    hlsearch = true;
-    ignorecase = true;
-    incsearch = true;
-    smartcase = true;
-    splitbelow = true;
-    splitright = true;
-    whichwrap = "b,s,<,>,[,]";
+	globals = {
+		mapleader = " ";
+		maplocalleader = "\\";
+	};
 
-    # Editing
-    autoindent = true;
-    expandtab = false;
-    shiftwidth = 4;
-    tabstop = 4;
-    undofile = true;
-    virtualedit = "onemore,block";
-    history = 25;
+	opts = {
+		# Navigation
+		backspace = "indent,eol,start";
+		hlsearch = true;
+		ignorecase = true;
+		incsearch = true;
+		smartcase = true;
+		splitbelow = true;
+		splitright = true;
+		whichwrap = "b,s,<,>,[,]";
 
-    # Styling
-    encoding = "utf-8";
-    laststatus = 3;
-    list = true;
-    listchars = {
-      trail = "⋅";
-      extends = "⟩";
-      precedes = "⟨";
-      tab = "»⋅";
-      nbsp = "␣";
-    };
-    number = true;
-    relativenumber = true;
-    scrolloff = 12;
-    showbreak = "↪ ";
-    showcmd = true;
-    showmode = false;
-    sidescroll = 10;
-    signcolumn = "yes";
-    termguicolors = true;
-    title = true;
-    updatetime = 150;
-    wrap = false;
-    fillchars = {
-      stl = " ";
-      stlnc = " ";
-      wbr = " ";
-    };
-  };
+		# Editing
+		autoindent = true;
+		expandtab = false;
+		shiftwidth = 4;
+		tabstop = 4;
+		undofile = true;
+		virtualedit = "onemore,block";
+		history = 25;
 
-  autoGroups = {
-    "number_focus".clear = true;
-  };
+		# Styling
+		encoding = "utf-8";
+		laststatus = 3;
+		list = true;
+		listchars = {
+			trail = "⋅";
+			extends = "⟩";
+			precedes = "⟨";
+			tab = "»⋅";
+			nbsp = "␣";
+		};
+		number = true;
+		relativenumber = true;
+		scrolloff = 12;
+		showbreak = "↪ ";
+		showcmd = true;
+		showmode = false;
+		sidescroll = 10;
+		signcolumn = "yes";
+		termguicolors = true;
+		title = true;
+		updatetime = 150;
+		wrap = false;
+		fillchars = {
+			stl = " ";
+			stlnc = " ";
+			wbr = " ";
+		};
+	};
 
-  autoCmd = [
-    {
-      event = [ "BufEnter" "FocusGained" "InsertLeave" ];
-      pattern = "*";
-      command = "set relativenumber";
-      group = "number_focus";
-    }
-    {
-      event = [ "BufLeave" "FocusLost" "InsertEnter" ];
-      pattern = "*";
-      command = "set norelativenumber";
-      group = "number_focus";
-    }
-  ];
+	autoGroups = {
+		"number_focus".clear = true;
+	};
 
-  keymaps = [
-    {
-      key = "<C-h>";
-      action = "<Cmd>wincmd h<CR>";
-      mode = [ "n" "t" ];
-      options = {
-        desc = "Select window to the left";
-      };
-    }
-    {
-      key = "<C-j>";
-      action = "<Cmd>wincmd j<CR>";
-      mode = [ "n" "t" ];
-      options = {
-        desc = "Select window below";
-      };
-    }
-    {
-      key = "<C-k>";
-      action = "<Cmd>wincmd k<CR>";
-      mode = [ "n" "t" ];
-      options = {
-        desc = "Select window above";
-      };
-    }
-    {
-      key = "<C-l>";
-      action = "<Cmd>wincmd l<CR>";
-      mode = [ "n" "t" ];
-      options = {
-        desc = "Select window to the right";
-      };
-    }
-    {
-      key = "<leader>q";
-      action = "<Cmd>wincmd q<CR>";
-      options = {
-        desc = "Close window";
-      };
-    }
-    {
-      key = "<Tab>";
-      action = "<Cmd>bn<CR>";
-      options = {
-        desc = "Select next buffer";
-      };
-    }
-    {
-      key = "<S-Tab>";
-      action = "<Cmd>bp<CR>";
-      options = {
-        desc = "Select previous buffer";
-      };
-    }
-    {
-      key = "]q";
-      action = "<Cmd>cn<CR>";
-      options = {
-        desc = "Next quickfix";
-      };
-    }
-    {
-      key = "[q";
-      action = "<Cmd>cp<CR>";
-      options = {
-        desc = "Previous quickfix";
-      };
-    }
-    {
-      key = "<Up>";
-      action = "<Cmd>gk<CR>";
-      mode = [ "n" "v" ];
-    }
-    {
-      key = "<Down>";
-      action = "<Cmd>gj<CR>";
-      mode = [ "n" "v" ];
-    }
-    {
-      key = "<C-Left>";
-      action = "<Cmd>g0<CR>";
-      mode = [ "n" "v" ];
-    }
-    {
-      key = "<C-Right>";
-      action = "<Cmd>g$<CR>";
-      mode = [ "n" "v" ];
-    }
-  ];
+	autoCmd = let
+		noNumbers = "(vim.b['term_title'] or vim.bo.filetype == 'man' or vim.bo.filetype == 'help' or string.find(vim.bo.filetype, 'dap'))";
+		wrapFiletypes = ["text" "markdown" "tex" "plaintex" "mdx" "typst"];
+	in
+	[
+		{
+			event = [ "BufEnter" "FocusGained" "InsertLeave" ];
+			pattern = "*";
+			callback = lib.nixvim.mkRaw ''
+				function()
+					if not ${noNumbers} then
+						vim.o.relativenumber = true
+					end
+				end
+			'';
+			group = "number_focus";
+		}
+		{
+			event = [ "BufLeave" "FocusLost" "InsertEnter" ];
+			pattern = "*";
+			callback = lib.nixvim.mkRaw ''
+				function()
+					if not ${noNumbers} then
+						vim.o.relativenumber = false
+					end
+				end
+			'';
+			group = "number_focus";
+		}
+		{
+			event = [ "FileType" ];
+			pattern = wrapFiletypes;
+			callback = lib.nixvim.mkRaw ''
+				function()
+					vim.o.wrap = true
+					vim.o.linebreak = true
+				end
+			'';
+		}
+		{
+			event = [ "TermOpen" ];
+			pattern = "*";
+			callback = lib.nixvim.mkRaw ''
+				function()
+					vim.opt_local.number = false
+					vim.opt_local.relativenumber = false
+				end
+			'';
+		}
+	];
+
+	keymaps = [
+		{
+			key = "<C-h>";
+			action = "<Cmd>wincmd h<CR>";
+			mode = [ "n" "t" ];
+			options.desc = "Select window to the left";
+		}
+		{
+			key = "<C-j>";
+			action = "<Cmd>wincmd j<CR>";
+			mode = [ "n" "t" ];
+			options.desc = "Select window below";
+		}
+		{
+			key = "<C-k>";
+			action = "<Cmd>wincmd k<CR>";
+			mode = [ "n" "t" ];
+			options.desc = "Select window above";
+		}
+		{
+			key = "<C-l>";
+			action = "<Cmd>wincmd l<CR>";
+			mode = [ "n" "t" ];
+			options.desc = "Select window to the right";
+		}
+		{
+			key = "<leader>w";
+			action = "<Cmd>bd<CR>";
+			options.desc = "Close buffer";
+		}
+		{
+			key = "<leader>q";
+			action = "<Cmd>wincmd q<CR>";
+			options.desc = "Close window";
+		}
+		{
+			key = "<Tab>";
+			action = "<Cmd>bn<CR>";
+			options.desc = "Select next buffer";
+		}
+		{
+			key = "<S-Tab>";
+			action = "<Cmd>bp<CR>";
+			options.desc = "Select previous buffer";
+		}
+		{
+			key = "]q";
+			action = "<Cmd>cn<CR>";
+			options.desc = "Next quickfix";
+		}
+		{
+			key = "[q";
+			action = "<Cmd>cp<CR>";
+			options.desc = "Previous quickfix";
+		}
+		{
+			key = "<Up>";
+			action = "gk";
+			mode = [ "n" "v" ];
+		}
+		{
+			key = "<Down>";
+			action = "gj";
+			mode = [ "n" "v" ];
+		}
+		{
+			key = "<C-Left>";
+			action = "g0";
+			mode = [ "n" "v" ];
+		}
+		{
+			key = "<C-Right>";
+			action = "g$";
+			mode = [ "n" "v" ];
+		}
+		{
+			key = "<C-p>";
+			action = "<Cmd>Pick files<CR>";
+			options.desc = "Pick files";
+		}
+		{
+			key = "<C-p>";
+			action = "<Cmd>Pick files<CR>";
+			options.desc = "Pick files";
+		}
+		{
+			key = "<leader>p";
+			action = "<Cmd>Pick grep_live<CR>";
+			options.desc = "Live grep";
+		}
+		{
+			key = "<leader>cp";
+			action = "<Cmd>CccPick<CR>";
+			options.desc = "Pick/convert a color";
+		}
+		{
+			key = "<C-t>";
+			action = lib.nixvim.mkRaw "function() MiniFiles.open() end";
+			options.desc = "Open files";
+		}
+		{
+			key = "s";
+			action = "s";
+			mode = [ "n" "v" ];
+		}
+		{
+			key = "<C-'>";
+			action = "<C-\\><C-n>'";
+			mode = [ "t" ];
+			options.desc = "Exit to normal mode";
+		}
+		{
+			key = "<leader>so";
+			action = lib.nixvim.mkRaw "function() require('spectre').toggle() end";
+			options.desc = "Toggle Spectre";
+		}
+		{
+			key = "<leader>sw";
+			action = lib.nixvim.mkRaw "function() require('spectre').open_visual({ select_word = true }) end";
+			options.desc = "Search current word";
+		}
+		{
+			key = "<leader>sw";
+			action = lib.nixvim.mkRaw "function() require('spectre').open_visual() end";
+			mode = "v";
+			options.desc = "Search current word";
+		}
+		{
+			key = "<leader>sp";
+			action = lib.nixvim.mkRaw "function() require('spectre').open_file_search({ select_word = true }) end";
+			options.desc = "Search current file";
+		}
+	];
 }

@@ -13,6 +13,11 @@
 			url = "github:RedsXDD/neopywal.nvim/v2.6.0";
 			flake = false;
 		};
+
+		neovim-nightly-overlay = {
+			url = "github:nix-community/neovim-nightly-overlay";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = { self, nixpkgs, home-manager, ... } @ inputs:

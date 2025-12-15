@@ -119,7 +119,9 @@ in
 	programs.nixvim = {
 		enable = true;
 		defaultEditor = true;
+		package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 		extraPlugins = [
+			pkgs.vimPlugins.vim-cool
 			neopywal
 		];
 
