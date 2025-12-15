@@ -76,6 +76,7 @@
 		xwayland-satellite
 		openrazer-daemon
 		polychromatic
+		wl-clipboard
 	];
 
 	# Some programs need SUID wrappers, can be configured further or are

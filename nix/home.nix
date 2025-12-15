@@ -120,8 +120,9 @@ in
 		enable = true;
 		defaultEditor = true;
 		package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-		extraPlugins = [
-			pkgs.vimPlugins.vim-cool
+		extraPlugins = with pkgs.vimPlugins; [
+			vim-cool
+			venn-nvim
 			neopywal
 		];
 
