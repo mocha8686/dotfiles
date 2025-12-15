@@ -1,5 +1,5 @@
 { pkgs, lib, inputs, ... }:
-rec {
+{
 	plugins = {
 		todo-comments.enable = true;
 		gitsigns.enable = true;
@@ -151,29 +151,29 @@ rec {
 				};
 				statusline = let
 						fn = lib.nixvim.mkRaw ''
-function()
-	local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-	local git           = MiniStatusline.section_git({ trunc_width = 40 })
-	local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
-	local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-	local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
-	local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
-	local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-	-- local location   = MiniStatusline.section_location({ trunc_width = 75 })
-	local location      = '%l %v'
-	local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
+							function()
+								local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+								local git           = MiniStatusline.section_git({ trunc_width = 40 })
+								local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
+								local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+								local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
+								local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
+								local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+								-- local location   = MiniStatusline.section_location({ trunc_width = 75 })
+								local location      = '%l %v'
+								local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
-	return MiniStatusline.combine_groups({
-		{ hl = mode_hl,                       strings = { string.upper(mode) } },
-		{ hl = 'MiniStatuslineDevinfo',       strings = { git, diff, diagnostics, lsp } },
-		'%<', -- Mark general truncate point
-		{ hl = 'MiniStatuslineFilename',      strings = { filename } },
-		'%=', -- End left alignment
-		{ hl = 'MiniStatuslineFileinfo',      strings = { fileinfo } },
-		{ hl = mode_hl,                       strings = { search, location } },
-	})
-end
-'';
+								return MiniStatusline.combine_groups({
+									{ hl = mode_hl,                       strings = { string.upper(mode) } },
+									{ hl = 'MiniStatuslineDevinfo',       strings = { git, diff, diagnostics, lsp } },
+									'%<', -- Mark general truncate point
+									{ hl = 'MiniStatuslineFilename',      strings = { filename } },
+									'%=', -- End left alignment
+									{ hl = 'MiniStatuslineFileinfo',      strings = { fileinfo } },
+									{ hl = mode_hl,                       strings = { search, location } },
+								})
+							end
+							'';
 					in
 				{
 					content.active = fn;
@@ -194,6 +194,8 @@ end
 	extraConfigLua = ''
 		require('neopywal').setup { use_wallust = true }
 		vim.cmd.colorscheme 'neopywal'
+
+		require('focus').setup()
 	'';
 
 	globals = {
@@ -252,16 +254,20 @@ end
 	};
 
 	autoGroups = {
-		"number_focus".clear = true;
+		"NumberOnFocus".clear = true;
+		"DisableFocus".clear = true;
 	};
 
 	autoCmd = let
 		noNumbers = "(vim.b['term_title'] or vim.bo.filetype == 'man' or vim.bo.filetype == 'help' or string.find(vim.bo.filetype, 'dap'))";
 		wrapFiletypes = ["text" "markdown" "tex" "plaintex" "mdx" "typst"];
+		focusIgnoreFiletypes = "{ 'trouble' }";
+		focusIgnoreBuftypes = "{ 'nofile', 'prompt', 'popup' }";
 	in
 	[
 		{
 			event = [ "BufEnter" "FocusGained" "InsertLeave" ];
+			group = "NumberOnFocus";
 			pattern = "*";
 			callback = lib.nixvim.mkRaw ''
 				function()
@@ -270,10 +276,10 @@ end
 					end
 				end
 			'';
-			group = "number_focus";
 		}
 		{
 			event = [ "BufLeave" "FocusLost" "InsertEnter" ];
+			group = "NumberOnFocus";
 			pattern = "*";
 			callback = lib.nixvim.mkRaw ''
 				function()
@@ -282,7 +288,6 @@ end
 					end
 				end
 			'';
-			group = "number_focus";
 		}
 		{
 			event = [ "FileType" ];
@@ -301,6 +306,34 @@ end
 				function()
 					vim.opt_local.number = false
 					vim.opt_local.relativenumber = false
+				end
+			'';
+		}
+		{
+			event = [ "WinEnter" ];
+			group = "DisableFocus";
+			pattern = "*";
+			callback = lib.nixvim.mkRaw ''
+				function()
+					if vim.tbl_contains(${focusIgnoreBuftypes}, vim.bo.buftype) then
+						vim.w.focus_disable = true
+					else
+						vim.w.focus_disable = false
+					end
+				end
+			'';
+		}
+		{
+			event = [ "FileType" ];
+			group = "DisableFocus";
+			pattern = "*";
+			callback = lib.nixvim.mkRaw ''
+				function()
+					if vim.tbl_contains(${focusIgnoreFiletypes}, vim.bo.filetype) then
+						vim.w.focus_disable = true
+					else
+						vim.w.focus_disable = false
+					end
 				end
 			'';
 		}

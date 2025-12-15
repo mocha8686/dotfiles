@@ -123,6 +123,7 @@ in
 		extraPlugins = with pkgs.vimPlugins; [
 			vim-cool
 			venn-nvim
+			focus-nvim
 			neopywal
 		];
 
