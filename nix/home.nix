@@ -134,11 +134,16 @@ in
 	};
 
 	systemd.user.services.swww-daemon = {
+		Unit.Description = "swww daemon";
+		Service.ExecStart = "${pkgs.swww}/bin/swww-daemon";
+	};
+
+	systemd.user.timers.swww-daemon = {
 		Unit = {
 			Description = "swww daemon";
-			After = [ "xdg-desktop-autostart.target" ];
+			After = [ "graphical.target" ];
 		};
-		Service.ExecStart = "${pkgs.swww}/bin/swww-daemon";
-		Install.WantedBy = [ "default.target" ];
+		Timer.OnBootSec="2s";
+		Install.WantedBy = [ "timers.target" ];
 	};
 }
