@@ -90,7 +90,7 @@ in
 		".zshrc.ext".source = dotsym "zsh/.zshrc";
 		".config/kitty".source = dotsym "kitty";
 		".config/swww".source = dotsym "swww";
-		# ".config/nvim".source = dotsym "nvim_new";
+		".config/niri".source = dotsym "niri";
 	};
 
 	# Home Manager can also manage your environment variables through
