@@ -102,7 +102,6 @@
 		enable = true;
 		wayland.enable = true;
 	};
-	systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE";
 
 	# Open ports in the firewall.
 	# networking.firewall.allowedTCPPorts = [ ... ];

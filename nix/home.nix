@@ -132,18 +132,4 @@ in
 			source ~/.zshrc.ext
 		'';
 	};
-
-	systemd.user.services.swww-daemon = {
-		Unit.Description = "swww daemon";
-		Service.ExecStart = "${pkgs.swww}/bin/swww-daemon";
-	};
-
-	systemd.user.timers.swww-daemon = {
-		Unit = {
-			Description = "swww daemon";
-			After = [ "graphical.target" ];
-		};
-		Timer.OnBootSec="2s";
-		Install.WantedBy = [ "timers.target" ];
-	};
 }
