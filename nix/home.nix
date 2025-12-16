@@ -70,7 +70,7 @@ in
 
     vesktop
     prismlauncher
-    quickshell
+    inputs.qml-niri.packages.${pkgs.system}.quickshell
 
     playerctl
   ];
