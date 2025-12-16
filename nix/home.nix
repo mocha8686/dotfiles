@@ -32,7 +32,7 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -50,25 +50,26 @@ in
     #	 echo "Hello, ${config.home.username}!"
     # '')
 
-    pkgs.btop
-    pkgs.fuzzel
-    pkgs.wallust
-    pkgs.swww
+    btop
+    fuzzel
+    wallust
+    swww
 
-    pkgs.lazygit
-    pkgs.delta
-    pkgs.zoxide
+    lazygit
+    delta
+    zoxide
 
-    pkgs.file
-    pkgs.eza
-    pkgs.bat
-    pkgs.fd
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.tldr
+    file
+    eza
+    bat
+    fd
+    fzf
+    ripgrep
+    tldr
+    renameutils
 
-    pkgs.vesktop
-    pkgs.prismlauncher
+    vesktop
+    prismlauncher
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -140,5 +141,26 @@ in
     initContent = ''
       source ~/.zshrc.ext
     '';
+  };
+
+  # Dark mode
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme.name = "Adwaita-dark";
+  };
+
+  qt = {
+    enable = true;
+    style.name = "Adwaita-dark";
+  };
+
+  xdg.portal.config.niri = {
+    "org.freedesktop.impl.portal.FileChooser" = "gtk";
   };
 }

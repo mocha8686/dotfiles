@@ -2,7 +2,6 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
   ...
 }:
@@ -68,15 +67,14 @@
   };
 
   fonts.packages = with pkgs; [
-    pkgs.nerd-fonts.iosevka
+    nerd-fonts.iosevka
   ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #	wget
-    # neovim
+    # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
     wget
     uwsm
     git
@@ -86,21 +84,41 @@
     openrazer-daemon
     polychromatic
     wl-clipboard
+
+    mako
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-gnome
+    gnome-keyring
+    kdePackages.ark
+    evince
+
+    kdePackages.polkit-kde-agent-1
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
-  #	 enable = true;
-  #	 enableSSHSupport = true;
+  #  enable = true;
+  #  enableSSHSupport = true;
   # };
 
   programs.niri.enable = true;
-  programs.thunar.enable = true;
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+      thunar-media-tags-plugin
+    ];
+  };
 
   programs.steam.enable = true;
   programs.zsh.enable = true;
+
+  programs.dconf.enable = true;
+  programs.xfconf.enable = true;
 
   hardware.openrazer.enable = true;
 
@@ -112,6 +130,22 @@
     enable = true;
     wayland.enable = true;
   };
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
+  security.polkit.enable = true;
+  security.rtkit.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

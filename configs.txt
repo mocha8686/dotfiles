@@ -1,12 +1,10 @@
 ./bin:~/.local
-./cava/config:~/.config/cava
 ./clang/.clang-format:~/
 ./documents/notepad.html:~/Documents
 ./git/.gitconfig:~
 ./hyprland/hypridle.conf:~/.config/hypr
 ./hyprland/hyprland.conf:~/.config/hypr
 ./hyprland/hyprlock.conf:~/.config/hypr
-./kanata/config.kbd:~/.config/kanata
 ./kitty/kitty.conf:~/.config/kitty
 ./nvim/init.lua:~/.config/nvim
 ./nvim/plugins:~/.config/nvim/lua
