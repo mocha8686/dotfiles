@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ lib, ... }:
 {
   plugins = {
     todo-comments.enable = true;
@@ -74,6 +69,7 @@
         # Editing
         ai = { };
         align = { };
+        keymap = { };
         move = { };
         operators = { };
         pairs = { };
@@ -216,6 +212,7 @@
     servers = {
       astro.enable = true;
       nil_ls.enable = true;
+      qmlls.enable = true;
       statix.enable = true;
     };
 
@@ -293,6 +290,14 @@
     vim.cmd.colorscheme 'neopywal'
 
     require('focus').setup()
+
+    local map_multistep = require('mini.keymap').map_multistep
+    map_multistep('i', '<Tab>', { 'pmenu_next' })
+    map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
+    map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
+    map_multistep('i', '<BS>', { 'minipairs_bs' })
+
+    vim.api.nvim_set_hl(0, "MiniTablineCurrent", { link = "IncSearch" })
   '';
 
   globals = {
