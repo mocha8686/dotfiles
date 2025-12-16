@@ -70,6 +70,7 @@ in
 
     vesktop
     prismlauncher
+    quickshell
 
     playerctl
   ];
@@ -99,6 +100,7 @@ in
       ".config/kitty".source = dotsym "kitty";
       ".config/swww".source = dotsym "swww";
       ".config/niri".source = dotsym "niri";
+      ".config/quickshell".source = dotsym "quickshell";
     };
 
   # Home Manager can also manage your environment variables through
