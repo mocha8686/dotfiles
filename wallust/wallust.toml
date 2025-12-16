@@ -8,6 +8,7 @@ saturation = 20
 hyprland = { src = 'colors-hyprland.conf', dst = '~/.cache/wallust/colors-hyprland.conf' }
 kitty = { src = 'colors-kitty.conf', dst = '~/.cache/wallust/colors-kitty.conf' }
 mako = { src = 'mako_config', dst = '~/.config/mako/config' }
+niri = { src = 'colors.kdl', dst = '~/.config/niri/colors.kdl' }
 nvim = { src = 'colors_neopywal.vim', dst = '~/.cache/wallust/colors_neopywal.vim' }
 obsidian = { src = 'colors-obsidian.css', dst = '~/Documents/Drive/Obsidian/.obsidian/snippets/colors-obsidian.css' }
 tofi = { src = 'tofi-colors', dst = '~/.cache/wallust/tofi-colors' }

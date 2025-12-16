@@ -1,0 +1,6 @@
+layout {
+	focus-ring {
+		active-gradient from="{{ color1 }}" to="{{ color2 }}" angle=120
+		inactive-gradient from="{{ background }}" to="{{ foreground }}" angle=120 relative-to="workspace-view"
+	}
+}
