@@ -93,6 +93,7 @@
     gnome-keyring
     kdePackages.ark
     evince
+    pulseaudio
 
     kdePackages.polkit-kde-agent-1
   ];
