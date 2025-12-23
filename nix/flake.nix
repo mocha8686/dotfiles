@@ -3,12 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixvim.url = "github:nix-community/nixvim";
+    catppuccin.url = "github:catppuccin/nix";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim.url = "github:nix-community/nixvim";
     neopywal = {
       url = "github:RedsXDD/neopywal.nvim/v2.6.0";
       flake = false;
@@ -46,6 +48,7 @@
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
+            inputs.catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
             {
               home-manager = {

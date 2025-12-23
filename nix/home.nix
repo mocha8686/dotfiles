@@ -200,11 +200,16 @@ in
 
   gtk = {
     enable = true;
-    theme.name = "Adwaita-dark";
-    iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
-    };
+
+    # theme = {
+    #   package = pkgs.catppuccin-gtk;
+    #   name = "catppuccin-gtk";
+    # };
+    #
+    # iconTheme = {
+    #   package = pkgs.adwaita-icon-theme;
+    #   name = "Adwaita";
+    # };
   };
 
   qt = {

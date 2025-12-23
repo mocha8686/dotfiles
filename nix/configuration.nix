@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -15,6 +16,8 @@
     "nix-command"
     "flakes"
   ];
+
+  catppuccin.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
