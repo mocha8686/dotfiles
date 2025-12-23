@@ -200,16 +200,16 @@ in
 
   gtk = {
     enable = true;
-    theme.name = "Adwaita-dark";
+    theme.name = "Adwaita";
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
-      name = "Adwaita-dark";
+      name = "Adwaita";
     };
   };
 
   qt = {
     enable = true;
-    style.name = "Adwaita-dark";
+    style.name = "Adwaita";
   };
 
   xdg.portal.config.niri = {
