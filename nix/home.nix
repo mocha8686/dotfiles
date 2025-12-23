@@ -198,23 +198,18 @@ in
     };
   };
 
-  # gtk = {
-  #   enable = true;
-  #   theme.name = "catppuccin";
-  #   iconTheme.name = "catppuccin";
-  # };
-  #
-  # qt = {
-  #   enable = true;
-  #   style.name = "catppuccin";
-  # };
-
   gtk = {
     enable = true;
+    theme.name = "Adwaita-dark";
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      name = "Adwaita-dark";
     };
+  };
+
+  qt = {
+    enable = true;
+    style.name = "Adwaita-dark";
   };
 
   xdg.portal.config.niri = {
