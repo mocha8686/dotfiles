@@ -37,7 +37,8 @@ in
     let
       nixDotDir = "~/dotfiles/nix/";
       rebuild = pkgs.writeShellScriptBin "rebuild" ''
-        set -e
+        set -e -o pipefail
+
         pushd ${nixDotDir}
         "$EDITOR" configuration.nix home.nix flake.nix
 
