@@ -1,0 +1,15 @@
+[1m<<<[0m /run/current-system
+[1m>>>[0m /nix/store/wssjb8d8bs22v22jm3j8q3bhzc8nl2hd-nixos-system-asahina-26.05.20251211.2fbfb1d
+
+[1mADDED[0m
+[[1;32mA[0m.] liblxqt            [32m2[0m.[32m3[0m.[32m0[0m
+[[1;32mA[0m.] libqtxdg           [32m4[0m.[32m3[0m.[32m0[0m
+[[1;32mA[0m[1m+[0m] [1mlxqt-policykit    [0m [32m2[0m.[32m3[0m.[32m0[0m
+
+[1mREMOVED[0m
+[[1;31mR[0m.] kirigami           [31m6[0m.[31m20[0m.[31m0[0m
+[[1;31mR[0m-] polkit-kde-agent   [31m1[0m-[31m6[0m.[31m5[0m.[31m4[0m
+[[1;31mR[0m.] qqc2-desktop-style [31m6[0m.[31m20[0m.[31m0[0m
+
+[1mSIZE[0m: [31m11.8 GiB[0m -> [32m11.8 GiB[0m
+[1mDIFF[0m: [31m-10.3 MiB[0m

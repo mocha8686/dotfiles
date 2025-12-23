@@ -111,6 +111,11 @@ window-rule {
     open-fullscreen true
 }
 
+window-rule {
+    match app-id="thunar" title="File Operation Progress"
+    open-floating true
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
@@ -371,3 +376,5 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+
+// vim:expandtab
