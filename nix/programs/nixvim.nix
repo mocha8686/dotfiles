@@ -214,6 +214,7 @@
       nil_ls.enable = true;
       qmlls.enable = true;
       statix.enable = true;
+      rust_analyzer.enable = true;
     };
 
     keymaps = [
