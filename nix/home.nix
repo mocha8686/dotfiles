@@ -200,21 +200,13 @@ in
 
   gtk = {
     enable = true;
-
-    # theme = {
-    #   package = pkgs.catppuccin-gtk;
-    #   name = "catppuccin-gtk";
-    # };
-    #
-    # iconTheme = {
-    #   package = pkgs.adwaita-icon-theme;
-    #   name = "Adwaita";
-    # };
+    theme.name = "catppuccin";
+    iconTheme.name = "catppuccin";
   };
 
   qt = {
     enable = true;
-    style.name = "Adwaita-dark";
+    style.name = "catppuccin";
   };
 
   xdg.portal.config.niri = {

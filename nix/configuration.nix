@@ -17,7 +17,6 @@
   ];
 
   catppuccin.enable = true;
-  catppuccin.gtk.icon.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
