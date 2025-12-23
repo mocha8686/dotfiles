@@ -32,50 +32,74 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+  home.packages =
+    with pkgs;
+    let
+      nixDotDir = "~/dotfiles/nix/";
+      rebuild = pkgs.writeShellScriptBin "rebuild" ''
+        set -e
+        pushd ${nixDotDir}
+        "$EDITOR" configuration.nix home.nix flake.nix
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+        git add -A
+        git diff --cached -U0 *.nix
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #	 echo "Hello, ${config.home.username}!"
-    # '')
+        nh os switch -a . | tee nixos-switch.log
 
-    btop
-    fuzzel
-    wallust
-    swww
+        gen=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
+        git commit -m "$gen"
+        popd
 
-    lazygit
-    delta
-    zoxide
+        notify-send -e "Rebuild" "Rebuild successful.\n$gen"
+      '';
+    in
+    [
+      # # Adds the 'hello' command to your environment. It prints a friendly
+      # # "Hello, world!" when run.
+      # pkgs.hello
 
-    file
-    eza
-    bat
-    fd
-    fzf
-    ripgrep
-    tldr
-    renameutils
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-    vesktop
-    prismlauncher
-    inputs.qml-niri.packages.${pkgs.system}.quickshell
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #	 echo "Hello, ${config.home.username}!"
+      # '')
 
-    playerctl
-    pavucontrol
-    ffmpeg
-  ];
+      rebuild
+
+      btop
+      fuzzel
+      wallust
+      swww
+
+      lazygit
+      delta
+      zoxide
+
+      file
+      eza
+      bat
+      fd
+      fzf
+      ripgrep
+      tldr
+      renameutils
+
+      vesktop
+      prismlauncher
+      inputs.qml-niri.packages.${pkgs.system}.quickshell
+      libnotify
+
+      playerctl
+      pavucontrol
+      ffmpeg
+    ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -147,6 +171,15 @@ in
     initContent = ''
       source ~/.zshrc.ext
     '';
+  };
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 7d --keep 10";
+    };
+    flake = "${config.home.homeDirectory}/dotfiles/nix";
   };
 
   # Dark mode
