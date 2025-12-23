@@ -1,10 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -82,22 +79,26 @@
     wget
     uwsm
     git
-    kitty
-    vivaldi
-    xwayland-satellite
-    openrazer-daemon
-    polychromatic
-    wl-clipboard
 
-    mako
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
     gnome-keyring
-    kdePackages.ark
-    evince
+    lxmenu-data
+    mako
+    openrazer-daemon
+    pcmanfm
     pulseaudio
+    shared-mime-info
+    xdg-desktop-portal-gnome
+    xdg-desktop-portal-gtk
 
+    evince
+    kdePackages.ark
+    kitty
     lxqt.lxqt-policykit
+    pcmanfm
+    polychromatic
+    vivaldi
+    wl-clipboard
+    xwayland-satellite
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -109,15 +110,6 @@
   # };
 
   programs.niri.enable = true;
-
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-      thunar-media-tags-plugin
-    ];
-  };
 
   programs.steam.enable = true;
   programs.zsh.enable = true;
@@ -137,7 +129,6 @@
   };
 
   services.gvfs.enable = true;
-  services.tumbler.enable = true;
 
   services.pipewire = {
     enable = true;
