@@ -68,7 +68,7 @@ layout {
 
 spawn-at-startup "swww-daemon"
 spawn-at-startup "mako"
-spawn-at-startup "plasma-polkit-agent"
+spawn-at-startup "lxqt-policykit-agent"
 
 hotkey-overlay {
     // skip-at-startup

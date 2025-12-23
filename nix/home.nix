@@ -42,6 +42,14 @@ in
         "$EDITOR" configuration.nix home.nix flake.nix
 
         git add -A
+
+        if git diff --cached --quiet *.nix; then
+          echo "No changes detected."
+          popd
+          notify-send -e "Rebuild" "No changes detected.\n$gen"
+          exit 0
+        fi
+
         git diff --cached -U0 *.nix
 
         nh os switch -a . | tee nixos-switch.log

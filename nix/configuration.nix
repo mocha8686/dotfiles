@@ -95,7 +95,7 @@
     evince
     pulseaudio
 
-    kdePackages.polkit-kde-agent-1
+    lxqt.lxqt-policykit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
