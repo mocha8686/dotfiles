@@ -209,6 +209,14 @@ in
   #   style.name = "catppuccin";
   # };
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+  };
+
   xdg.portal.config.niri = {
     "org.freedesktop.impl.portal.FileChooser" = "gtk";
   };
