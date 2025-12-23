@@ -73,6 +73,8 @@ in
     inputs.qml-niri.packages.${pkgs.system}.quickshell
 
     playerctl
+    pavucontrol
+    ffmpeg
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
