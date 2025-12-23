@@ -198,16 +198,16 @@ in
     };
   };
 
-  gtk = {
-    enable = true;
-    theme.name = "catppuccin";
-    iconTheme.name = "catppuccin";
-  };
-
-  qt = {
-    enable = true;
-    style.name = "catppuccin";
-  };
+  # gtk = {
+  #   enable = true;
+  #   theme.name = "catppuccin";
+  #   iconTheme.name = "catppuccin";
+  # };
+  #
+  # qt = {
+  #   enable = true;
+  #   style.name = "catppuccin";
+  # };
 
   xdg.portal.config.niri = {
     "org.freedesktop.impl.portal.FileChooser" = "gtk";
