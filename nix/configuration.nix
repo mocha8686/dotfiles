@@ -165,8 +165,10 @@
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      cups-filters
+      brgenml1cupswrapper
+      brgenml1lpr
       cups-browsed
+      cups-filters
     ];
   };
 
