@@ -30,6 +30,63 @@ in
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
+  i18n.inputMethod.fcitx5.settings = {
+    globalOptions = {
+      "Hotkey/TriggerKeys" = {
+        "0" = "Control+Shift+space";
+        "1" = "Zenkaku_Hankaku";
+        "2" = "Hangul";
+      };
+
+      "Hotkey/ActivateKeys"."0" = "Hangul_Hanja";
+      "Hotkey/DeactivateKeys"."0" = "Hangul_Romaja";
+      "Hotkey/AltTriggerKeys"."0" = "Shift_L";
+      "Hotkey/EnumerateGroupForwardKeys"."0" = "Super+space";
+      "Hotkey/EnumerateGroupBackwardKeys"."0" = "Shift+Super+space";
+      "Hotkey/PrevPage"."0" = "Up";
+      "Hotkey/NextPage"."0" = "Down";
+      "Hotkey/PrevCandidate"."0" = "Shift+Tab";
+      "Hotkey/NextCandidate"."0" = "Tab";
+      "Hotkey/TogglePreedit"."0" = "Control+Alt+P";
+
+      "Behavior" = {
+        "ActiveByDefault" = "False";
+        "resetStateWhenFocusIn" = "No";
+        "ShareInputState" = "No";
+        "PreeditEnabledByDefault" = "True";
+        "ShowInputMethodInformation" = "True";
+        "showInputMethodInformationWhenFocusIn" = "False";
+        "CompactInputMethodInformation" = "True";
+        "ShowFirstInputMethodInformation" = "True";
+        "DefaultPageSize" = "5";
+        "OverrideXkbOption" = "False";
+        "CustomXkbOption" = "";
+        "EnabledAddons" = "";
+        "DisabledAddons" = "";
+        "PreloadInputMethod" = "True";
+        "AllowInputMethodForPassword" = "False";
+        "ShowPreeditForPassword" = "False";
+        "AutoSavePeriod" = "30";
+      };
+    };
+    inputMethod = {
+      "GroupOrder"."0" = "Default";
+      "Groups/0" = {
+        "Name" = "Default";
+        "Default Layout" = "us";
+        "DefaultIM" = "mozc";
+      };
+      "Groups/0/Items/0" = {
+        "Name" = "keyboard-us";
+        "Layout" = "";
+      };
+      "Groups/0/Items/1" = {
+        "Name" = "mozc";
+        "Layout" = "";
+      };
+    };
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages =
