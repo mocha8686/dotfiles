@@ -47,6 +47,18 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+      waylandFrontend = true;
+    };
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -94,6 +106,7 @@
 
     evince
     kdePackages.ark
+    kdePackages.fcitx5-configtool
     kitty
     lxqt.lxqt-policykit
     pcmanfm
