@@ -141,30 +141,32 @@ in
 
       btop
       fuzzel
-      wallust
       swww
+      wallust
 
-      lazygit
       delta
+      lazygit
       zoxide
 
-      file
-      eza
       bat
+      eza
       fd
+      file
       fzf
+      renameutils
       ripgrep
       tldr
-      renameutils
 
-      vesktop
-      prismlauncher
       inputs.qml-niri.packages.${pkgs.system}.quickshell
       libnotify
+      libreoffice
+      prismlauncher
+      qalculate-qt
+      vesktop
 
-      playerctl
-      pavucontrol
       ffmpeg
+      pavucontrol
+      playerctl
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
