@@ -68,6 +68,9 @@
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     nerd-fonts.iosevka
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
   ];
 
   # List packages installed in system profile. To search, run:
