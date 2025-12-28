@@ -156,7 +156,7 @@ binds {
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-    XF86Calculator { spawn-sh "qalculate-gtk"; }
+    XF86Calculator { spawn-sh "qalculate-qt"; }
 
     Mod+O repeat=false { toggle-overview; }
 
