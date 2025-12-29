@@ -131,3 +131,5 @@ if [[ ! -z ${SESSION+x} ]] && [[ -f ~/.session.sh ]] then
 	source ~/.session.sh
 	unset SESSION
 fi
+
+eval "$(starship init zsh)"
