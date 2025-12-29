@@ -144,11 +144,8 @@ in
       swww
       wallust
 
-      delta
-      lazygit
-      zoxide
-
       bat
+      delta
       eza
       fd
       file
@@ -156,6 +153,10 @@ in
       renameutils
       ripgrep
       tldr
+      zoxide
+
+      lazygit
+      rclone
 
       inputs.qml-niri.packages.${pkgs.system}.quickshell
       libnotify
@@ -248,6 +249,42 @@ in
       extraArgs = "--keep-since 7d --keep 10";
     };
     flake = "${config.home.homeDirectory}/dotfiles/nix";
+  };
+
+  systemd.user.services.drive-Documents = {
+    Unit = {
+      Description = "GDrive Documents mount.";
+      After = [ "network-online.target" ];
+    };
+    Service = let
+      localDir = "%h/Documents/Drive";
+      driveDir = "Documents";
+    in
+    {
+      Type = "notify";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
+      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
+      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
+
+  systemd.user.services.drive-Images = {
+    Unit = {
+      Description = "GDrive Images mount.";
+      After = [ "network-online.target" ];
+    };
+    Service = let
+      localDir = "%h/Pictures/Drive";
+      driveDir = "Images";
+    in
+    {
+      Type = "notify";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
+      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
+      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
+    };
+    Install.WantedBy = [ "default.target" ];
   };
 
   # Dark mode
