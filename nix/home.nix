@@ -94,8 +94,6 @@ in
     let
       nixDotDir = "~/dotfiles/nix/";
       rebuild = pkgs.writeShellScriptBin "rebuild" ''
-        set -e -o pipefail
-
         pushd ${nixDotDir}
         "$EDITOR" configuration.nix home.nix flake.nix
 
@@ -104,13 +102,19 @@ in
         if git diff --cached --quiet *.nix; then
           echo "No changes detected."
           popd
-          notify-send -e "Rebuild" "No changes detected.\n$gen"
+          notify-send -e "Rebuild" "No changes detected."
           exit 0
         fi
 
         git diff --cached -U0 *.nix
 
         nh os switch -a . | tee nixos-switch.log
+        if [[ ''${pipestatus[1]} > 0 ]]; then
+          echo "Rebuild failed."
+          popd
+          notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
+          exit 1
+        fi
 
         gen=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
         git commit -m "$gen"
