@@ -201,7 +201,7 @@ in
       ".config/swww".source = dotsym "swww";
       ".config/niri".source = dotsym "niri";
       ".config/quickshell".source = dotsym "quickshell";
-      ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "/home/mocha/dotfiles/starship/starship.toml";
+      ".config/starship.toml".source = dotsym "starship/starship.toml";
     };
 
   # Home Manager can also manage your environment variables through
