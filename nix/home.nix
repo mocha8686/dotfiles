@@ -161,6 +161,7 @@ in
       imv
       lazygit
       rclone
+      starship
 
       inputs.qml-niri.packages.${pkgs.system}.quickshell
       libnotify
@@ -200,6 +201,7 @@ in
       ".config/swww".source = dotsym "swww";
       ".config/niri".source = dotsym "niri";
       ".config/quickshell".source = dotsym "quickshell";
+      ".config/starship.toml".source = dotsym "starship/starship.toml";
     };
 
   # Home Manager can also manage your environment variables through
@@ -244,13 +246,6 @@ in
     initContent = ''
       source ~/.zshrc.ext
     '';
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-    };
   };
 
   programs.nh = {
