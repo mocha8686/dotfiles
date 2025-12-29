@@ -175,7 +175,7 @@
   services.flatpak = {
     enable = true;
     packages = [
-      "org.vinegarhq.Sober"
+      { appId = "org.vinegarhq.Sober"; origin = "flathub"; }
     ];
   };
 
