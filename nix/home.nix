@@ -14,6 +14,7 @@ in
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
+    inputs.nix-flatpak.homeModules.nix-flatpak
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -175,6 +176,10 @@ in
       playerctl
     ];
 
+  services.flatpak.packages = [
+    "org.vinegarhq.Sober"
+  ];
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file =
@@ -262,16 +267,17 @@ in
       Description = "GDrive Documents mount.";
       After = [ "network-online.target" ];
     };
-    Service = let
-      localDir = "%h/Documents/Drive";
-      driveDir = "Documents";
-    in
-    {
-      Type = "notify";
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
-      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
-      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
-    };
+    Service =
+      let
+        localDir = "%h/Documents/Drive";
+        driveDir = "Documents";
+      in
+      {
+        Type = "notify";
+        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
+        ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
+        ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
+      };
     Install.WantedBy = [ "default.target" ];
   };
 
@@ -280,16 +286,17 @@ in
       Description = "GDrive Images mount.";
       After = [ "network-online.target" ];
     };
-    Service = let
-      localDir = "%h/Pictures/Drive";
-      driveDir = "Images";
-    in
-    {
-      Type = "notify";
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
-      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
-      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
-    };
+    Service =
+      let
+        localDir = "%h/Pictures/Drive";
+        driveDir = "Images";
+      in
+      {
+        Type = "notify";
+        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
+        ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
+        ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
+      };
     Install.WantedBy = [ "default.target" ];
   };
 
