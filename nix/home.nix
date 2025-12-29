@@ -150,11 +150,11 @@ in
       fd
       file
       fzf
-      renameutils
       ripgrep
       tldr
       zoxide
 
+      imv
       lazygit
       rclone
 
