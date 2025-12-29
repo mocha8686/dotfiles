@@ -1,0 +1,6 @@
+add_newline = true
+
+format = '''
+[┌───────────────────>](bold bg:1)
+[│](bold bg:1)$directory$rust$package
+[└─>](bold bg:1) '''

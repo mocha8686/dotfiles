@@ -172,7 +172,12 @@
     ];
   };
 
-  services.flatpak.enable = true;
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "org.vinegarhq.Sober"
+    ];
+  };
 
   security.polkit.enable = true;
   security.rtkit.enable = true;

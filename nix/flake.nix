@@ -49,6 +49,7 @@
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
+            inputs.nix-flatpak.nixosModules.nix-flatpak
             {
               home-manager = {
                 useGlobalPkgs = true;

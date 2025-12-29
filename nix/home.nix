@@ -12,7 +12,6 @@
 in {
   imports = [
     inputs.nixvim.homeModules.nixvim
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -169,10 +168,6 @@ in {
     ffmpeg
     pavucontrol
     playerctl
-  ];
-
-  services.flatpak.packages = [
-    "org.vinegarhq.Sober"
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
