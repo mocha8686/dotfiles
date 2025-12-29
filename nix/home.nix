@@ -3,18 +3,16 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   neopywal = pkgs.vimUtils.buildVimPlugin {
     name = "neopywal";
     src = inputs.neopywal;
     doCheck = false;
   };
-in
-{
+in {
   imports = [
     inputs.nixvim.homeModules.nixvim
-    inputs.nix-flatpak.homeModules.nix-flatpak
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -90,91 +88,88 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages =
-    with pkgs;
-    let
-      nixDotDir = "~/dotfiles/nix/";
-      rebuild = pkgs.writeShellScriptBin "rebuild" ''
-        pushd ${nixDotDir}
-        "$EDITOR" configuration.nix home.nix flake.nix
+  home.packages = with pkgs; let
+    nixDotDir = "~/dotfiles/nix/";
+    rebuild = pkgs.writeShellScriptBin "rebuild" ''
+      pushd ${nixDotDir}
+      "$EDITOR" configuration.nix home.nix flake.nix
 
-        git add -A
+      git add -A
 
-        if git diff --cached --quiet *.nix; then
-          echo "No changes detected."
-          popd
-          notify-send -e "Rebuild" "No changes detected."
-          exit 0
-        fi
-
-        git diff --cached -U0 *.nix
-
-        nh os switch -a . | tee nixos-switch.log
-        if [[ ''${pipestatus[1]} > 0 ]]; then
-          echo "Rebuild failed."
-          popd
-          notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
-          exit 1
-        fi
-
-        gen=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
-        git commit -m "$gen"
+      if git diff --cached --quiet *.nix; then
+        echo "No changes detected."
         popd
+        notify-send -e "Rebuild" "No changes detected."
+        exit 0
+      fi
 
-        notify-send -e "Rebuild" "Rebuild successful.\n$gen"
-      '';
-    in
-    [
-      # # Adds the 'hello' command to your environment. It prints a friendly
-      # # "Hello, world!" when run.
-      # pkgs.hello
+      git diff --cached -U0 *.nix
 
-      # # It is sometimes useful to fine-tune packages, for example, by applying
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      nh os switch -a . | tee nixos-switch.log
+      if [[ ''${pipestatus[1]} > 0 ]]; then
+        echo "Rebuild failed."
+        popd
+        notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
+        exit 1
+      fi
 
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #	 echo "Hello, ${config.home.username}!"
-      # '')
+      gen=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
+      git commit -m "$gen"
+      popd
 
-      rebuild
+      notify-send -e "Rebuild" "Rebuild successful.\n$gen"
+    '';
+  in [
+    # # Adds the 'hello' command to your environment. It prints a friendly
+    # # "Hello, world!" when run.
+    # pkgs.hello
 
-      btop
-      fuzzel
-      swww
-      wallust
+    # # It is sometimes useful to fine-tune packages, for example, by applying
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-      bat
-      delta
-      eza
-      fd
-      file
-      fzf
-      ripgrep
-      tldr
-      zoxide
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #	 echo "Hello, ${config.home.username}!"
+    # '')
 
-      imv
-      lazygit
-      rclone
-      starship
+    rebuild
 
-      inputs.qml-niri.packages.${pkgs.system}.quickshell
-      libnotify
-      libreoffice
-      prismlauncher
-      qalculate-qt
-      vesktop
+    btop
+    fuzzel
+    swww
+    wallust
 
-      ffmpeg
-      pavucontrol
-      playerctl
-    ];
+    bat
+    delta
+    eza
+    fd
+    file
+    fzf
+    ripgrep
+    tldr
+    zoxide
+
+    imv
+    lazygit
+    rclone
+    starship
+
+    inputs.qml-niri.packages.${pkgs.system}.quickshell
+    libnotify
+    libreoffice
+    prismlauncher
+    qalculate-qt
+    vesktop
+
+    ffmpeg
+    pavucontrol
+    playerctl
+  ];
 
   services.flatpak.packages = [
     "org.vinegarhq.Sober"
@@ -182,32 +177,30 @@ in
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file =
-    let
-      dotsym = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/${path}";
-    in
-    {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
+  home.file = let
+    dotsym = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/${path}";
+  in {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
 
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #	 org.gradle.console=verbose
-      #	 org.gradle.daemon.idletimeout=3600000
-      # '';
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #	 org.gradle.console=verbose
+    #	 org.gradle.daemon.idletimeout=3600000
+    # '';
 
-      # ".config/nvim".source = ~/dotfiles/nvim;
+    # ".config/nvim".source = ~/dotfiles/nvim;
 
-      ".gitconfig".source = dotsym "git/.gitconfig";
-      ".zshrc.ext".source = dotsym "zsh/.zshrc";
-      ".config/kitty".source = dotsym "kitty";
-      ".config/swww".source = dotsym "swww";
-      ".config/niri".source = dotsym "niri";
-      ".config/quickshell".source = dotsym "quickshell";
-      ".config/starship.toml".source = dotsym "starship/starship.toml";
-    };
+    ".gitconfig".source = dotsym "git/.gitconfig";
+    ".zshrc.ext".source = dotsym "zsh/.zshrc";
+    ".config/kitty".source = dotsym "kitty";
+    ".config/swww".source = dotsym "swww";
+    ".config/niri".source = dotsym "niri";
+    ".config/quickshell".source = dotsym "quickshell";
+    ".config/starship.toml".source = dotsym "starship/starship.toml";
+  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -243,7 +236,7 @@ in
       neopywal
     ];
 
-    imports = [ ./programs/nixvim.nix ];
+    imports = [./programs/nixvim.nix];
   };
 
   programs.zsh = {
@@ -265,39 +258,35 @@ in
   systemd.user.services.drive-Documents = {
     Unit = {
       Description = "GDrive Documents mount.";
-      After = [ "network-online.target" ];
+      After = ["network-online.target"];
     };
-    Service =
-      let
-        localDir = "%h/Documents/Drive";
-        driveDir = "Documents";
-      in
-      {
-        Type = "notify";
-        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
-        ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
-        ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
-      };
-    Install.WantedBy = [ "default.target" ];
+    Service = let
+      localDir = "%h/Documents/Drive";
+      driveDir = "Documents";
+    in {
+      Type = "notify";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
+      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
+      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
+    };
+    Install.WantedBy = ["default.target"];
   };
 
   systemd.user.services.drive-Images = {
     Unit = {
       Description = "GDrive Images mount.";
-      After = [ "network-online.target" ];
+      After = ["network-online.target"];
     };
-    Service =
-      let
-        localDir = "%h/Pictures/Drive";
-        driveDir = "Images";
-      in
-      {
-        Type = "notify";
-        ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
-        ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
-        ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
-      };
-    Install.WantedBy = [ "default.target" ];
+    Service = let
+      localDir = "%h/Pictures/Drive";
+      driveDir = "Images";
+    in {
+      Type = "notify";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
+      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
+      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
+    };
+    Install.WantedBy = ["default.target"];
   };
 
   # Dark mode
