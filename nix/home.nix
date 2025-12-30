@@ -286,14 +286,6 @@ in {
     Install.WantedBy = ["default.target"];
   };
 
-  xdg.desktopEntries.sober = {
-    name = "Sober";
-    genericName = "Game";
-    exec = "${pkgs.flatpak}/bin/flatpak run org.vinegarhq.Sober";
-    terminal = false;
-    categories = [ "Network" "Game" ];
-  };
-
   # Dark mode
   dconf.settings = {
     "org/gnome/desktop/interface" = {
