@@ -6,6 +6,7 @@ format = """
 [](color_os)\
 $os\
 $username\
+$hostname\
 [](fg:color_os bg:color_dir)\
 $directory\
 [](fg:color_dir bg:color_git)\
@@ -81,7 +82,12 @@ Pop = ""
 show_always = true
 style_user = "bg:color_os fg:color_fg"
 style_root = "bg:color_os fg:color_fg"
-format = '[ $user ]($style)'
+format = '[ $user]($style)'
+
+[hostname]
+ssh_only = false
+style = "bg:color_os fg:color_fg"
+format = '[@$hostname ]($style)'
 
 [directory]
 style = "fg:color_fg bg:color_dir"
