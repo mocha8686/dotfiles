@@ -29,8 +29,9 @@ $conda\
 $pixi\
 [](fg:color_container bg:color_time)\
 $time\
+$cmd_duration\
 [ ](fg:color_time)\
-$line_break$character"""
+$line_break$status$character"""
 
 palette = 'neopywal'
 
@@ -47,6 +48,7 @@ color_fg = '7'
 
 color_success = '7'
 color_error = '8'
+color_status = '8'
 color_replace = '9'
 color_visual = '10'
 
@@ -180,8 +182,19 @@ time_format = "%R"
 style = "bg:color_time"
 format = '[[  $time ](fg:color_fg bg:color_time)]($style)'
 
+[cmd_duration]
+disabled = false
+style = "bg:color_time"
+show_notifications = true
+format = '[time $duration ]($style)'
+
 [line_break]
 disabled = false
+
+[status]
+disabled = false
+style = "bg:color_status fg:color_fg"
+format = "[](fg:color_status)[$status]($style)[](fg:color_status) "
 
 [character]
 disabled = false

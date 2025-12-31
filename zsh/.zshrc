@@ -41,6 +41,9 @@ bindkey -v
 # autoload -Uz vcs_info
 # zstyle ':vcs_info:' enable git
 
+autoload -Uz add-zsh-hook
+bindkey " " magic-space
+
 # Environment variables
 export EDITOR='nvim'
 export LANG='en_US.UTF-8'
@@ -50,6 +53,8 @@ export PS1='%f%K{1} %n@%M %F{1}%K{2}%f %~ %F{2}%K{3}%f %* %F{3}%k%f
 export RPROMPT='%(?..%F{1}%k%f%K{1} %? %k)'
 export GOPATH="$HOME/go"
 path=("/usr/local/opt/gnu-tar/libexec/gnubin" "$HOME/.local/bin" "$HOME/.cargo/bin" "$GOPATH/bin" "$HOME/.local/share/nvim/mason/bin" "$HOME/.ghcup/bin" $path)
+
+eval "$(starship init zsh)"
 
 # Aliases
 if command -v eza > /dev/null; then
@@ -127,9 +132,13 @@ set +o allexport
 typeset -U path
 export PATH
 
-if [[ ! -z ${SESSION+x} ]] && [[ -f ~/.session.sh ]] then
+if [[ ! -z ${SESSION+x} && -f ~/.session.sh ]] then
 	source ~/.session.sh
 	unset SESSION
 fi
 
-eval "$(starship init zsh)"
+add-zsh-hook chpwd function() {
+	if grep -qs 'devShells' ./flake.nix && [[ -z $IN_NIX_SHELL ]]; then
+		nix develop -c $SHELL
+	fi
+}

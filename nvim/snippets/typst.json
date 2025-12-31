@@ -1,0 +1,14 @@
+{
+	"Inline math": {
+		"prefix": "mk",
+		"body": "$${0}$"
+	},
+	"Display math": {
+		"prefix": "dm",
+		"body": "$\n  ${0}\n$"
+	},
+	"QED": {
+		"prefix": "qed",
+		"body": "\$qed$"
+	}
+}

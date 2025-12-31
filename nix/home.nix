@@ -95,14 +95,14 @@ in {
 
       git add -A
 
-      if git diff --cached --quiet *.nix; then
+      if git diff --cached --quiet **/*.nix; then
         echo "No changes detected."
         popd
         notify-send -e "Rebuild" "No changes detected."
         exit 0
       fi
 
-      git diff --cached -U0 *.nix
+      git diff --cached -U0 **/*.nix
 
       nh os switch -a . | tee nixos-switch.log
       if [[ ''${pipestatus[1]} > 0 ]]; then
