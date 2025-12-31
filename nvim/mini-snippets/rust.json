@@ -1,0 +1,6 @@
+{
+	"If main": {
+		"prefix": "ifmain",
+		"body": "if __name__ == '__main__':\n    ${0:main()}"
+	}
+}

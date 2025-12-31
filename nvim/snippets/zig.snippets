@@ -1,0 +1,11 @@
+snippet This
+	const Self = @This();
+
+snippet smAlloc
+	const Allocator = std.mem.Allocator;
+
+snippet blk
+	${1:blk}: {
+		$2
+		break :${1:blk};
+	};
