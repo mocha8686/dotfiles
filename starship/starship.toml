@@ -7,6 +7,7 @@ format = """
 $os\
 $username\
 $hostname\
+$nix_shell\
 [](fg:color_os bg:color_dir)\
 $directory\
 [](fg:color_dir bg:color_git)\
@@ -29,7 +30,6 @@ $conda\
 $pixi\
 [](fg:color_container bg:color_time)\
 $time\
-$cmd_duration\
 [ ](fg:color_time)\
 $line_break$status$character"""
 
@@ -84,12 +84,18 @@ Pop = ""
 show_always = true
 style_user = "bg:color_os fg:color_fg"
 style_root = "bg:color_os fg:color_fg"
-format = '[ $user]($style)'
+format = '[$user]($style)'
 
 [hostname]
 ssh_only = false
 style = "bg:color_os fg:color_fg"
-format = '[@$hostname ]($style)'
+format = '[@$hostname]($style)'
+
+[nix_shell]
+style = "bg:color_os fg:color_fg"
+pure_msg = "pure"
+impure_msg = "impure"
+format = "[ $state ns ]($style)"
 
 [directory]
 style = "fg:color_fg bg:color_dir"
@@ -181,12 +187,6 @@ disabled = false
 time_format = "%R"
 style = "bg:color_time"
 format = '[[  $time ](fg:color_fg bg:color_time)]($style)'
-
-[cmd_duration]
-disabled = false
-style = "bg:color_time"
-show_notifications = true
-format = '[time $duration ]($style)'
 
 [line_break]
 disabled = false
