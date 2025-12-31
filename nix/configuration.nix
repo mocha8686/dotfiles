@@ -109,7 +109,7 @@
     kdePackages.fcitx5-configtool
     kitty
     lxqt.lxqt-policykit
-    lxqt.pcmanfm
+    lxqt.pcmanfm-qt
     polychromatic
     vivaldi
     wl-clipboard
