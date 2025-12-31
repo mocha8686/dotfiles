@@ -78,7 +78,7 @@
         completion = { };
         snippets = {
           snippets = [
-            (lib.nixvim.mkRaw "gen_loader.from_lang()")
+            (lib.nixvim.mkRaw "require('mini.snippets').gen_loader.from_lang()")
           ];
         };
 
