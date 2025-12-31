@@ -193,7 +193,7 @@ in {
     ".gitconfig".source = dotsym "git/.gitconfig";
     ".zshrc.ext".source = dotsym "zsh/.zshrc";
     ".config/kitty".source = dotsym "kitty";
-    ".config/swww".source = dotsym "swww";
+    ".swww".source = dotsym "swww/.swww";
     ".config/niri".source = dotsym "niri";
     ".config/quickshell".source = dotsym "quickshell";
     ".config/starship.toml".source = dotsym "starship/starship.toml";
