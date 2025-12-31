@@ -99,7 +99,6 @@
     lxmenu-data
     mako
     openrazer-daemon
-    pcmanfm
     pulseaudio
     shared-mime-info
     xdg-desktop-portal-gnome
@@ -110,7 +109,7 @@
     kdePackages.fcitx5-configtool
     kitty
     lxqt.lxqt-policykit
-    pcmanfm
+    lxqt.pcmanfm
     polychromatic
     vivaldi
     wl-clipboard
