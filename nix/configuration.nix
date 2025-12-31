@@ -16,6 +16,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "uinput" ];
 
   networking.hostName = "asahina"; # Define your hostname.
   # networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
@@ -133,6 +134,9 @@
   programs.xfconf.enable = true;
 
   hardware.openrazer.enable = true;
+
+  hardware.opentabletdriver.enable = true;
+  hardware.uinput.enable = true;
 
   # List services that you want to enable:
 
