@@ -137,12 +137,8 @@ in {
 
     rebuild
 
-    btop
-    fuzzel
-    swww
-    wallust
-
     bat
+    btop
     delta
     eza
     fd
@@ -157,8 +153,13 @@ in {
     rclone
     starship
 
+    fuzzel
     inputs.qml-niri.packages.${pkgs.system}.quickshell
     libnotify
+    swww
+    wallust
+
+    krita
     libreoffice
     prismlauncher
     qalculate-qt
