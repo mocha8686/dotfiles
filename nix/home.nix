@@ -323,4 +323,6 @@ in
   xdg.portal.config.niri = {
     "org.freedesktop.impl.portal.FileChooser" = "gtk";
   };
+
+  xdg.userDirs.createDirectories = true;
 }
