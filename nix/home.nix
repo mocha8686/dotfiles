@@ -293,11 +293,22 @@ in
     flake = "${config.home.homeDirectory}/dotfiles/nix";
   };
 
+  # rclone Drive
+
   systemd.user.timers.drive-Documents = rsyncTimer "Documents";
   systemd.user.services.drive-Documents = rsyncService "Documents" "%h/Documents/Drive";
 
   systemd.user.timers.drive-Images = rsyncTimer "Images";
   systemd.user.services.drive-Images = rsyncService "Images" "%h/Pictures/Drive";
+
+  systemd.user.tmpfiles.rules =
+    let
+      createHomeDirRule = dir: "d %h/${dir} - - - - -";
+    in
+    [
+      (createHomeDirRule "Documents/Drive")
+      (createHomeDirRule "Pictures/Drive")
+    ];
 
   # Dark mode
   dconf.settings = {
