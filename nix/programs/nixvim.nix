@@ -262,6 +262,11 @@
         options.desc = "Rename symbol";
       }
       {
+        key = "<leader>lr";
+        action = lib.nixvim.mkRaw "function() MiniExtra.pickers.lsp { scope = 'references' } end";
+        options.desc = "Pick references";
+      }
+      {
         key = "<leader>lA";
         lspBufAction = "code_action";
         mode = [
