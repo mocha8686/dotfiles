@@ -6,6 +6,11 @@
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
+    dolphin-overlay = {
+      url = "github:rumboon/dolphin-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +53,9 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
+            {
+              nixpkgs.overlays = [ inputs.dolphin-overlay.overlays.default ];
+            }
             ./configuration.nix
             home-manager.nixosModules.home-manager
             inputs.nix-flatpak.nixosModules.nix-flatpak
