@@ -18,6 +18,8 @@ let
   createBisync =
     remoteDir: localDir:
     "${pkgs.rclone}/bin/rclone bisync \"${remoteName}:${remoteDir}\" \"${localDir}\" --config=\"%h/.config/rclone/rclone.conf\" --create-empty-src-dirs --compare=size,modtime,checksum --slow-hash-sync-only --resilient --recover --fix-case --conflict-resolve=newer --conflict-loser=delete --max-lock=2m -v";
+  createResync = remoteDir: localDir: "${createBisync remoteDir localDir} --resync";
+
   rsyncService = remoteDir: localDir: {
     Unit.Description = "rclone bisync for ${remoteName}:${remoteDir}";
     Service.Type = "oneshot";
@@ -142,6 +144,10 @@ in
         git commit -m "$gen"
 
         notify-send -e "Rebuild" "Rebuild successful.\n$gen"
+      '';
+      resync = pkgs.writeShellScriptBin "resync" ''
+        ${createResync} "Documents" "${config.home.homeDirectory}/Documents/Drive"
+        ${createResync} "Images" "${config.home.homeDirectory}/Pictures/Drive"
       '';
     in
     [
