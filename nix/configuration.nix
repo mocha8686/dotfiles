@@ -110,12 +110,25 @@
     kdePackages.fcitx5-configtool
     kitty
     lxqt.lxqt-policykit
-    lxqt.pcmanfm-qt
     obsidian
     polychromatic
     vivaldi
     wl-clipboard
     xwayland-satellite
+
+    icoutils
+    kdePackages.dolphin
+    kdePackages.ffmpegthumbs
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kdesdk-thumbnailers
+    kdePackages.kimageformats
+    kdePackages.kio
+    kdePackages.kio-extras
+    kdePackages.kio-fuse
+    kdePackages.qtimageformats
+    kdePackages.qtsvg
+    kdePackages.taglib
+    libappimage
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

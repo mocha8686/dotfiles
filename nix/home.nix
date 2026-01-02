@@ -292,6 +292,21 @@ in
     flake = "${config.home.homeDirectory}/dotfiles/nix";
   };
 
+  fonts.fontconfig.enable = true;
+  fonts.fontconfig.defaultFonts = {
+    serif = [
+
+    ];
+    sansSerif = [
+      
+    ];
+    monospace = [
+      "Iosevka Nerd Font Mono"
+      "Iosevka Nerd Font"
+      "Iosevka"
+    ];
+  };
+
   # rclone Drive
 
   systemd.user.timers.drive-Documents = rsyncTimer "Documents";
@@ -332,6 +347,10 @@ in
 
   xdg.portal.config.niri = {
     "org.freedesktop.impl.portal.FileChooser" = "gtk";
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "application/zip" = "org.kde.ark.desktop";
   };
 
   xdg.userDirs = {
