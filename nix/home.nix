@@ -3,13 +3,37 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   neopywal = pkgs.vimUtils.buildVimPlugin {
     name = "neopywal";
     src = inputs.neopywal;
     doCheck = false;
   };
-in {
+
+  remoteName = "drive";
+  bisyncInitialize = "10s";
+  bisyncPeriod = "5min";
+
+  createBisync =
+    remoteDir: localDir:
+    "${pkgs.rclone}/bin/rclone bisync \"${remoteName}:${remoteDir}\" \"${localDir}\" --config=\"%h/.config/rclone/rclone.conf\" --create-empty-src-dirs --compare=size,modtime,checksum --slow-hash-sync-only --resilient --recover --fix-case --conflict-resolve=newer --conflict-loser=delete --max-lock=2m -v";
+  rsyncService = remoteDir: localDir: {
+    Unit.Description = "rclone bisync for ${remoteName}:${remoteDir}";
+    Service.Type = "oneshot";
+    Service.ExecStart = createBisync remoteDir localDir;
+  };
+  rsyncTimer = remoteDir: {
+    Unit.Description = "rclone bisync for ${remoteName}:${remoteDir} every ${bisyncPeriod}";
+    Unit.After = "network-online.target";
+    Timer.OnBootSec = bisyncInitialize;
+    Timer.OnUnitActiveSec = bisyncPeriod;
+    Install.WantedBy = [
+      "timers.target"
+    ];
+  };
+in
+{
   imports = [
     inputs.nixvim.homeModules.nixvim
   ];
@@ -87,120 +111,125 @@ in {
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; let
-    nixDotDir = "~/dotfiles/nix/";
-    rebuild = pkgs.writeShellScriptBin "rebuild" ''
-      pushd ${nixDotDir}
-      "$EDITOR" configuration.nix home.nix flake.nix
+  home.packages =
+    with pkgs;
+    let
+      nixDotDir = "~/dotfiles/nix/";
+      rebuild = pkgs.writeShellScriptBin "rebuild" ''
+        cd ${nixDotDir} || {
+          echo "Failed to find nix dotfile directory."
+          exit 1
+        }
+        "$EDITOR" configuration.nix home.nix flake.nix
 
-      git add -A
+        git add -A
 
-      if git diff --cached --quiet *.nix **/*.nix; then
-        echo "No changes detected."
-        popd
-        exit 0
-      fi
+        if git diff --cached --quiet ./*.nix ./**/*.nix; then
+          echo "No changes detected."
+          exit 0
+        fi
 
-      git diff --cached -U0 *.nix **/*.nix
+        git diff --cached -U0 ./*.nix ./**/*.nix
 
-      nh os switch -a . | tee nixos-switch.log
-      if [[ ''${PIPESTATUS[0]} > 0 ]]; then
-        echo "Rebuild failed."
-        popd
-        notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
-        exit 1
-      fi
+        nh os switch -a . | tee nixos-switch.log
+        if [[ ''${PIPESTATUS[0]} -gt 0 ]]; then
+          echo "Rebuild failed."
+          notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
+          exit 1
+        fi
 
-      gen=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
-      git commit -m "$gen"
-      popd
+        gen=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
+        git commit -m "$gen"
 
-      notify-send -e "Rebuild" "Rebuild successful.\n$gen"
-    '';
-  in [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+        notify-send -e "Rebuild" "Rebuild successful.\n$gen"
+      '';
+    in
+    [
+      # # Adds the 'hello' command to your environment. It prints a friendly
+      # # "Hello, world!" when run.
+      # pkgs.hello
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #	 echo "Hello, ${config.home.username}!"
-    # '')
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #	 echo "Hello, ${config.home.username}!"
+      # '')
 
-    rebuild
+      rebuild
 
-    bat
-    btop
-    delta
-    eza
-    fd
-    file
-    fzf
-    ripgrep
-    tldr
-    zoxide
+      bat
+      btop
+      delta
+      eza
+      fd
+      file
+      fzf
+      ripgrep
+      tldr
+      zoxide
 
-    imv
-    lazygit
-    rclone
-    starship
+      imv
+      lazygit
+      rclone
+      starship
 
-    fuzzel
-    inputs.qml-niri.packages.${pkgs.system}.quickshell
-    libnotify
-    swww
-    wallust
+      fuzzel
+      inputs.qml-niri.packages.${pkgs.system}.quickshell
+      libnotify
+      swww
+      wallust
 
-    krita
-    libreoffice
-    prismlauncher
-    qalculate-qt
-    vesktop
+      krita
+      libreoffice
+      prismlauncher
+      qalculate-qt
+      vesktop
 
-    ffmpeg
-    pavucontrol
-    playerctl
+      ffmpeg
+      pavucontrol
+      playerctl
 
-    python3
+      python3
 
-    texlivePackages.nunito
-  ];
+      texlivePackages.nunito
+    ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = let
-    dotsym = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/${path}";
-  in {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  home.file =
+    let
+      dotsym = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/${path}";
+    in
+    {
+      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+      # # symlink to the Nix store copy.
+      # ".screenrc".source = dotfiles/screenrc;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #	 org.gradle.console=verbose
-    #	 org.gradle.daemon.idletimeout=3600000
-    # '';
+      # # You can also set the file content immediately.
+      # ".gradle/gradle.properties".text = ''
+      #	 org.gradle.console=verbose
+      #	 org.gradle.daemon.idletimeout=3600000
+      # '';
 
-    # ".config/nvim".source = ~/dotfiles/nvim;
-    ".config/nvim/snippets".source = dotsym "nvim/mini-snippets";
+      # ".config/nvim".source = ~/dotfiles/nvim;
+      ".config/nvim/snippets".source = dotsym "nvim/mini-snippets";
 
-    ".gitconfig".source = dotsym "git/.gitconfig";
-    ".zshrc.ext".source = dotsym "zsh/.zshrc";
-    ".config/kitty".source = dotsym "kitty";
-    ".swww".source = dotsym "swww/.swww";
-    ".config/niri".source = dotsym "niri";
-    ".config/quickshell".source = dotsym "quickshell";
-    ".config/starship.toml".source = dotsym "starship/starship.toml";
-  };
+      ".gitconfig".source = dotsym "git/.gitconfig";
+      ".zshrc.ext".source = dotsym "zsh/.zshrc";
+      ".config/kitty".source = dotsym "kitty";
+      ".swww".source = dotsym "swww/.swww";
+      ".config/niri".source = dotsym "niri";
+      ".config/quickshell".source = dotsym "quickshell";
+      ".config/starship.toml".source = dotsym "starship/starship.toml";
+    };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -236,7 +265,7 @@ in {
       neopywal
     ];
 
-    imports = [./programs/nixvim.nix];
+    imports = [ ./programs/nixvim.nix ];
   };
 
   programs.zsh = {
@@ -255,39 +284,11 @@ in {
     flake = "${config.home.homeDirectory}/dotfiles/nix";
   };
 
-  systemd.user.services.drive-Documents = {
-    Unit = {
-      Description = "GDrive Documents mount.";
-      After = ["network-online.target"];
-    };
-    Service = let
-      localDir = "%h/Documents/Drive";
-      driveDir = "Documents";
-    in {
-      Type = "notify";
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
-      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
-      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
-    };
-    Install.WantedBy = ["default.target"];
-  };
+  systemd.user.timers.drive-Documents = rsyncTimer "Documents";
+  systemd.user.services.drive-Documents = rsyncService "Documents" "%h/Documents/Drive";
 
-  systemd.user.services.drive-Images = {
-    Unit = {
-      Description = "GDrive Images mount.";
-      After = ["network-online.target"];
-    };
-    Service = let
-      localDir = "%h/Pictures/Drive";
-      driveDir = "Images";
-    in {
-      Type = "notify";
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p \"${localDir}\"";
-      ExecStart = "${pkgs.rclone}/bin/rclone --config=\"%h/.config/rclone/rclone.conf\" --vfs-cache-mode=full --vfs-read-ahead=16M mount \"drive:${driveDir}\" \"${localDir}\"";
-      ExecStop = "/run/wrappers/bin/fusermount -u \"${localDir}/%i\"";
-    };
-    Install.WantedBy = ["default.target"];
-  };
+  systemd.user.timers.drive-Images = rsyncTimer "Images";
+  systemd.user.services.drive-Images = rsyncService "Images" "%h/Pictures/Drive";
 
   # Dark mode
   dconf.settings = {
