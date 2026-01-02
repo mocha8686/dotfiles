@@ -199,6 +199,7 @@ in
       libreoffice
       prismlauncher
       qalculate-qt
+      qdirstat
       vesktop
 
       ffmpeg
