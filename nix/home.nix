@@ -203,6 +203,8 @@ in
 
       # Coding
       python3
+
+      inputs.fonts.packages.${pkgs.system}.rajdhani
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

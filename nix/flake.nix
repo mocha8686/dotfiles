@@ -6,6 +6,11 @@
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
+    fonts = {
+      url = "path:fonts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dolphin-overlay = {
       url = "github:rumboon/dolphin-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
