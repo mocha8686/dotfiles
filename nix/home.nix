@@ -146,8 +146,8 @@ in
         notify-send -e "Rebuild" "Rebuild successful.\n$gen"
       '';
       resync = pkgs.writeShellScriptBin "resync" ''
-        ${createResync} "Documents" "${config.home.homeDirectory}/Documents/Drive"
-        ${createResync} "Images" "${config.home.homeDirectory}/Pictures/Drive"
+        ${createResync "Documents" "${config.home.homeDirectory}/Documents/Drive"}
+        ${createResync "Images" "${config.home.homeDirectory}/Pictures/Drive"}
       '';
     in
     [
@@ -169,6 +169,7 @@ in
       # '')
 
       rebuild
+      resync
 
       bat
       btop
