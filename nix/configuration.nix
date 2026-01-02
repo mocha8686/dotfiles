@@ -110,6 +110,7 @@
     kitty
     lxqt.lxqt-policykit
     lxqt.pcmanfm-qt
+    obsidian
     polychromatic
     vivaldi
     wl-clipboard
