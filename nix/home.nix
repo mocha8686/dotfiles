@@ -324,5 +324,8 @@ in
     "org.freedesktop.impl.portal.FileChooser" = "gtk";
   };
 
-  xdg.userDirs.createDirectories = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
 }
