@@ -170,42 +170,38 @@ in
       #	 echo "Hello, ${config.home.username}!"
       # '')
 
+      # Shell Scripts
       rebuild
       resync
 
+      # Terminal
       bat
       btop
       delta
       eza
       fd
+      ffmpeg
       file
       fzf
+      lazygit
+      rclone
       ripgrep
+      starship
       tldr
       zoxide
 
-      imv
-      lazygit
-      rclone
-      starship
-
-      fuzzel
-      inputs.qml-niri.packages.${pkgs.system}.quickshell
-      libnotify
-      swww
-      wallust
-
+      # Graphical
       krita
       libreoffice
+      obsidian
       prismlauncher
       qalculate-qt
       qdirstat
+      swww
       vesktop
+      wallust
 
-      ffmpeg
-      pavucontrol
-      playerctl
-
+      # Coding
       python3
     ];
 

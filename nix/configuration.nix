@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -91,31 +95,42 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+
+    # Text-Based
+    git
+    gnome-keyring
     neovim
     wget
-    uwsm
-    git
 
-    gnome-keyring
+    # Graphical Utils
+    inputs.qml-niri.packages.${pkgs.system}.quickshell
+    libnotify
     lxmenu-data
+    lxqt.lxqt-policykit
     mako
     openrazer-daemon
+    pavucontrol
+    playerctl
+    polychromatic
     pulseaudio
     shared-mime-info
+    uwsm
+    wl-clipboard
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
-
-    evince
-    kdePackages.ark
-    kdePackages.fcitx5-configtool
-    kitty
-    lxqt.lxqt-policykit
-    obsidian
-    polychromatic
-    vivaldi
-    wl-clipboard
     xwayland-satellite
 
+    # Graphical Apps
+    evince
+    fuzzel
+    imv
+    kdePackages.ark
+    kdePackages.fcitx5-configtool
+    kdePackages.kate
+    kitty
+    vivaldi
+
+    # Dolphin
     icoutils
     kdePackages.dolphin
     kdePackages.ffmpegthumbs
