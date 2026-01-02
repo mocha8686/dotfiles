@@ -104,7 +104,7 @@ in {
       git diff --cached -U0 *.nix **/*.nix
 
       nh os switch -a . | tee nixos-switch.log
-      if [[ ''${pipestatus[1]} > 0 ]]; then
+      if [[ ''${PIPESTATUS[0]} > 0 ]]; then
         echo "Rebuild failed."
         popd
         notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
