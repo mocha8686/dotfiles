@@ -16,14 +16,16 @@ let
   bisyncPeriod = "5min";
 
   createBisync =
+    configPath: remoteDir: localDir:
+    "${pkgs.rclone}/bin/rclone bisync \"${remoteName}:${remoteDir}\" \"${localDir}\" --config=\"${configPath}\" --create-empty-src-dirs --compare=size,modtime,checksum --slow-hash-sync-only --resilient --recover --fix-case --conflict-resolve=newer --conflict-loser=delete --max-lock=2m -v";
+  createResync =
     remoteDir: localDir:
-    "${pkgs.rclone}/bin/rclone bisync \"${remoteName}:${remoteDir}\" \"${localDir}\" --config=\"%h/.config/rclone/rclone.conf\" --create-empty-src-dirs --compare=size,modtime,checksum --slow-hash-sync-only --resilient --recover --fix-case --conflict-resolve=newer --conflict-loser=delete --max-lock=2m -v";
-  createResync = remoteDir: localDir: "${createBisync remoteDir localDir} --resync";
+    "${createBisync "$HOME/.config/rclone/rclone.conf" remoteDir localDir} --resync";
 
   rsyncService = remoteDir: localDir: {
     Unit.Description = "rclone bisync for ${remoteName}:${remoteDir}";
     Service.Type = "oneshot";
-    Service.ExecStart = createBisync remoteDir localDir;
+    Service.ExecStart = createBisync "%h/.config/rclone/rclone.conf" remoteDir localDir;
   };
   rsyncTimer = remoteDir: {
     Unit.Description = "rclone bisync for ${remoteName}:${remoteDir} every ${bisyncPeriod}";
