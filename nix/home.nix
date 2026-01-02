@@ -170,6 +170,8 @@ in {
     playerctl
 
     python3
+
+    texlivePackages.nunito
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
