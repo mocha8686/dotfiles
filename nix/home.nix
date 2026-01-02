@@ -293,10 +293,10 @@ in
   fonts.fontconfig.enable = true;
   fonts.fontconfig.defaultFonts = {
     serif = [
-
+      "Liberation Serif"
     ];
     sansSerif = [
-      
+      "Rajdhani"
     ];
     monospace = [
       "Iosevka Nerd Font Mono"
