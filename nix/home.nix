@@ -220,6 +220,8 @@ in
       reaper-reapack-extension
       reaper-sws-extension
       userFonts.frozenCrystal
+
+      tetrio-desktop
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
