@@ -21,7 +21,6 @@
             <string>--conflict-loser=delete</string>
             <string>--max-lock=2m</string>
             <string>--log-file=/Users/mocha/.local/share/rcloneDocuments.log</string>
-            <string>--log-level=INFO</string>
             <string>-v</string>
         </array>
         <key>RunAtLoad</key>
