@@ -13,10 +13,15 @@
       flake-utils,
     }:
     let
-      mkInstallPhase = { srcSubdirectory ? "", fontType ? "truetype" }: ''
-        mkdir -p $out/share/fonts
-        cp -R $src/${srcSubdirectory} $out/share/fonts/${fontType}/
-      '';
+      mkInstallPhase =
+        {
+          srcSubdirectory ? "",
+          fontType ? "truetype",
+        }:
+        ''
+          mkdir -p $out/share/fonts
+          cp -R $src/${srcSubdirectory} $out/share/fonts/${fontType}/
+        '';
     in
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -43,6 +48,22 @@
             };
             installPhase = mkInstallPhase { };
             meta.description = "Rajdhani font family.";
+          };
+
+        packages.frozenCrystal =
+          let
+            url = "https://www.iconian.com/fonts2/frozencrystal.zip";
+          in
+          pkgs.stdenvNoCC.mkDerivation {
+            name = "frozenCrystal-font";
+            dontConfigure = true;
+            src = pkgs.fetchzip {
+              inherit url;
+              sha256 = "sha256-lnuo9pO09+famUxirBdKIiU+PPWYaiIljqRv/KAGxBM=";
+              stripRoot = false;
+            };
+            installPhase = mkInstallPhase { };
+            meta.description = "Frozen Crystal font family.";
           };
       }
     );

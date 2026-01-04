@@ -88,7 +88,6 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
-    texlivePackages.nunito
   ];
 
   # List packages installed in system profile. To search, run:

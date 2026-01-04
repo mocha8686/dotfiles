@@ -118,6 +118,7 @@ in
   home.packages =
     with pkgs;
     let
+      userFonts = inputs.fonts.packages.${pkgs.system};
       nixDotDir = "~/dotfiles/nix/";
       rebuild = pkgs.writeShellScriptBin "rebuild" ''
         cd ${nixDotDir} || {
@@ -206,12 +207,14 @@ in
       python3
 
       # Fonts
-      inputs.fonts.packages.${pkgs.system}.rajdhani
+      userFonts.rajdhani
 
       # REAPER
+      fira
       reaper
-      reaper-sws-extension
       reaper-reapack-extension
+      reaper-sws-extension
+      userFonts.frozenCrystal
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
