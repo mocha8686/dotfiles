@@ -129,12 +129,16 @@ in
 
         git add -A
 
-        if git diff --cached --quiet ./*.nix ./**/*.nix; then
+        if git diff --cached --quiet ./flake.lock ./*.nix ./**/*.nix; then
           echo "No changes detected."
           exit 0
         fi
 
         git diff --cached -U0 ./*.nix ./**/*.nix
+
+        if ! git diff --cached --quiet ./flake.lock; then
+          echo "Lockfile updated."
+        fi
 
         nh os switch -a . | tee nixos-switch.log
         if [[ ''${PIPESTATUS[0]} -gt 0 ]]; then
@@ -200,7 +204,7 @@ in
       qalculate-qt
       qdirstat
       swww
-      vesktop
+      # vesktop
       wallust
 
       # Coding
