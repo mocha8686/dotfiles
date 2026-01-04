@@ -205,7 +205,13 @@ in
       # Coding
       python3
 
+      # Fonts
       inputs.fonts.packages.${pkgs.system}.rajdhani
+
+      # REAPER
+      reaper
+      reaper-sws-extension
+      reaper-reapack-extension
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
