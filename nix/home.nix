@@ -205,6 +205,7 @@ in
       qdirstat
       swww
       # vesktop
+      discord
       wallust
 
       # Coding
