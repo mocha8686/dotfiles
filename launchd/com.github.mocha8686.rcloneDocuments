@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.github.mocha8686.rcloneDocuments</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/local/bin/rclone</string>
+            <string>drive:Documents</string>
+            <string>/Users/mocha/Documents/Drive</string>
+            <string>--config=/Users/mocha/.config/rclone/rclone.conf</string>
+            <string>--create-empty-src-dirs</string>
+            <string>--compare=size,modtime,checksum</string>
+            <string>--slow-hash-sync-only</string>
+            <string>--resilient</string>
+            <string>--recover</string>
+            <string>--fix-case</string>
+            <string>--conflict-resolve=newer</string>
+            <string>--conflict-loser=delete</string>
+            <string>--max-lock=2m</string>
+            <string>-v</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>StartInterval</key>
+        <integer>300</integer>
+    </dict>
+</plist>
