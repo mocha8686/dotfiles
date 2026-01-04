@@ -137,7 +137,9 @@ in
         git diff --cached -U0 ./*.nix ./**/*.nix
 
         if ! git diff --cached --quiet ./flake.lock; then
-          echo "Lockfile updated."
+          echo "====================="
+          echo "= Lockfile updated. ="
+          echo "====================="
         fi
 
         nh os switch -a . | tee nixos-switch.log
