@@ -184,6 +184,7 @@ in
       file
       fzf
       lazygit
+      nmap
       rclone
       ripgrep
       starship
