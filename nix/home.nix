@@ -366,9 +366,44 @@ in
     "org.freedesktop.impl.portal.FileChooser" = "gtk";
   };
 
-  xdg.mimeApps.defaultApplications = {
-    "application/zip" = "org.kde.ark.desktop";
-  };
+  xdg.mimeApps.defaultApplications =
+    let
+      archiveTool = "org.kde.ark.desktop";
+      imageViewer = "imv-dir.desktop";
+      avViewer = "mpv.desktop";
+    in
+    {
+      "application/gzip" = archiveTool;
+      "application/vnd.rar" = archiveTool;
+      "application/x-7z-compressed" = archiveTool;
+      "application/x-bzip" = archiveTool;
+      "application/x-bzip2" = archiveTool;
+      "application/x-tar" = archiveTool;
+      "application/zip" = archiveTool;
+
+      "image/apng" = imageViewer;
+      "image/avif" = imageViewer;
+      "image/bmp" = imageViewer;
+      "image/jpeg" = imageViewer;
+      "image/png" = imageViewer;
+      "image/svg+xml" = imageViewer;
+      "image/tiff" = imageViewer;
+      "image/vnd.microsoft.icon" = imageViewer;
+      "image/webp" = imageViewer;
+
+      "application/ogg" = avViewer;
+      "audio/aac" = avViewer;
+      "audio/midi" = avViewer;
+      "audio/ogg" = avViewer;
+      "audio/wav" = avViewer;
+      "audio/webm" = avViewer;
+      "audio/x-midi" = avViewer;
+      "video/mp4" = avViewer;
+      "video/mpeg" = avViewer;
+      "video/ogg" = avViewer;
+      "video/webm" = avViewer;
+      "video/x-msvideo" = avViewer;
+    };
 
   xdg.userDirs = {
     enable = true;

@@ -123,6 +123,7 @@
     evince
     fuzzel
     imv
+    mpv
     kdePackages.ark
     kdePackages.fcitx5-configtool
     kdePackages.kate
