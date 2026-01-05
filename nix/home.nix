@@ -366,6 +366,7 @@ in
     "org.freedesktop.impl.portal.FileChooser" = "gtk";
   };
 
+  xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications =
     let
       archiveTool = "org.kde.ark.desktop";
