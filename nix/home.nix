@@ -206,8 +206,8 @@ in
       qalculate-qt
       qdirstat
       swww
-      # vesktop
-      discord
+      vesktop
+      # discord
       wallust
 
       # Coding

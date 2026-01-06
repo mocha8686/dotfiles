@@ -356,9 +356,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Ctrl+Shift+P { screenshot; }
-    Ctrl+Shift+O { screenshot-screen; }
-    Ctrl+Alt+P { screenshot-window; }
+    Mod+Shift+P { screenshot; }
+    Mod+Shift+O { screenshot-screen; }
+    Mod+Alt+P { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
@@ -376,7 +376,7 @@ binds {
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    Mod+Ctrl+Shift+P { power-off-monitors; }
 }
 
 // vim:expandtab
