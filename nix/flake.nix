@@ -73,6 +73,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "old";
                 users.mocha = ./home.nix;
                 extraSpecialArgs = { inherit inputs; };
               };
