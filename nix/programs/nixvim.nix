@@ -220,7 +220,10 @@
     servers = {
       astro.enable = true;
       biome.enable = true;
+      cssls.enable = true;
+      emmet_ls.enable = true;
       eslint.enable = true;
+      html.enable = true;
       jsonls.enable = true;
       nil_ls.enable = true;
       qmlls.enable = true;
