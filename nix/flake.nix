@@ -11,6 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ichikaCursor = {
+      url = "path:ichika-cursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dolphin-overlay = {
       url = "github:rumboon/dolphin-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

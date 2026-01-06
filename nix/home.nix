@@ -223,6 +223,8 @@ in
       reaper-sws-extension
       userFonts.frozenCrystal
 
+      inputs.ichikaCursor.packages.${pkgs.system}.ichikaCursor
+
       tetrio-desktop
     ];
 
