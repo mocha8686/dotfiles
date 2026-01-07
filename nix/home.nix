@@ -116,6 +116,7 @@ in
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
+    size = 32;
     name = "Ichika";
     package = inputs.ichikaCursor.packages.${pkgs.system}.ichikaCursor;
   };
