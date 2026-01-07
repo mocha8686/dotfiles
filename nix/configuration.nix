@@ -95,9 +95,6 @@
   environment.systemPackages = with pkgs; [
     # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
-    # Libs
-    dnsmasq
-
     # Text-Based
     git
     gnome-keyring
@@ -169,9 +166,6 @@
 
   hardware.opentabletdriver.enable = true;
   hardware.uinput.enable = true;
-
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
 
   # List services that you want to enable:
 
