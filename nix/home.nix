@@ -113,13 +113,13 @@ in
     };
   };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    size = 64;
-    name = "Ichika";
-    package = inputs.ichikaCursor.packages.${pkgs.system}.ichikaCursor;
-  };
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  #   size = 64;
+  #   name = "Ichika";
+  #   package = inputs.ichikaCursor.packages.${pkgs.system}.ichikaCursor;
+  # };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
