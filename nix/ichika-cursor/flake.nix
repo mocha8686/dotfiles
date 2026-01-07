@@ -12,8 +12,10 @@
     }:
     let
       name = "Ichika";
-      url = "https://colorfulstage.com/upload_images/media/Download/Ichika%20Cursor%20animation.zip";
-      hash = "sha256-MZcQLNbSmpJKCvLNYjSYDfsOo4ZZNJdJagvEg6oZjZ4=";
+      # url = "https://colorfulstage.com/upload_images/media/Download/Ichika%20Cursor%20animation.zip";
+      # hash = "sha256-MZcQLNbSmpJKCvLNYjSYDfsOo4ZZNJdJagvEg6oZjZ4=";
+      url = "https://colorfulstage.com/upload_images/media/Download/Ichika%20Cursor%20static.zip";
+      hash = "sha256-dHTdmSYFuRYsEOwUe+RcZEu3gNE1A5eGGaX216FmPTY=";
       converts = {
         "Alternate" = "all-scroll";
         "Busy" = "wait";
@@ -230,7 +232,7 @@
             let
               convert =
                 from: to:
-                "win2xcur \"${from}.ani\" && mv \"${from}\" \"$out/share/icons/${name}/cursors/${to}\"";
+                "win2xcur \"${from}.cur\" && mv \"${from}\" \"$out/share/icons/${name}/cursors/${to}\"";
               sub =
                 from: tos: builtins.concatStringsSep "\n" (builtins.map (to: "ln -sn \"$out/share/icons/${name}/cursors/${from}\" \"$out/share/icons/${name}/cursors/${to}\"") tos);
               flatten = attrSet: builtins.concatStringsSep "\n" (builtins.attrValues attrSet);
