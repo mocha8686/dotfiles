@@ -412,6 +412,8 @@ in
       "video/ogg" = avViewer;
       "video/webm" = avViewer;
       "video/x-msvideo" = avViewer;
+
+      "application/pdf" = "org.gnome.Evince.desktop";
     };
 
   xdg.userDirs = {
