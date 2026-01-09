@@ -110,6 +110,10 @@ window-rule {
     match app-id="steam_app_1091500" title="^Cyberpunk 2077"
     open-fullscreen true
 }
+window-rule {
+    match app-id="steam_app_1778820" title="^TEKKEN"
+    open-fullscreen true
+}
 
 window-rule {
     match app-id="thunar" title="File Operation Progress"
