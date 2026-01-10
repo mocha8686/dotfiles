@@ -40,6 +40,11 @@
       url = "github:imiric/qml-niri/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -66,6 +71,7 @@
             {
               nixpkgs.overlays = [ inputs.dolphin-overlay.overlays.default ];
             }
+            inputs.musnix.nixosModules.musnix
             ./configuration.nix
             home-manager.nixosModules.home-manager
             inputs.nix-flatpak.nixosModules.nix-flatpak
