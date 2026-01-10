@@ -165,6 +165,9 @@ in
       resync = pkgs.writeShellScriptBin "resync" ''
         ${createResync "Documents" "${config.home.homeDirectory}/Documents/Drive"}
         ${createResync "Images" "${config.home.homeDirectory}/Pictures/Drive"}
+        ${createResync "REAPER/Config" "${config.home.homeDirectory}/.config/REAPER"}
+        ${createResync "REAPER/Samples" "${config.home.homeDirectory}/Music/Samples/Drive"}
+        # ${createResync "REAPER/VitalPresets" "${config.home.homeDirectory}/Music/REAPER"}
       '';
     in
     [
@@ -230,6 +233,12 @@ in
       reaper-reapack-extension
       reaper-sws-extension
       userFonts.frozenCrystal
+      carla
+      lsp-plugins
+      sfizz-ui
+      vital
+      yabridge
+      zam-plugins
 
       tetrio-desktop
     ];
@@ -339,6 +348,15 @@ in
 
   systemd.user.timers.drive-Images = rsyncTimer "Images";
   systemd.user.services.drive-Images = rsyncService "Images" "%h/Pictures/Drive";
+
+  systemd.user.timers.drive-REAPERConfig = rsyncTimer "REAPER/Config";
+  systemd.user.services.drive-REAPERConfig = rsyncService "REAPER/Config" "%h/.config/REAPER";
+
+  systemd.user.timers.drive-Samples = rsyncTimer "REAPER/Samples";
+  systemd.user.services.drive-Samples = rsyncService "REAPER/Samples" "%h/Music/Samples/Drive";
+
+  # systemd.user.timers.drive-VitalPresets = rsyncTimer "REAPER/VitalPresets";
+  # systemd.user.services.drive-VitalPresets = rsyncService "REAPER/VitalPresets" "%h/Music/REAPER";
 
   systemd.user.tmpfiles.rules =
     let
