@@ -167,7 +167,7 @@ in
         ${createResync "Images" "${config.home.homeDirectory}/Pictures/Drive"}
         ${createResync "REAPER/Config" "${config.home.homeDirectory}/.config/REAPER"}
         ${createResync "REAPER/Samples" "${config.home.homeDirectory}/Music/Samples/Drive"}
-        # ${createResync "REAPER/VitalPresets" "${config.home.homeDirectory}/Music/REAPER"}
+        ${createResync "REAPER/VitalPresets" "${config.home.homeDirectory}/.local/share/vital/User/Presets"}
       '';
     in
     [
@@ -355,8 +355,8 @@ in
   systemd.user.timers.drive-Samples = rsyncTimer "REAPER/Samples";
   systemd.user.services.drive-Samples = rsyncService "REAPER/Samples" "%h/Music/Samples/Drive";
 
-  # systemd.user.timers.drive-VitalPresets = rsyncTimer "REAPER/VitalPresets";
-  # systemd.user.services.drive-VitalPresets = rsyncService "REAPER/VitalPresets" "%h/Music/REAPER";
+  systemd.user.timers.drive-VitalPresets = rsyncTimer "REAPER/VitalPresets";
+  systemd.user.services.drive-VitalPresets = rsyncService "REAPER/VitalPresets" "%h/.local/share/vital/User/Presets";
 
   systemd.user.tmpfiles.rules =
     let
