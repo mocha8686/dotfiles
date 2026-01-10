@@ -239,6 +239,7 @@ in
       vital
       yabridge
       zam-plugins
+      calf
 
       tetrio-desktop
     ];

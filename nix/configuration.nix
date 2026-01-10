@@ -80,6 +80,7 @@
       "networkmanager"
       "wheel"
       "openrazer"
+      "audio"
     ];
     shell = pkgs.zsh;
   };
