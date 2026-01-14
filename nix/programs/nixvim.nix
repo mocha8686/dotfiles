@@ -5,6 +5,7 @@
     gitsigns.enable = true;
     git-conflict.enable = true;
     vim-matchup.enable = true;
+    leetcode.enable = true;
 
     lspconfig.enable = true;
 
@@ -220,6 +221,7 @@
     servers = {
       astro.enable = true;
       biome.enable = true;
+      clangd.enable = true;
       cssls.enable = true;
       emmet_ls.enable = true;
       eslint.enable = true;
