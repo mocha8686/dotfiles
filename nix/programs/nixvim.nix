@@ -151,6 +151,7 @@
             	{ mode = 'n', keys = '<leader>s', desc = '+Spectre' },
             	{ mode = 'n', keys = '<leader>t', desc = '+Toggleterm' },
             	{ mode = 'n', keys = '<leader>l', desc = '+LSP' },
+            	{ mode = 'n', keys = '<leader>v', desc = '+Leet' },
 
             	require('mini.clue').gen_clues.builtin_completion(),
             	require('mini.clue').gen_clues.g(),
@@ -682,6 +683,61 @@
         end
       '';
       options.desc = "Toggle Venn";
+    }
+    {
+      key = "<leader>v'";
+      action = "<Cmd>Leet run<CR>";
+      options.desc = "Run solution";
+    }
+    {
+      key = "<leader>v<CR>";
+      action = "<Cmd>Leet submit<CR>";
+      options.desc = "Submit solution";
+    }
+    {
+      key = "<leader>vc";
+      action = "<Cmd>Leet console<CR>";
+      options.desc = "Open console";
+    }
+    {
+      key = "<leader>vd";
+      action = "<Cmd>Leet desc<CR>";
+      options.desc = "View question description";
+    }
+    {
+      key = "<leader>vi";
+      action = "<Cmd>Leet info<CR>";
+      options.desc = "View question info";
+    }
+    {
+      key = "<leader>vl";
+      action = "<Cmd>Leet lang<CR>";
+      options.desc = "Change language";
+    }
+    {
+      key = "<leader>vo";
+      action = "<Cmd>Leet open<CR>";
+      options.desc = "Open problem in browser";
+    }
+    {
+      key = "<leader>vr";
+      action = "<Cmd>Leet random<CR>";
+      options.desc = "Random problem";
+    }
+    {
+      key = "<leader>vt";
+      action = "<Cmd>Leet tabs<CR>";
+      options.desc = "View Leet tabs";
+    }
+    {
+      key = "<leader>vv";
+      action = "<Cmd>Leet<CR>";
+      options.desc = "Open menu";
+    }
+    {
+      key = "<leader>vy";
+      action = "<Cmd>Leet daily<CR>";
+      options.desc = "Daily problem";
     }
   ];
 }
