@@ -10,11 +10,11 @@ return {
 	},
 	keys = {
 		{
-			'<leader>ss',
+			'<leader>so',
 			function()
 				require('spectre').toggle()
 			end,
-			desc = 'Togggle Spectre',
+			desc = 'Toggle Spectre',
 		},
 		{
 			'<leader>sw',
