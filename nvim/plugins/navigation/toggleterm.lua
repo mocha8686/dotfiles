@@ -1,11 +1,11 @@
-local open_mapping = '<leader>tr'
+local open_mapping = '<leader>to'
 
 return {
 	'akinsho/toggleterm.nvim',
 	version = '*',
 	keys = {
 		{ open_mapping, function() end, desc = 'Toggle terminal' },
-		{ "<C-'>",      '<C-\\><C-n>',  mode = { 't' },          desc = 'Exit to normal mode' },
+		{ "<C-'>", '<C-\\><C-n>', mode = { 't' }, desc = 'Exit to normal mode' },
 	},
 	opts = {
 		direction = 'vertical',

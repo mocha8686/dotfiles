@@ -86,12 +86,17 @@ local function config()
 		'mini.indentscope',
 	}
 
+	local navigation = {
+		'mini.jump2d',
+	}
+
 	--------------------------------------------------------------------------------
 
 	local module_sets = {
+		appearance,
+		navigation,
 		text_editing,
 		workflow,
-		appearance,
 	}
 
 	for _, module_set in ipairs(module_sets) do

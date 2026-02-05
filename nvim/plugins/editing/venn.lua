@@ -21,13 +21,40 @@ local function toggle_venn()
 	end
 end
 
+local function obsidian_mode()
+	require('venn').set_line({ ' ', ' ', 's', 's' }, '-')
+	require('venn').set_arrow('up', '^')
+	require('venn').set_arrow('down', 'v')
+	require('venn').set_arrow('left', '<')
+	require('venn').set_arrow('right', '>')
+end
+
+local function default_mode()
+	require('venn').set_line({ ' ', ' ', 's', 's' }, '─')
+	require('venn').set_arrow('up', '▲')
+	require('venn').set_arrow('down', '▼')
+	require('venn').set_arrow('left', '◄')
+	require('venn').set_arrow('right', '►')
+end
+
 return {
 	'jbyuki/venn.nvim',
 	keys = {
 		{
-			'<leader>V',
+			'<leader>mo',
 			toggle_venn,
-			desc = 'Toggle venn',
+			desc = 'Toggle Venn',
+		},
+		{
+			'<leader>mb',
+			obsidian_mode,
+			desc = 'Obsidian mode',
+		},
+		{
+			'<leader>md',
+			default_mode,
+			desc = 'Default mode',
 		},
 	},
 }
+
