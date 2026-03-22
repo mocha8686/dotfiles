@@ -327,7 +327,7 @@
     local project_config_module_name = 'nvimconfig'
     local function load_project_config()
       if vim.fn.filereadable(project_config_module_name .. '.lua') ~= 0 then
-        require(project_config_module_name)
+        require('./' .. project_config_module_name)
       end
     end
     load_project_config()
