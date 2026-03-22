@@ -330,6 +330,7 @@
         require(project_config_module_name)
       end
     end
+    load_project_config()
   '';
 
   globals = {
