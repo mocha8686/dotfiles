@@ -323,6 +323,13 @@
     map_multistep('i', '<BS>', { 'minipairs_bs' })
 
     vim.api.nvim_set_hl(0, "MiniTablineCurrent", { link = "IncSearch" })
+
+    local project_config_module_name = 'nvimconfig'
+    local function load_project_config()
+      if vim.fn.filereadable(project_config_module_name .. '.lua') ~= 0 then
+        require(project_config_module_name)
+      end
+    end
   '';
 
   globals = {
