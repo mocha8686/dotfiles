@@ -242,6 +242,8 @@ in
       calf
 
       tetrio-desktop
+    ] ++ [
+      inputs.globalprotect-openconnect.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
