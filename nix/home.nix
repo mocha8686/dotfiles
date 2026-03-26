@@ -40,6 +40,7 @@ in
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
+    ../home.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

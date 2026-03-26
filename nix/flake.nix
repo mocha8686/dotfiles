@@ -50,6 +50,11 @@
       url = "github:yuezk/GlobalProtect-openconnect";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -57,6 +62,7 @@
       self,
       nixpkgs,
       home-manager,
+      nix-darwin,
       ...
     }@inputs:
     let
@@ -77,7 +83,7 @@
               nixpkgs.overlays = [ inputs.dolphin-overlay.overlays.default ];
             }
             inputs.musnix.nixosModules.musnix
-            ./configuration.nix
+            ./asahina/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.nix-flatpak.nixosModules.nix-flatpak
             {
@@ -86,9 +92,21 @@
                 useUserPackages = true;
                 backupFileExtension = "old";
                 users.mocha = ./home.nix;
-                extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
               };
             }
+          ];
+        };
+      };
+      darwinConfigurations = {
+        akiyama = nix-darwin.lib.darwinSystem {
+          pkgs = pkgs;
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./akiyama/configuration.nix
           ];
         };
       };
