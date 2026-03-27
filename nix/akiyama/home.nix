@@ -1,7 +1,5 @@
 {
   config,
-  pkgs,
-  inputs,
   ...
 }:
 {
@@ -15,6 +13,7 @@
     in
     {
       ".zprofile".source = dotsym "zsh/.zprofile";
+      "Library/Application Support/wallust".source = dotsym "wallust";
     };
 
   home.homeDirectory = "/Users/mocha";

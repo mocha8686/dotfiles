@@ -43,6 +43,7 @@
       ".swww".source = dotsym "swww/.swww";
       ".config/niri".source = dotsym "niri";
       ".config/quickshell".source = dotsym "quickshell";
+      ".config/wallust".source = dotsym "wallust";
     };
 
   home.pointerCursor = {
