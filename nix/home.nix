@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 let
@@ -12,41 +13,71 @@ let
   };
 
   remoteName = "drive";
-  bisyncInitialize = "10s";
-  bisyncPeriod = "5min";
+  bisyncInitializeSecs = 10;
+  bisyncPeriodSecs = 300;
 
   createBisync =
     configPath: remoteDir: localDir:
-    "${pkgs.rclone}/bin/rclone bisync \"${remoteName}:${remoteDir}\" \"${localDir}\" --config=\"${configPath}\" --create-empty-src-dirs --compare=size,modtime,checksum --slow-hash-sync-only --resilient --recover --fix-case --conflict-resolve=newer --conflict-loser=delete --max-lock=2m -v";
+    [
+      "${pkgs.rclone}/bin/rclone"
+      "bisync"
+      "\"${remoteName}:${remoteDir}\""
+      "\"${localDir}\""
+      "--config=\"${configPath}\""
+      "--create-empty-src-dirs"
+      "--compare=size,modtime,checksum"
+      "--slow-hash-sync-only"
+      "--resilient"
+      "--recover"
+      "--fix-case"
+      "--conflict-resolve=newer"
+      "--conflict-loser=delete"
+      "--max-lock=2m"
+      "-v"
+    ];
   createResync =
     remoteDir: localDir:
-    "${createBisync "$HOME/.config/rclone/rclone.conf" remoteDir localDir} --resync";
+    "${lib.concatStringsSep " " (createBisync "$HOME/.config/rclone/rclone.conf" remoteDir localDir)} --resync";
 
-  rsyncService = remoteDir: localDir: {
+  rcloneService = remoteDir: localDir: {
     Unit.Description = "rclone bisync for ${remoteName}:${remoteDir}";
     Service.Type = "oneshot";
-    Service.ExecStart = createBisync "%h/.config/rclone/rclone.conf" remoteDir localDir;
+    Service.ExecStart = lib.concatStringsSep " " (createBisync "%h/.config/rclone/rclone.conf" remoteDir localDir);
   };
-  rsyncTimer = remoteDir: {
-    Unit.Description = "rclone bisync for ${remoteName}:${remoteDir} every ${bisyncPeriod}";
+  rcloneTimer = remoteDir: {
+    Unit.Description = "rclone bisync for ${remoteName}:${remoteDir} every ${bisyncPeriodSecs / 60}min";
     Unit.After = "network-online.target";
-    Timer.OnBootSec = bisyncInitialize;
-    Timer.OnUnitActiveSec = bisyncPeriod;
+    Timer.OnBootSec = "${bisyncInitializeSecs}s";
+    Timer.OnUnitActiveSec = "${bisyncPeriodSecs}s";
     Install.WantedBy = [
       "timers.target"
     ];
+  };
+  rcloneLaunchAgent = label: remoteDir: localDir: {
+    enable = true;
+    config =
+    let
+      bisync = createBisync "${config.home.homeDirectory}/.config/rclone/rclone.conf" remoteDir localDir;
+    in
+    {
+      Label = label;
+      Program = builtins.elemAt bisync 0;
+      ProgramArguments = bisync;
+      RunAtLoad = true;
+      StartInterval = bisyncPeriodSecs;
+      StandardErrorPath = "${config.home.homeDirectory}/.local/share/${label}.stderr";
+      StandardOutPath = "${config.home.homeDirectory}/.local/share/${label}.stdout";
+    };
   };
 in
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
-    ../home.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "mocha";
-  home.homeDirectory = "/home/mocha";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -56,71 +87,6 @@ in
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
-
-  i18n.inputMethod.fcitx5.settings = {
-    globalOptions = {
-      "Hotkey/TriggerKeys" = {
-        "0" = "Control+Shift+space";
-        "1" = "Zenkaku_Hankaku";
-        "2" = "Hangul";
-      };
-
-      "Hotkey/ActivateKeys"."0" = "Hangul_Hanja";
-      "Hotkey/DeactivateKeys"."0" = "Hangul_Romaja";
-      "Hotkey/AltTriggerKeys"."0" = "Shift_L";
-      "Hotkey/EnumerateGroupForwardKeys"."0" = "Super+space";
-      "Hotkey/EnumerateGroupBackwardKeys"."0" = "Shift+Super+space";
-      "Hotkey/PrevPage"."0" = "Up";
-      "Hotkey/NextPage"."0" = "Down";
-      "Hotkey/PrevCandidate"."0" = "Shift+Tab";
-      "Hotkey/NextCandidate"."0" = "Tab";
-      "Hotkey/TogglePreedit"."0" = "Control+Alt+P";
-
-      "Behavior" = {
-        "ActiveByDefault" = "False";
-        "resetStateWhenFocusIn" = "No";
-        "ShareInputState" = "No";
-        "PreeditEnabledByDefault" = "True";
-        "ShowInputMethodInformation" = "True";
-        "showInputMethodInformationWhenFocusIn" = "False";
-        "CompactInputMethodInformation" = "True";
-        "ShowFirstInputMethodInformation" = "True";
-        "DefaultPageSize" = "5";
-        "OverrideXkbOption" = "False";
-        "CustomXkbOption" = "";
-        "EnabledAddons" = "";
-        "DisabledAddons" = "";
-        "PreloadInputMethod" = "True";
-        "AllowInputMethodForPassword" = "False";
-        "ShowPreeditForPassword" = "False";
-        "AutoSavePeriod" = "30";
-      };
-    };
-    inputMethod = {
-      "GroupOrder"."0" = "Default";
-      "Groups/0" = {
-        "Name" = "Default";
-        "Default Layout" = "us";
-        "DefaultIM" = "mozc";
-      };
-      "Groups/0/Items/0" = {
-        "Name" = "keyboard-us";
-        "Layout" = "";
-      };
-      "Groups/0/Items/1" = {
-        "Name" = "mozc";
-        "Layout" = "";
-      };
-    };
-  };
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    size = 64;
-    name = "Ichika";
-    package = inputs.ichikaCursor.packages.${pkgs.system}.ichikaCursor;
-  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -134,7 +100,17 @@ in
           echo "Failed to find nix dotfile directory."
           exit 1
         }
-        "$EDITOR" configuration.nix home.nix flake.nix
+
+        OS="$(uname)"
+        NOTIFY="$(command -v notify-send)"
+
+
+        if [[ $OS == Darwin ]]; then
+          FILES="flake.nix akiyama/* home.nix configuration.nix"
+        else
+          FILES="flake.nix asahina/* home.nix configuration.nix"
+        fi
+        "$EDITOR" $FILES
 
         git add -A
 
@@ -151,24 +127,43 @@ in
           echo "====================="
         fi
 
-        nh os switch -a . | tee nixos-switch.log
+
+        if [[ $OS == Darwin ]]; then
+          CMD="darwin"
+        else
+          CMD="os"
+        fi
+        nh $CMD switch -a . | tee nixos-switch.log
+
         if [[ ''${PIPESTATUS[0]} -gt 0 ]]; then
           echo "Rebuild failed."
-          notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
+          if command -v notify-send; then
+            notify-send -e "Rebuild" "Rebuild failed.\nSee console for more info."
+          fi
           exit 1
         fi
 
-        gen=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
-        git commit -m "$gen"
+        if [[ $OS == Darwin ]]; then
+          MSG="darwin switch"
+        else
+          MSG=$(nixos-rebuild list-generations | grep True | awk '{printf "gen %s\nnixos %s :: kernel %s\n", $1, $4, $5}')
+        fi
+        git commit -m "$MSG"
 
-        notify-send -e "Rebuild" "Rebuild successful.\n$gen"
+        if command -v notify-send; then
+          notify-send -e "Rebuild" "Rebuild successful.\n$gen"
+        fi
       '';
       resync = pkgs.writeShellScriptBin "resync" ''
         ${createResync "Documents" "${config.home.homeDirectory}/Documents/Drive"}
         ${createResync "Images" "${config.home.homeDirectory}/Pictures/Drive"}
-        ${createResync "REAPER/Config" "${config.home.homeDirectory}/.config/REAPER"}
-        ${createResync "REAPER/Samples" "${config.home.homeDirectory}/Music/Samples/Drive"}
-        ${createResync "REAPER/VitalPresets" "${config.home.homeDirectory}/.local/share/vital/User/Presets"}
+
+        OS="$(uname)"
+        if [[ $OS != Darwin ]]; then
+          ${createResync "REAPER/Config" "${config.home.homeDirectory}/.config/REAPER"}
+          ${createResync "REAPER/Samples" "${config.home.homeDirectory}/Music/Samples/Drive"}
+          ${createResync "REAPER/VitalPresets" "${config.home.homeDirectory}/.local/share/vital/User/Presets"}
+        fi
       '';
     in
     [
@@ -211,37 +206,16 @@ in
       zoxide
 
       # Graphical
-      krita
-      libreoffice
       obsidian
       prismlauncher
       qalculate-qt
-      qdirstat
-      swww
       vesktop
-      # discord
       wallust
-
-      # Coding
-      python3
 
       # Fonts
       userFonts.rajdhani
 
-      # REAPER
-      fira
-      reaper
-      reaper-reapack-extension
-      reaper-sws-extension
-      userFonts.frozenCrystal
-      carla
-      lsp-plugins
-      sfizz-ui
-      vital
-      yabridge
-      zam-plugins
-      calf
-
+      # Games
       tetrio-desktop
     ] ++ [
       inputs.globalprotect-openconnect.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -271,9 +245,6 @@ in
       ".gitconfig".source = dotsym "git/.gitconfig";
       ".zshrc.ext".source = dotsym "zsh/.zshrc";
       ".config/kitty".source = dotsym "kitty";
-      ".swww".source = dotsym "swww/.swww";
-      ".config/niri".source = dotsym "niri";
-      ".config/quickshell".source = dotsym "quickshell";
       ".config/starship.toml".source = dotsym "starship/starship.toml";
     };
 
@@ -345,101 +316,34 @@ in
     ];
   };
 
-  # rclone Drive
+  systemd = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+    user.timers.drive-Documents = rcloneTimer "Documents";
+    user.services.drive-Documents = rcloneService "Documents" "%h/Documents/Drive";
 
-  systemd.user.timers.drive-Documents = rsyncTimer "Documents";
-  systemd.user.services.drive-Documents = rsyncService "Documents" "%h/Documents/Drive";
+    user.timers.drive-Images = rcloneTimer "Images";
+    user.services.drive-Images = rcloneService "Images" "%h/Pictures/Drive";
 
-  systemd.user.timers.drive-Images = rsyncTimer "Images";
-  systemd.user.services.drive-Images = rsyncService "Images" "%h/Pictures/Drive";
+    user.timers.drive-REAPERConfig = rcloneTimer "REAPER/Config";
+    user.services.drive-REAPERConfig = rcloneService "REAPER/Config" "%h/.config/REAPER";
 
-  systemd.user.timers.drive-REAPERConfig = rsyncTimer "REAPER/Config";
-  systemd.user.services.drive-REAPERConfig = rsyncService "REAPER/Config" "%h/.config/REAPER";
+    user.timers.drive-Samples = rcloneTimer "REAPER/Samples";
+    user.services.drive-Samples = rcloneService "REAPER/Samples" "%h/Music/Samples/Drive";
 
-  systemd.user.timers.drive-Samples = rsyncTimer "REAPER/Samples";
-  systemd.user.services.drive-Samples = rsyncService "REAPER/Samples" "%h/Music/Samples/Drive";
+    user.timers.drive-VitalPresets = rcloneTimer "REAPER/VitalPresets";
+    user.services.drive-VitalPresets = rcloneService "REAPER/VitalPresets" "%h/.local/share/vital/User/Presets";
 
-  systemd.user.timers.drive-VitalPresets = rsyncTimer "REAPER/VitalPresets";
-  systemd.user.services.drive-VitalPresets = rsyncService "REAPER/VitalPresets" "%h/.local/share/vital/User/Presets";
-
-  systemd.user.tmpfiles.rules =
-    let
-      createHomeDirRule = dir: "d %h/${dir} - - - - -";
-    in
-    [
-      (createHomeDirRule "Documents/Drive")
-      (createHomeDirRule "Pictures/Drive")
-    ];
-
-  # Dark mode
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
+    user.tmpfiles.rules =
+      let
+        createHomeDirRule = dir: "d %h/${dir} - - - - -";
+      in
+      [
+        (createHomeDirRule "Documents/Drive")
+        (createHomeDirRule "Pictures/Drive")
+      ];
   };
 
-  gtk = {
-    enable = true;
-    theme.name = "Adwaita";
-    iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-  };
-
-  qt = {
-    enable = true;
-    style.name = "Adwaita";
-  };
-
-  xdg.portal.config.niri = {
-    "org.freedesktop.impl.portal.FileChooser" = "gtk";
-  };
-
-  xdg.mimeApps.enable = true;
-  xdg.mimeApps.defaultApplications =
-    let
-      archiveTool = "org.kde.ark.desktop";
-      imageViewer = "imv-dir.desktop";
-      avViewer = "mpv.desktop";
-    in
-    {
-      "application/gzip" = archiveTool;
-      "application/vnd.rar" = archiveTool;
-      "application/x-7z-compressed" = archiveTool;
-      "application/x-bzip" = archiveTool;
-      "application/x-bzip2" = archiveTool;
-      "application/x-tar" = archiveTool;
-      "application/zip" = archiveTool;
-
-      "image/apng" = imageViewer;
-      "image/avif" = imageViewer;
-      "image/bmp" = imageViewer;
-      "image/jpeg" = imageViewer;
-      "image/png" = imageViewer;
-      "image/svg+xml" = imageViewer;
-      "image/tiff" = imageViewer;
-      "image/vnd.microsoft.icon" = imageViewer;
-      "image/webp" = imageViewer;
-
-      "application/ogg" = avViewer;
-      "audio/aac" = avViewer;
-      "audio/midi" = avViewer;
-      "audio/ogg" = avViewer;
-      "audio/wav" = avViewer;
-      "audio/webm" = avViewer;
-      "audio/x-midi" = avViewer;
-      "video/mp4" = avViewer;
-      "video/mpeg" = avViewer;
-      "video/ogg" = avViewer;
-      "video/webm" = avViewer;
-      "video/x-msvideo" = avViewer;
-
-      "application/pdf" = "org.gnome.Evince.desktop";
-    };
-
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
+  launchd = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+    agents.drive-Documents = rcloneLaunchAgent "drive-Documents" "Documents" "${config.home.homeDirectory}/Documents/Drive";
+    agents.drive-Images = rcloneLaunchAgent "drive-Images" "Images" "${config.home.homeDirectory}/Pictures/Drive";
   };
 }

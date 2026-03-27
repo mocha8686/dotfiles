@@ -10,11 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-  ];
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
+    ../configuration.nix
   ];
 
   # Bootloader.
@@ -87,7 +83,6 @@
 
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
-    nerd-fonts.iosevka
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
@@ -126,11 +121,12 @@
     evince
     fuzzel
     imv
-    mpv
     kdePackages.ark
     kdePackages.fcitx5-configtool
+    kdePackages.filelight
     kdePackages.kate
     kitty
+    mpv
     vivaldi
 
     # Dolphin

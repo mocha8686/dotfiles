@@ -1,26 +1,27 @@
 {
   pkgs,
-  self,
+  inputs,
   ...
 }:
 {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPAckages = with pkgs; [
-    vim
+  imports = [
+    ../configuration.nix
   ];
 
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs; [
+    git
+    grandperspective
+    kitty
+    rectangle
   ];
 
   # Enable alternative shell support in nix-darwin.
   # programs.fish.enable = true;
 
   # Set Git commit hash for darwin-version.
-  system.configurationRevision = self.rev or self.dirtyRev or null;
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -28,4 +29,15 @@
 
   # The playform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  system.primaryUser = "mocha";
+  users.users.mocha.home = "/Users/mocha";
+
+  homebrew = {
+    enable = true;
+    casks = [
+      "vivaldi"
+      "altserver"
+    ];
+  };
 }

@@ -1,293 +1,299 @@
 { lib, ... }:
 {
-  plugins = {
-    todo-comments.enable = true;
-    gitsigns.enable = true;
-    git-conflict.enable = true;
-    vim-matchup.enable = true;
-    leetcode.enable = true;
+  plugins.todo-comments.enable = true;
+  plugins.gitsigns.enable = true;
+  plugins.git-conflict.enable = true;
+  plugins.vim-matchup.enable = true;
+  plugins.leetcode.enable = true;
 
-    lspconfig.enable = true;
+  plugins.lspconfig.enable = true;
 
-    spectre = {
-      enable = true;
-    };
+  plugins.spectre.enable = true;
 
-    toggleterm = {
-      enable = true;
-      settings = {
-        open_mapping = "'<leader>to'";
-        direction = "vertical";
-        hide_numbers = true;
-        insert_mappings = false;
-        persist_mode = false;
-        persist_size = false;
-        shade_terminals = false;
-        size = lib.nixvim.mkRaw "vim.o.columns * 0.4";
-        terminal_mappings = false;
-      };
-    };
-
-    ccc = {
-      enable = true;
-      settings = {
-        inputs = [
-          "ccc.input.oklch"
-          "ccc.input.hsl"
-          "ccc.input.rgb"
-          "ccc.input.cmyk"
-        ];
-        outputs = [
-          "ccc.output.css_oklch"
-          "ccc.output.css_hsl"
-          "ccc.output.hex_short"
-          "ccc.output.hex"
-          "ccc.output.css_rgb"
-        ];
-        highlighter = {
-          auto_enable = true;
-          filetypes = [
-            "html"
-            "css"
-            "scss"
-            "sass"
-            "javascript"
-            "javascriptreact"
-            "typescript"
-            "typescriptreact"
-            "markdown"
-            "mdx"
-          ];
+  plugins.lualine = {
+    enable = true;
+    settings = {
+      options = {
+        theme = "neopywal";
+        component_separators = {
+          left = "";
+          right = "";
+        };
+        section_separators = {
+          left = "";
+          right = "";
         };
       };
-    };
-
-    mini = {
-      enable = true;
-      mockDevIcons = true;
-
-      modules = {
-        # Editing
-        ai = { };
-        align = { };
-        keymap = { };
-        move = { };
-        operators = { };
-        pairs = { };
-        splitjoin = { };
-        surround = { };
-        completion = { };
-        snippets = {
-          snippets = [
-            (lib.nixvim.mkRaw "require('mini.snippets').gen_loader.from_lang()")
-          ];
-        };
-
-        # General
-        bracketed = {
-          diagnostic.options.float = true;
-        };
-        cmdline = { };
-        diff = { };
-        extra = { };
-        files = {
-          mappings = {
-            go_in = "L";
-            go_in_plus = "l";
-            go_out = "h";
-            go_out_plus = "H";
-          };
-        };
-        git = { };
-        jump = { };
-        jump2d = {
-          mappings.start_jumping = "z";
-        };
-        pick = { };
-
-        # Appearance
-        icons = {
-          mockDevIcons = true;
-        };
-        indentscope = { };
-        notify = { };
-        tabline = { };
-
-        # Extra
-        clue = {
-          window.delay = 250;
-          triggers = lib.nixvim.mkRaw ''
-            {
-            	-- Leader triggers
-            	{ mode = 'n', keys = '<Leader>' },
-            	{ mode = 'x', keys = '<Leader>' },
-
-            	-- Built-in completion
-            	{ mode = 'i', keys = '<C-x>' },
-
-            	-- `g` key
-            	{ mode = 'n', keys = 'g' },
-            	{ mode = 'x', keys = 'g' },
-
-            	-- Marks
-            	{ mode = 'n', keys = "'" },
-            	{ mode = 'n', keys = '`' },
-            	{ mode = 'x', keys = "'" },
-            	{ mode = 'x', keys = '`' },
-
-            	-- Registers
-            	{ mode = 'n', keys = '"' },
-            	{ mode = 'x', keys = '"' },
-            	{ mode = 'i', keys = '<C-r>' },
-            	{ mode = 'c', keys = '<C-r>' },
-
-            	-- Window commands
-            	{ mode = 'n', keys = '<C-w>' },
-            }
-          '';
-          clues = lib.nixvim.mkRaw ''
-            {
-            	{ mode = 'n', keys = '<leader>c', desc = '+CCC' },
-            	{ mode = 'n', keys = '<leader>s', desc = '+Spectre' },
-            	{ mode = 'n', keys = '<leader>t', desc = '+Toggleterm' },
-            	{ mode = 'n', keys = '<leader>l', desc = '+LSP' },
-            	{ mode = 'n', keys = '<leader>v', desc = '+Leet' },
-
-            	require('mini.clue').gen_clues.builtin_completion(),
-            	require('mini.clue').gen_clues.g(),
-            	require('mini.clue').gen_clues.marks(),
-            	require('mini.clue').gen_clues.registers(),
-            	require('mini.clue').gen_clues.windows(),
-            }
-          '';
-        };
-        statusline =
-          let
-            fn = lib.nixvim.mkRaw ''
-              function()
-              	local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-              	local git           = MiniStatusline.section_git({ trunc_width = 40 })
-              	local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
-              	local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-              	local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
-              	local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
-              	local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-              	-- local location   = MiniStatusline.section_location({ trunc_width = 75 })
-              	local location      = '%l %v'
-              	local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
-
-              	return MiniStatusline.combine_groups({
-              		{ hl = mode_hl,                       strings = { string.upper(mode) } },
-              		{ hl = 'MiniStatuslineDevinfo',       strings = { git, diff, diagnostics, lsp } },
-              		'%<', -- Mark general truncate point
-              		{ hl = 'MiniStatuslineFilename',      strings = { filename } },
-              		'%=', -- End left alignment
-              		{ hl = 'MiniStatuslineFileinfo',      strings = { fileinfo } },
-              		{ hl = mode_hl,                       strings = { search, location } },
-              	})
+      sections = {
+        lualine_a = [ "mode" ];
+        lualine_b = [ "branch" "diff" "diagnostics" ];
+        lualine_c = [
+          {
+            __unkeyed-1 = "filename";
+            symbols = {
+              readonly = "";
+            };
+          }
+        ];
+        lualine_x = [ "encoding" "fileformat" "filetype" ];
+        lualine_y = [ "progress" ];
+        lualine_z = [
+          {
+            __unkeyed-1 = "location";
+            fmt = lib.nixvim.mkRaw ''
+              function(str)
+                for l, c in string.gmatch(str, "(%d+):(%d+)") do
+                  return "" .. l .. " " .. c
+                end
               end
             '';
-          in
-          {
-            content.active = fn;
-            content.inactive = fn;
-          };
-      };
-    };
-
-    snacks = {
-      enable = true;
-      settings = {
-        image.enable = true;
-        quickfile.enable = true;
-      };
-    };
-
-    none-ls = {
-      enable = true;
-
-      sources.formatting.alejandra.enable = true;
-      sources.code_actions.statix.enable = true;
-
-      sources.prettier = {
-        enable = true;
-        disableTsServerFormatter = true;
-      };
-    };
-  };
-
-  lsp = {
-    inlayHints.enable = true;
-
-    servers = {
-      astro.enable = true;
-      biome.enable = true;
-      clangd.enable = true;
-      cssls.enable = true;
-      emmet_ls.enable = true;
-      eslint.enable = true;
-      html.enable = true;
-      jsonls.enable = true;
-      nil_ls.enable = true;
-      qmlls.enable = true;
-      rust_analyzer.enable = true;
-      statix.enable = true;
-      stylelint.enable = true;
-      ts_ls.enable = true;
-    };
-
-    keymaps = [
-      {
-        key = "K";
-        lspBufAction = "hover";
-        options.desc = "Display hover info";
-      }
-      {
-        key = "<leader>lD";
-        lspBufAction = "declaration";
-        options.desc = "Go to declaration";
-      }
-      {
-        key = "<leader>ld";
-        lspBufAction = "definition";
-        options.desc = "Go to definition";
-      }
-      {
-        key = "<leader>li";
-        lspBufAction = "implementation";
-        options.desc = "Go to implementation";
-      }
-      {
-        key = "<leader>lS";
-        lspBufAction = "signature_help";
-        options.desc = "Show signature info";
-      }
-      {
-        key = "<leader>lR";
-        lspBufAction = "rename";
-        options.desc = "Rename symbol";
-      }
-      {
-        key = "<leader>lr";
-        action = lib.nixvim.mkRaw "function() MiniExtra.pickers.lsp { scope = 'references' } end";
-        options.desc = "Pick references";
-      }
-      {
-        key = "<leader>lA";
-        lspBufAction = "code_action";
-        mode = [
-          "n"
-          "v"
+          }
         ];
-        options.desc = "Show code actions";
-      }
-      {
-        key = "<leader>lf";
-        action = lib.nixvim.mkRaw "function() vim.lsp.buf.format { async = true } end";
-        options.desc = "Format buffer";
-      }
-    ];
+      };
+    };
   };
+
+  plugins.toggleterm = {
+    enable = true;
+    settings = {
+      open_mapping = "'<leader>to'";
+      direction = "vertical";
+      hide_numbers = true;
+      insert_mappings = false;
+      persist_mode = false;
+      persist_size = false;
+      shade_terminals = false;
+      size = lib.nixvim.mkRaw "vim.o.columns * 0.4";
+      terminal_mappings = false;
+    };
+  };
+
+  plugins.ccc = {
+    enable = true;
+    settings = {
+      inputs = [
+        "ccc.input.oklch"
+        "ccc.input.hsl"
+        "ccc.input.rgb"
+        "ccc.input.cmyk"
+      ];
+      outputs = [
+        "ccc.output.css_oklch"
+        "ccc.output.css_hsl"
+        "ccc.output.hex_short"
+        "ccc.output.hex"
+        "ccc.output.css_rgb"
+      ];
+      highlighter = {
+        auto_enable = true;
+        filetypes = [
+          "html"
+          "css"
+          "scss"
+          "sass"
+          "javascript"
+          "javascriptreact"
+          "typescript"
+          "typescriptreact"
+          "markdown"
+          "mdx"
+        ];
+      };
+    };
+  };
+
+  plugins.mini = {
+    enable = true;
+    mockDevIcons = true;
+
+    modules = {
+      # Editing
+      ai = { };
+      align = { };
+      keymap = { };
+      move = { };
+      operators = { };
+      pairs = { };
+      splitjoin = { };
+      surround = { };
+      completion = { };
+      snippets = {
+        snippets = [
+          (lib.nixvim.mkRaw "require('mini.snippets').gen_loader.from_lang()")
+        ];
+      };
+
+      # General
+      bracketed = {
+        diagnostic.options.float = true;
+      };
+      cmdline = { };
+      diff = { };
+      extra = { };
+      files = {
+        mappings = {
+          go_in = "L";
+          go_in_plus = "l";
+          go_out = "h";
+          go_out_plus = "H";
+        };
+      };
+      git = { };
+      jump = { };
+      jump2d = {
+        mappings.start_jumping = "z";
+      };
+      pick = { };
+
+      # Appearance
+      icons = {
+        mockDevIcons = true;
+      };
+      indentscope = { };
+      notify = { };
+      tabline = { };
+
+      # Extra
+      clue = {
+        window.delay = 250;
+        triggers = lib.nixvim.mkRaw ''
+          {
+            -- Leader triggers
+            { mode = 'n', keys = '<Leader>' },
+            { mode = 'x', keys = '<Leader>' },
+
+            -- Built-in completion
+            { mode = 'i', keys = '<C-x>' },
+
+            -- `g` key
+            { mode = 'n', keys = 'g' },
+            { mode = 'x', keys = 'g' },
+
+            -- Marks
+            { mode = 'n', keys = "'" },
+            { mode = 'n', keys = '`' },
+            { mode = 'x', keys = "'" },
+            { mode = 'x', keys = '`' },
+
+            -- Registers
+            { mode = 'n', keys = '"' },
+            { mode = 'x', keys = '"' },
+            { mode = 'i', keys = '<C-r>' },
+            { mode = 'c', keys = '<C-r>' },
+
+            -- Window commands
+            { mode = 'n', keys = '<C-w>' },
+          }
+        '';
+        clues = lib.nixvim.mkRaw ''
+          {
+            { mode = 'n', keys = '<leader>c', desc = '+CCC' },
+            { mode = 'n', keys = '<leader>s', desc = '+Spectre' },
+            { mode = 'n', keys = '<leader>t', desc = '+Toggleterm' },
+            { mode = 'n', keys = '<leader>l', desc = '+LSP' },
+            { mode = 'n', keys = '<leader>v', desc = '+Leet' },
+
+            require('mini.clue').gen_clues.builtin_completion(),
+            require('mini.clue').gen_clues.g(),
+            require('mini.clue').gen_clues.marks(),
+            require('mini.clue').gen_clues.registers(),
+            require('mini.clue').gen_clues.windows(),
+          }
+        '';
+      };
+    };
+  };
+
+  snacks = {
+    enable = true;
+    settings = {
+      image.enable = true;
+      quickfile.enable = true;
+    };
+  };
+
+  none-ls = {
+    enable = true;
+
+    sources.formatting.alejandra.enable = true;
+    sources.code_actions.statix.enable = true;
+
+    sources.prettier = {
+      enable = true;
+      disableTsServerFormatter = true;
+    };
+  };
+
+  lsp.inlayHints.enable = true;
+
+  lsp.servers = {
+    astro.enable = true;
+    biome.enable = true;
+    clangd.enable = true;
+    cssls.enable = true;
+    emmet_ls.enable = true;
+    eslint.enable = true;
+    html.enable = true;
+    jsonls.enable = true;
+    nil_ls.enable = true;
+    qmlls.enable = true;
+    rust_analyzer.enable = true;
+    statix.enable = true;
+    stylelint.enable = true;
+    ts_ls.enable = true;
+  };
+
+  lsp.keymaps = [
+    {
+      key = "K";
+      lspBufAction = "hover";
+      options.desc = "Display hover info";
+    }
+    {
+      key = "<leader>lD";
+      lspBufAction = "declaration";
+      options.desc = "Go to declaration";
+    }
+    {
+      key = "<leader>ld";
+      lspBufAction = "definition";
+      options.desc = "Go to definition";
+    }
+    {
+      key = "<leader>li";
+      lspBufAction = "implementation";
+      options.desc = "Go to implementation";
+    }
+    {
+      key = "<leader>lS";
+      lspBufAction = "signature_help";
+      options.desc = "Show signature info";
+    }
+    {
+      key = "<leader>lR";
+      lspBufAction = "rename";
+      options.desc = "Rename symbol";
+    }
+    {
+      key = "<leader>lr";
+      action = lib.nixvim.mkRaw "function() MiniExtra.pickers.lsp { scope = 'references' } end";
+      options.desc = "Pick references";
+    }
+    {
+      key = "<leader>lA";
+      lspBufAction = "code_action";
+      mode = [
+        "n"
+        "v"
+      ];
+      options.desc = "Show code actions";
+    }
+    {
+      key = "<leader>lf";
+      action = lib.nixvim.mkRaw "function() vim.lsp.buf.format { async = true } end";
+      options.desc = "Format buffer";
+    }
+  ];
 
   diagnostic.settings = {
     signs = {

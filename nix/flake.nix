@@ -66,17 +66,19 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      mkPkgs = system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
     in
     {
-      nixosConfigurations = {
+      nixosConfigurations = let
+        system = "x86_64-linux";
+      in
+      {
         asahina = nixpkgs.lib.nixosSystem {
-          pkgs = pkgs;
-          system = "x86_64-linux";
+          inherit system;
+          pkgs = mkPkgs system;
           specialArgs = { inherit inputs; };
           modules = [
             {
@@ -91,7 +93,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 backupFileExtension = "old";
-                users.mocha = ./home.nix;
+                users.mocha = ./asahina/home.nix;
                 extraSpecialArgs = {
                   inherit inputs;
                 };
@@ -100,13 +102,27 @@
           ];
         };
       };
-      darwinConfigurations = {
+      darwinConfigurations = let
+        system = "aarch64-darwin";
+      in
+      {
         akiyama = nix-darwin.lib.darwinSystem {
-          pkgs = pkgs;
-          system = "aarch64-darwin";
+          inherit system;
+          pkgs = mkPkgs system;
           specialArgs = { inherit inputs; };
           modules = [
             ./akiyama/configuration.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.mocha = ./akiyama/home.nix;
+                extraSpecialArgs = {
+                   inherit inputs;
+                };
+              };
+            }
           ];
         };
       };
