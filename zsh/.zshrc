@@ -121,13 +121,15 @@ alias get_idf='. $HOME/esp/esp-idf/export.sh'
 
 eval "$(zoxide init zsh)"
 
-if [[ -f ~/.os.sh ]] then
+if [[ -f ~/.os.sh ]]; then
 	source ~/.os.sh
 fi
 
-set -o allexport
-source ~/.swww
-set +o allexport
+if [[ -f ~/.swww ]]; then
+	set -o allexport
+	source ~/.swww
+	set +o allexport
+fi
 
 typeset -U path
 export PATH

@@ -317,7 +317,10 @@
   };
 
   extraConfigLua = ''
-    require('neopywal').setup { use_wallust = true }
+    require('neopywal').setup {
+      use_wallust = true,
+      colorscheme_file = os.getenv("HOME") .. "/.cache/wallust/colors_neopywal.vim",
+    }
     vim.cmd.colorscheme 'neopywal'
 
     require('focus').setup()
