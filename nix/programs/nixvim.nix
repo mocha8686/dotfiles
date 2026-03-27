@@ -14,7 +14,6 @@
     enable = true;
     settings = {
       options = {
-        theme = "neopywal";
         component_separators = {
           left = "";
           right = "";
@@ -317,10 +316,7 @@
   };
 
   extraConfigLua = ''
-    require('neopywal').setup {
-      use_wallust = true,
-      colorscheme_file = os.getenv("HOME") .. "/.cache/wallust/colors_neopywal.vim",
-    }
+    require('neopywal').setup { use_wallust = true }
     vim.cmd.colorscheme 'neopywal'
 
     require('focus').setup()
