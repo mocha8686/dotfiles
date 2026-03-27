@@ -333,7 +333,13 @@
     -- <CR> accepts first completion
     _G.cr_action = function()
       complete_info = vim.fn.complete_info()
-      if #complete_info['items'] > 0 and complete_info['selected'] == -1 then return '<C-n><C-y>' end
+      if #complete_info['items'] > 0 then
+        if complete_info['selected'] == -1 then
+          return '<C-n><C-y>'
+        else
+          return '<C-y>'
+        end
+      end
       return MiniPairs.cr()
     end
     vim.keymap.set('i', '<CR>', 'v:lua.cr_action()', { expr = true })
