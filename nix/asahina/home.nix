@@ -15,7 +15,12 @@
     # Graphical
     krita
     libreoffice
+    obsidian
+    prismlauncher
+    qalculate-qt
     swww
+    tetrio-desktop
+    vesktop
 
     # Coding
     python3

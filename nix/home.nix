@@ -203,20 +203,11 @@ in
       ripgrep
       starship
       tldr
-      zoxide
-
-      # Graphical
-      obsidian
-      prismlauncher
-      qalculate-qt
-      vesktop
       wallust
+      zoxide
 
       # Fonts
       userFonts.rajdhani
-
-      # Games
-      tetrio-desktop
     ] ++ [
       inputs.globalprotect-openconnect.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];

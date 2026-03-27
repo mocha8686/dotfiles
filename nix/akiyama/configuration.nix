@@ -35,9 +35,15 @@
 
   homebrew = {
     enable = true;
+    brews = [
+      "qalculate-qt"
+    ];
     casks = [
       "vivaldi"
       "altserver"
+      "obsidian"
+      "prismlauncher"
+      "vesktop"
     ];
   };
 }
