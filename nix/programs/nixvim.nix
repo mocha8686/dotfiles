@@ -356,6 +356,7 @@
 
     # Editing
     autoindent = true;
+    completeopt = "menuone,noselect,nosort,fuzzy";
     expandtab = false;
     shiftwidth = 4;
     tabstop = 4;
