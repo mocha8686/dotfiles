@@ -316,19 +316,35 @@
   };
 
   extraConfigLua = ''
+    -- Setup neopywal
     require('neopywal').setup { use_wallust = true }
     vim.cmd.colorscheme 'neopywal'
 
+    -- Setup focus.nvim
     require('focus').setup()
 
+    -- Completion keymaps
     local map_multistep = require('mini.keymap').map_multistep
     map_multistep('i', '<Tab>', { 'pmenu_next' })
     map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
     map_multistep('i', '<CR>', { 'pmenu_accept', 'minipairs_cr' })
     map_multistep('i', '<BS>', { 'minipairs_bs' })
 
+    -- <CR> accepts first completion
+    _G.cr_action = function()
+      -- If there is selected item in popup, accept it with <C-y>
+      if vim.fn.complete_info()['selected'] ~= -1 then return '\25' end
+      -- Fall back to plain `<CR>`. You might want to customize according
+      -- to other plugins. For example if 'mini.pairs' is set up, replace
+      -- next line with `return MiniPairs.cr()`
+      return '\r'
+    end
+    vim.keymap.set('i', '<CR>', 'v:lua.cr_action()', { expr = true })
+
+    -- Set highlight group for tabline
     vim.api.nvim_set_hl(0, "MiniTablineCurrent", { link = "IncSearch" })
 
+    -- Autoload local nvimconfig.lua
     local project_config_module_name = 'nvimconfig'
     local function load_project_config()
       if vim.fn.filereadable(project_config_module_name .. '.lua') ~= 0 then
