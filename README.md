@@ -1,5 +1,3 @@
-# Dotfiles
+# NOTE: Moved to Codeberg
 
-Installation:
-
-1. run `install.sh`
+This repo has been moved to [codeberg](https://codeberg.org/mocha8686/dotfiles).
